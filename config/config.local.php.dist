@@ -1,0 +1,7 @@
+<?php
+
+return array(
+    'endpoint' => 'http://domain.com:port/v1/',
+    'key' => 'somerandomstring',
+    'secret' => 'somelongerrandomstring'
+);
