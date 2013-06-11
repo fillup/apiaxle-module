@@ -10,6 +10,7 @@ namespace ApiAxle\Api;
 use ApiAxle\Shared\Config;
 use ApiAxle\Shared\ItemList;
 use ApiAxle\Shared\HttpRequest;
+use ApiAxle\Shared\Utilities;
 
 class Api
 {
@@ -130,7 +131,6 @@ class Api
         }
         // Ensure data returned looks like proper result
         if($data->createdAt && $data->endPoint){
-            $this->name = $name;
             $this->createdAt = $data->createdAt;
             $this->updatedAt = $data->updatedAt;
             $this->globalCache = $data->globalCache;
@@ -148,12 +148,46 @@ class Api
         return $this;
     }
     
-    public function getList(){}
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+    
+    /**
+     * Call API to retrieve a list of available APIs
+     * 
+     * @return \ApiAxle\Shared\ItemList
+     */
+    public function getList($from=0, $to=100, $resolve='true')
+    {
+        $apiPath = 'apis';
+        $params = array(
+            //'from' => $from,
+            //'to' => $to,
+            //'resolve' => $resolve
+        );
+        
+        $apiList = new ItemList();
+        $request = Utilities::callApi($apiPath, 'GET', $params, $this->config);
+        return $request;
+        if($request){
+            $results = json_decode($request);
+            return $results;
+            foreach($results as $name => $data){
+                $api = new Api();
+                $api->setName($name);
+                $api->setData($data);
+                $apiList->addItem($api);
+            }
+        }
+        
+        return $apiList;
+    }
     
     public function get($name)
     {
         if($name){
-            $url = $this->config->endpoint.'api/'.$name;
+            $url = $this->config->getEndpoint().'api/'.$name;
             try {
                 $request = HttpRequest::request($url);
                 if($request){
@@ -185,4 +219,9 @@ class Api
     public function getStats() {}
     
     public static function getCharts($granularity='minute') {}
+    
+    public function getConfig()
+    {
+        return $this->config;
+    }
 }

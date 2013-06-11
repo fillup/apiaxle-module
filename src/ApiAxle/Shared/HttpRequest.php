@@ -43,10 +43,11 @@ class HttpRequest
         /**
          * Added for debugging with Charles proxy
          */
-        //curl_setopt($ch, CURLOPT_PROXY, '127.0.0.1');
-        //curl_setopt($ch, CURLOPT_PROXYPORT, '8888');
-        //curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, true);
-        //curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+//        curl_setopt($ch, CURLOPT_PROXY, '127.0.0.1');
+//        curl_setopt($ch, CURLOPT_PROXYPORT, '8888');
+//        curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, true);
+//        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        
         
         $method = strtoupper($method);
         if($method == 'GET'){
@@ -68,7 +69,7 @@ class HttpRequest
         
         $response = curl_exec($ch);
         $info = curl_getinfo($ch);
-        if($response && !($info['http_code'] >= 400)){
+        if($response){
             return $response;
         } else {
             if($info['http_code'] == 204){
@@ -84,7 +85,7 @@ class HttpRequest
                     $code = $curl_errno;
                 }
                 throw new \ErrorException('Http Request Failed (HTTP Status: '.$info['http_code'].') with error: '.  
-                    curl_error($ch), $code);
+                    curl_error($ch), 210);
             }
         }
     }

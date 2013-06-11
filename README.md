@@ -10,7 +10,7 @@ This module is not directly affiliated with ApiAxle but is intended to provide a
 
 ## Requirements ##
 * PHP >= 5.3.3
-* curl
+* [curl](http://php.net/curl)
 * [ApiAxle](http://apiaxle.com) proxy with the apiaxle-api package installed
 
 ## Features / Goals ##
@@ -43,3 +43,7 @@ include_once './vendor/autoload.php';
 ## Contributing ##
 If you are interested in contributing to this library and/or extending it please let me know, I'd love to work with others on this to help consider other use cases and design patters.
 
+## Exceptions ##
+100-199: Configuration Related Exceptions
+
+200 - 299: API call related exceptions

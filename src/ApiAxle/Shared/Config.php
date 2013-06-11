@@ -68,9 +68,9 @@ class Config
      */
     public function setConfg($config)
     {
-        $this->endpoint = isset($config['endpoint']) ? $config['endpoint'] : false;
-        $this->key = isset($config['key']) ? $config['key'] : false;
-        $this->secret = isset($config['secret']) ? $config['secret'] : false;
+        $this->setEndpoint(isset($config['endpoint']) ? $config['endpoint'] : false);
+        $this->setKey(isset($config['key']) ? $config['key'] : false);
+        $this->setSecret(isset($config['secret']) ? $config['secret'] : false);
     }
     
     /**
@@ -96,14 +96,66 @@ class Config
      */
     public function loadConfigFile($file=false)
     {
-        $file = $file ?: __DIR__.'/../../config/config.local.php';
+        $file = $file ?: __DIR__.'/../../../config/config.local.php';
         if(file_exists($file)){
-            $config = require_once $file;
+            $config = include $file;
             if(is_array($config) && count($config) > 0){
                 $this->setConfg($config);
                 return true;
             }
         }
-        throw new Exception('Unable to load configuration from file '.$file, '100');
+        throw new \Exception('Unable to load configuration from file '.$file, '100');
     }
+    
+    public function getEndpoint()
+    {
+        return $this->endpoint;
+    }
+    
+    public function setEndpoint($endpoint)
+    {
+        $url = filter_var($endpoint, FILTER_VALIDATE_URL);
+        if($url){
+            if(preg_match('/^http[s]{0,1}:\/\//', $endpoint)){
+                $this->endpoint = $endpoint;
+            } else {
+                throw new \Exception('Endpoint must start with http:// or https://',101);
+            }
+        } else {
+            throw new \Exception('Invalid URL specified for Endpoint.',102);
+        }
+        
+        return $this;
+    }
+    
+    public function getKey()
+    {
+        return $this->key;
+    }
+    
+    public function setKey($key)
+    {
+        $this->key = $key;
+    }
+    
+    public function getSecret()
+    {
+        return $this->secret;
+    }
+    
+    public function setSecret($secret)
+    {
+        $this->secret = $secret;
+    }
+    
+    public function getSignature()
+    {
+        if(!is_null($this->secret)){
+            $api_sig = hash_hmac('sha1', time().$this->getKey(), $this->getSecret());
+            return $api_sig;
+        } else {
+            return false;
+        }
+    }
+    
 }
