@@ -124,26 +124,33 @@ class Api
         }
     }
     
+    /**
+     * Set object properties
+     * 
+     * @param type $data
+     * @return \ApiAxle\Api\Api
+     */
     public function setData($data)
     {
         if(is_array($data)){
             $data = json_decode(json_encode($data));
         }
-        // Ensure data returned looks like proper result
-        if(isset($data->endPoint)){
-            $this->createdAt = isset($data->createdAt) ? $data->createdAt : null;
-            $this->updatedAt = isset($data->updatedAt) ? $data->updatedAt : null;
-            $this->globalCache = isset($data->globalCache) ? $data->globalCache : null;
-            $this->endPoint = isset($data->endPoint) ? $data->endPoint : null;
-            $this->protocol = isset($data->protocol) ? $data->protocol : null;
-            $this->apiFormat = isset($data->apiFormat) ? $data->apiFormat : null;
-            $this->endPointTimeout = isset($data->endPointTimeout) ? $data->endPointTimeout : null;
-            $this->endPointMaxRedirects = isset($data->endPointMaxRedirects) ? $data->endPointMaxRedirects : null;
-            $this->extractKeyRegex = isset($data->extractKeyRegex) ? $data->extractKeyRegex : null;
-            $this->defaultPath = isset($data->defaultPath) ? $data->defaultPath : null;
-            $this->disabled = isset($data->disabled) ? $data->disabled : false;
-            $this->strictSSL = isset($data->strictSSL) ? $data->strictSSL : true;
-        }
+        
+        /**
+         * @todo Refactor to use setters for validation?
+         */
+        $this->createdAt = isset($data->createdAt) ? $data->createdAt : null;
+        $this->updatedAt = isset($data->updatedAt) ? $data->updatedAt : null;
+        $this->globalCache = isset($data->globalCache) ? $data->globalCache : null;
+        $this->endPoint = isset($data->endPoint) ? $data->endPoint : null;
+        $this->protocol = isset($data->protocol) ? $data->protocol : null;
+        $this->apiFormat = isset($data->apiFormat) ? $data->apiFormat : null;
+        $this->endPointTimeout = isset($data->endPointTimeout) ? $data->endPointTimeout : null;
+        $this->endPointMaxRedirects = isset($data->endPointMaxRedirects) ? $data->endPointMaxRedirects : null;
+        $this->extractKeyRegex = isset($data->extractKeyRegex) ? $data->extractKeyRegex : null;
+        $this->defaultPath = isset($data->defaultPath) ? $data->defaultPath : null;
+        $this->disabled = isset($data->disabled) ? $data->disabled : false;
+        $this->strictSSL = isset($data->strictSSL) ? $data->strictSSL : true;
         
         return $this;
     }
@@ -231,18 +238,13 @@ class Api
      * @param array $data
      * @throws \ErrorException 201 - Missing API name, cant make update call
      */
-    public function update($data=false)
+    public function update($data)
     {
-        if($data){
-            $this->setData($data);
-        }
-        
-        $data['updated'] = time();
-        
         if(!is_null($this->getName())){
             $apiPath = 'api/'.$this->getName();
-            $request = Utilities::callApi($apiPath,'PUT',$this->getData(),$this->getConfig());
+            $request = Utilities::callApi($apiPath,'PUT',$data,$this->getConfig());
             if($request){
+                $this->get($this->getName());
                 return $this;
             } else {
                 throw new \ErrorException('Unable to update API',202);
@@ -277,7 +279,24 @@ class Api
         }
     }
     
-    public function delete($id) {}
+    public function delete($name=false)
+    {
+        if($name){
+            $this->setName($name);
+        }
+        if(is_null($this->getName())){
+            throw new \Exception('An API name is required to delete.',205);
+        } else {
+            $apiPath = 'api/'.$this->getName();
+            $request = Utilities::callApi($apiPath, 'DELETE', null, $this->getConfig());
+            if($request){
+                return true;
+            } else {
+                throw new \ErrorException('Unable to delete API.', 206);
+            }
+        }
+        
+    }
     
     public function getKeyCharts() {}
     

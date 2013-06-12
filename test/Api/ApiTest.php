@@ -38,7 +38,6 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         $api->get($apiName);
         //print_r($api);
         $this->assertEquals($apiName, $api->getName());
-        //$this->assertNotNull($api->createdAt);
     }
     
     public function testCreateApi()
@@ -52,6 +51,47 @@ class ApiTest extends \PHPUnit_Framework_TestCase
             $api->create($apiName, $data);
             print_r($api);
             $this->assertEquals($apiName,$api->getName());
+        } catch(ApiException $ae){
+            echo $ae;
+        } catch(\Exception $e){
+            echo $e;
+        }
+    }
+    
+    public function testCreateUpdateApi()
+    {
+        $apiName = 'test-'.time();
+        $data = array(
+            'endPoint' => 'localhost'
+        );
+        $api = new Api();
+        try{
+            $api->create($apiName, $data);
+            $data = array(
+                'endPoint' => 'differenthost'
+            );
+            $api->update($data);
+            $apiData = $api->getData();
+            $this->assertRegExp('/[0-9]{1,}/',(string)$apiData['updatedAt']);
+        } catch(ApiException $ae){
+            echo $ae;
+        } catch(\Exception $e){
+            echo $e;
+        }
+    }
+    
+    public function testCreateDeleteApi()
+    {
+        $apiName = 'test-'.time();
+        $data = array(
+            'endPoint' => 'localhost'
+        );
+        $api = new Api();
+        try{
+            //$api->create($apiName, $data);
+            $api->delete('test-1371070415');
+            $apiList = $api->getList();
+            $this->assertArrayNotHasKey($apiName, $apiList);
         } catch(ApiException $ae){
             echo $ae;
         } catch(\Exception $e){

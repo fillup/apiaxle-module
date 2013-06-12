@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class ApiAxle\Shared\ApiException | fillup/apiaxle</title>
+
+	<script type="text/javascript" src="resources/combined.js?3551695169"></script>
+	<script type="text/javascript" src="elementlist.js?2081904197"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-ApiAxle.html">ApiAxle<span></span></a>
+						<ul>
+				<li><a href="namespace-ApiAxle.Api.html">Api</a>
+						</li>
+				<li class="active"><a href="namespace-ApiAxle.Shared.html">Shared</a>
+						</li>
+				<li><a href="namespace-ApiAxle.Test.html">Test<span></span></a>
+						<ul>
+				<li><a href="namespace-ApiAxle.Test.Api.html">Api</a>
+						</li>
+				<li><a href="namespace-ApiAxle.Test.Shared.html">Shared</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-ApiAxle.Tests.html">Tests</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-ApiAxle.Shared.Config.html">Config</a></li>
+				<li><a href="class-ApiAxle.Shared.HttpRequest.html">HttpRequest</a></li>
+				<li><a href="class-ApiAxle.Shared.ItemList.html">ItemList</a></li>
+				<li><a href="class-ApiAxle.Shared.Utilities.html">Utilities</a></li>
+			</ul>
+
+
+
+			<h3>Exceptions</h3>
+			<ul>
+				<li class="active"><a href="class-ApiAxle.Shared.ApiException.html">ApiException</a></li>
+			</ul>
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-ApiAxle.Shared.html" title="Summary of ApiAxle\Shared"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+			<li>
+				<a href="todo.html" title="Todo list"><span>Todo</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class ApiException</h1>
+
+
+	<div class="description">
+	
+<p>Custom Exception class to also store API response for further information and
+debugging.</p>
+
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+			<a href="class-Exception.html"><span>Exception</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b><span>ApiAxle\Shared\ApiException</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-ApiAxle.html">ApiAxle</a>\<a href="namespace-ApiAxle.Shared.html">Shared</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-ApiAxle.Shared.ApiException.html#10-56" title="Go to source code">src/ApiAxle/Shared/ApiException.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-ApiAxle.Shared.ApiException.html#29-33" title="Go to source code">__construct</a>( <span>mixed <var>$message</var></span>, <span>mixed <var>$code</var></span>, <span>mixed <var>$previous</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$http_code</var></span>, <span>mixed <var>$response</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Exception.html#___construct">Exception::__construct()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setResponse" id="_setResponse">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setResponse">#</a>
+		<code><a href="source-class-ApiAxle.Shared.ApiException.html#35-42" title="Go to source code">setResponse</a>( <span>mixed <var>$response</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getResponse" id="_getResponse">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getResponse">#</a>
+		<code><a href="source-class-ApiAxle.Shared.ApiException.html#44-47" title="Go to source code">getResponse</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__toString" id="___toString">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___toString">#</a>
+		<code><a href="source-class-ApiAxle.Shared.ApiException.html#49-55" title="Go to source code">__toString</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Exception.html#___toString">Exception::__toString()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Exception.html#methods">Exception</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Exception.html#_getCode">getCode()</a>, 
+			<a href="class-Exception.html#_getFile">getFile()</a>, 
+			<a href="class-Exception.html#_getLine">getLine()</a>, 
+			<a href="class-Exception.html#_getMessage">getMessage()</a>, 
+			<a href="class-Exception.html#_getPrevious">getPrevious()</a>, 
+			<a href="class-Exception.html#_getTrace">getTrace()</a>, 
+			<a href="class-Exception.html#_getTraceAsString">getTraceAsString()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="response" id="$response">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ApiAxle.Shared.ApiException.html#16-21" title="Go to source code"><var>$response</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$response" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Full API response</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Full API response</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="http_code" id="$http_code">
+		<td class="attributes"><code>
+			protected  
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ApiAxle.Shared.ApiException.html#23-27" title="Go to source code"><var>$http_code</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$http_code" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>HTTP response code</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>HTTP response code</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Exception.html#properties">Exception</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Exception.html#$code"><var>$code</var></a>, 
+			<a href="class-Exception.html#$file"><var>$file</var></a>, 
+			<a href="class-Exception.html#$line"><var>$line</var></a>, 
+			<a href="class-Exception.html#$message"><var>$message</var></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		fillup/apiaxle API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

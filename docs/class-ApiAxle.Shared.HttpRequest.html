@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class ApiAxle\Shared\HttpRequest | fillup/apiaxle</title>
+
+	<script type="text/javascript" src="resources/combined.js?3551695169"></script>
+	<script type="text/javascript" src="elementlist.js?2081904197"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-ApiAxle.html">ApiAxle<span></span></a>
+						<ul>
+				<li><a href="namespace-ApiAxle.Api.html">Api</a>
+						</li>
+				<li class="active"><a href="namespace-ApiAxle.Shared.html">Shared</a>
+						</li>
+				<li><a href="namespace-ApiAxle.Test.html">Test<span></span></a>
+						<ul>
+				<li><a href="namespace-ApiAxle.Test.Api.html">Api</a>
+						</li>
+				<li><a href="namespace-ApiAxle.Test.Shared.html">Shared</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-ApiAxle.Tests.html">Tests</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-ApiAxle.Shared.Config.html">Config</a></li>
+				<li class="active"><a href="class-ApiAxle.Shared.HttpRequest.html">HttpRequest</a></li>
+				<li><a href="class-ApiAxle.Shared.ItemList.html">ItemList</a></li>
+				<li><a href="class-ApiAxle.Shared.Utilities.html">Utilities</a></li>
+			</ul>
+
+
+
+			<h3>Exceptions</h3>
+			<ul>
+				<li><a href="class-ApiAxle.Shared.ApiException.html">ApiException</a></li>
+			</ul>
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-ApiAxle.Shared.html" title="Summary of ApiAxle\Shared"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+			<li>
+				<a href="todo.html" title="Todo list"><span>Todo</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class HttpRequest</h1>
+
+
+	<div class="description">
+	
+<p>HttpRequest class provides a very simple wrapper for using cURL
+functions.</p>
+
+<p>Provides a single static function to make an HTTP request and get the
+results. If there is an error returned from the server it will throw an
+\ErrorException with the error message and error number returned from
+curl_exec.</p>
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-ApiAxle.html">ApiAxle</a>\<a href="namespace-ApiAxle.Shared.html">Shared</a><br />
+		
+
+				<b>Author:</b>
+				Phillip Shipley &lt;<a
+href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.com</a>&gt;<br />
+		<b>Located at</b> <a href="source-class-ApiAxle.Shared.HttpRequest.html#11-92" title="Go to source code">src/ApiAxle/Shared/HttpRequest.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="request" id="_request">
+
+		<td class="attributes"><code>
+			 public static
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_request">#</a>
+		<code><a href="source-class-ApiAxle.Shared.HttpRequest.html#23-91" title="Go to source code">request</a>( <span>string <var>$uri</var></span>, <span>string <var>$method</var> = <span class="php-quote">'GET'</span></span>, <span>string|array <var>$postfields</var> = <span class="php-keyword1">false</span></span>, <span>mixed <var>$headers</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Make an HTTP Request</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Make an HTTP Request</p>
+
+<p>Simplified interface to cURL methods.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$uri</var></dt>
+					<dd><code>string</code><br>$uri The URI to make the request to. For GET requests it should include all
+parameters. This is passed as the CURLOPT_URL</dd>
+					<dt><var>$method</var></dt>
+					<dd><code>string</code><br>$method Set to either GET (default) or POST</dd>
+					<dt><var>$postfields</var></dt>
+					<dd><code>string|array</code><br>$postfields If using POST, this parameter will be set as CURLOPT_POSTFIELDS</dd>
+					<dt><var>$headers</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>On successful HTTP request, it will return the body of the response as a string.<br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ErrorException.html">ErrorException</a></code></code><br>On error making the HTTP request.<br />
+				</div>
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://php.net/curl">http://php.net/curl</a><br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		fillup/apiaxle API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>
