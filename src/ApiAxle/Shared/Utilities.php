@@ -20,22 +20,29 @@ class Utilities
     public static function callApi($apiPath, $method='GET', $data=null, $config)
     {
         $headers = array(
-            "Accept: application/json"
+            "Accept: application/json",
+            "Content-Type: application/json"
         );
         
-        $data['api_key'] = $config->getKey();
+        $api_key = $config->getKey();
         $api_sig = $config->getSignature();
-        if($api_sig){
-            $data['api_sig'] = $api_sig;
+        //if($api_sig){
+        //    $data['api_sig'] = $api_sig;
+        //}
+        
+        if(strpos($apiPath,'?')){
+            $apiPath .= "&api_key=$api_key&api_sig=$api_sig";
+        } else {
+            $apiPath .= "?api_key=$api_key&api_sig=$api_sig";
         }
         
         if($method == 'GET' && is_array($data)){
             foreach($data as $param => $value){
-                if(strpos($apiPath, '?')){
+                //if(strpos($apiPath, '?')){
                     $connector = '&';
-                } else {
-                    $connector = '?';
-                }
+                //} else {
+                //    $connector = '?';
+                //}
                 $apiPath .= $connector.$param.'='.$value;
             }
         }
@@ -49,10 +56,8 @@ class Utilities
         
         $url = $config->getEndpoint().'/'.$apiPath;
         $request = HttpRequest::request($url, $method, $json_data, $headers);
-        return $request;
         if($request){
             $results = json_decode($request);
-            return $results;
             if($results->meta->status_code >= 200 && $results->meta->status_code < 300){
                 return $results->results;
             } elseif($results->meta->status_code >= 300 && $results->meta->status_code < 400){

@@ -116,11 +116,11 @@ class Api
      */
     protected $strictSSL = 'true';
     
-    public function __construct($config=false,$id=false) 
+    public function __construct($config=false,$name=false) 
     {
         $this->config = new Config($config);
-        if($id){
-            $this->get($id);
+        if($name){
+            $this->get($name);
         }
     }
     
@@ -130,27 +130,57 @@ class Api
             $data = json_decode(json_encode($data));
         }
         // Ensure data returned looks like proper result
-        if($data->createdAt && $data->endPoint){
-            $this->createdAt = $data->createdAt;
-            $this->updatedAt = $data->updatedAt;
-            $this->globalCache = $data->globalCache;
-            $this->endPoint = $data->endPoint;
-            $this->protocol = $data->protocol;
-            $this->apiFormat = $data->apiFormat;
-            $this->endPointTimeout = $data->endPointTimeout;
-            $this->endPointMaxRedirects = $data->endPointMaxRedirects;
-            $this->extractKeyRegex = $data->extractKeyRegex;
-            $this->defaultPath = $data->defaultPath;
-            $this->disabled = $data->disabled;
-            $this->strictSSL = $data->strictSSL;
+        if(isset($data->endPoint)){
+            $this->createdAt = isset($data->createdAt) ? $data->createdAt : null;
+            $this->updatedAt = isset($data->updatedAt) ? $data->updatedAt : null;
+            $this->globalCache = isset($data->globalCache) ? $data->globalCache : null;
+            $this->endPoint = isset($data->endPoint) ? $data->endPoint : null;
+            $this->protocol = isset($data->protocol) ? $data->protocol : null;
+            $this->apiFormat = isset($data->apiFormat) ? $data->apiFormat : null;
+            $this->endPointTimeout = isset($data->endPointTimeout) ? $data->endPointTimeout : null;
+            $this->endPointMaxRedirects = isset($data->endPointMaxRedirects) ? $data->endPointMaxRedirects : null;
+            $this->extractKeyRegex = isset($data->extractKeyRegex) ? $data->extractKeyRegex : null;
+            $this->defaultPath = isset($data->defaultPath) ? $data->defaultPath : null;
+            $this->disabled = isset($data->disabled) ? $data->disabled : false;
+            $this->strictSSL = isset($data->strictSSL) ? $data->strictSSL : true;
         }
         
         return $this;
     }
     
+    /**
+     * Get API settings as array
+     * 
+     * @return array
+     */
+    public function getData()
+    {
+        $data = array(
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
+            'globalCache' => $this->globalCache,
+            'endPoint' => $this->endPoint,
+            'protocol' => $this->protocol,
+            'apiFormat' => $this->apiFormat,
+            'endPointTimeout' => $this->endPointTimeout,
+            'endPointMaxRedirects' => $this->endPointMaxRedirects,
+            'extractKeyRegex' => $this->extractKeyRegex,
+            'defaultPath' => $this->defaultPath,
+            'disabled' => $this->disabled,
+            'strictSSL' => $this->strictSSL
+        );
+        
+        return $data;
+    }
+    
     public function setName($name)
     {
         $this->name = $name;
+    }
+    
+    public function getName()
+    {
+        return $this->name;
     }
     
     /**
@@ -162,18 +192,15 @@ class Api
     {
         $apiPath = 'apis';
         $params = array(
-            //'from' => $from,
-            //'to' => $to,
-            //'resolve' => $resolve
+            'from' => $from,
+            'to' => $to,
+            'resolve' => $resolve
         );
         
         $apiList = new ItemList();
         $request = Utilities::callApi($apiPath, 'GET', $params, $this->config);
-        return $request;
         if($request){
-            $results = json_decode($request);
-            return $results;
-            foreach($results as $name => $data){
+            foreach($request as $name => $data){
                 $api = new Api();
                 $api->setName($name);
                 $api->setData($data);
@@ -187,24 +214,68 @@ class Api
     public function get($name)
     {
         if($name){
-            $url = $this->config->getEndpoint().'api/'.$name;
-            try {
-                $request = HttpRequest::request($url);
-                if($request){
-                    $data = json_decode($request);
-                    $this->setData($data);
-                }
-            } catch (\Exception $e) {
-                
+            $apiPath = 'api/'.$name;
+            $request = Utilities::callApi($apiPath,'GET',null,$this->getConfig());
+            if($request){
+                $this->setName($name);
+                $this->setData($request);
             }
         }
         
         return $this;
     }
     
-    public function update($id,$data){}
+    /**
+     * Update the current API
+     * 
+     * @param array $data
+     * @throws \ErrorException 201 - Missing API name, cant make update call
+     */
+    public function update($data=false)
+    {
+        if($data){
+            $this->setData($data);
+        }
+        
+        $data['updated'] = time();
+        
+        if(!is_null($this->getName())){
+            $apiPath = 'api/'.$this->getName();
+            $request = Utilities::callApi($apiPath,'PUT',$this->getData(),$this->getConfig());
+            if($request){
+                return $this;
+            } else {
+                throw new \ErrorException('Unable to update API',202);
+            }
+        } else {
+            throw new \ErrorException('An API name is required to update.',201);
+        }
+        
+    }
     
-    public function create($data){}
+    /**
+     * Register a new API
+     * 
+     * @param string $name
+     * @param array $data
+     * @return \ApiAxle\Api\Api
+     * @throws \ErrorException
+     */
+    public function create($name, $data)
+    {
+        $this->setName($name);
+        $this->setData($data);
+        if($this->isValid()){
+            $apiPath = 'api/'.$this->getName();
+            $request = Utilities::callApi($apiPath, 'POST', $data,$this->getConfig());
+            if($request){
+                $this->get($name);
+                return $this;
+            } else {
+                throw new \ErrorException('Unable to create API',203);
+            }
+        }
+    }
     
     public function delete($id) {}
     
@@ -223,5 +294,16 @@ class Api
     public function getConfig()
     {
         return $this->config;
+    }
+    
+    public function isValid()
+    {
+        if(!isset($this->endPoint) || is_null($this->endPoint) || strlen($this->endPoint) < 1){
+            throw new \Exception('Endpoint is required');
+        } elseif(preg_match('/^http[s]{0,1}:\/\//', $this->endPoint)){
+            throw new \Exception('Endpoint should not start with http:// or https://, use protocol to define which schema to use.',204);
+        }
+        
+        return true;
     }
 }
