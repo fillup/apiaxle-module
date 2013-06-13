@@ -7,7 +7,7 @@
 	<title>Class ApiAxle\Api\Api | fillup/apiaxle</title>
 
 	<script type="text/javascript" src="resources/combined.js?3551695169"></script>
-	<script type="text/javascript" src="elementlist.js?2081904197"></script>
+	<script type="text/javascript" src="elementlist.js?1699109093"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -114,7 +114,7 @@
 		<b>Namespace:</b> <a href="namespace-ApiAxle.html">ApiAxle</a>\<a href="namespace-ApiAxle.Api.html">Api</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-ApiAxle.Api.Api.html#15-328" title="Go to source code">src/ApiAxle/Api/Api.php</a><br />
+		<b>Located at</b> <a href="source-class-ApiAxle.Api.Api.html#15-387" title="Go to source code">src/ApiAxle/Api/Api.php</a><br />
 	</div>
 
 
@@ -476,26 +476,56 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-stdClass.html">stdClass</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getKeyCharts">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#301" title="Go to source code">getKeyCharts</a>( )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#301-342" title="Go to source code">getKeyCharts</a>( <span>integer <var>$timestart</var> = <span class="php-keyword1">false</span></span>, <span>integer <var>$timeend</var> = <span class="php-keyword1">false</span></span>, <span>string <var>$granularity</var> = <span class="php-quote">'day'</span></span>, <span>string <var>$format_timeseries</var> = <span class="php-quote">'true'</span></span>, <span>string <var>$format_timestamp</var> = <span class="php-quote">'epoch_seconds'</span></span> )</code>
 
 		<div class="description short">
 			
+<p>Get the most used keys for this api</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Get the most used keys for this api</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$timestart</var></dt>
+					<dd><code>integer</code><br>$timestart</dd>
+					<dt><var>$timeend</var></dt>
+					<dd><code>integer</code><br>$timeend</dd>
+					<dt><var>$granularity</var></dt>
+					<dd><code>string</code><br>$granularity Valid options: second, minute, hour, day</dd>
+					<dt><var>$format_timeseries</var></dt>
+					<dd><code>string</code><br>$format_timeseries</dd>
+					<dt><var>$format_timestamp</var></dt>
+					<dd><code>string</code><br>$format_timestamp Valid options: epoch_seconds, epoch_milliseconds, ISO</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-stdClass.html">stdClass</a></code></code><br />
+				</div>
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Exception.html">Exception</a></code></code><br />
+					<code><code><a href="class-ErrorException.html">ErrorException</a></code></code><br />
+				</div>
+
+				<h4>Todo</h4>
+				<div class="list">
+						Create new class to represent keycharts data<br />
+				</div>
 
 
 		</div>
@@ -512,7 +542,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getKeyList">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#303" title="Go to source code">getKeyList</a>( )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#344-362" title="Go to source code">getKeyList</a>( <span>mixed <var>$from</var> = <span class="php-num">0</span></span>, <span>mixed <var>$to</var> = <span class="php-num">10</span></span>, <span>mixed <var>$resolve</var> = <span class="php-quote">'false'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -541,7 +571,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_linkKey">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#305" title="Go to source code">linkKey</a>( <span>mixed <var>$key</var></span> )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#364" title="Go to source code">linkKey</a>( <span>mixed <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -570,7 +600,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_unLinkKey">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#307" title="Go to source code">unLinkKey</a>( <span>mixed <var>$key</var></span> )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#366" title="Go to source code">unLinkKey</a>( <span>mixed <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -599,7 +629,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getStats">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#309" title="Go to source code">getStats</a>( )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#368" title="Go to source code">getStats</a>( )</code>
 
 		<div class="description short">
 			
@@ -628,7 +658,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getCharts">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#311" title="Go to source code">getCharts</a>( <span>mixed <var>$granularity</var> = <span class="php-quote">'minute'</span></span> )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#370" title="Go to source code">getCharts</a>( <span>mixed <var>$granularity</var> = <span class="php-quote">'minute'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -657,7 +687,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getConfig">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#313-316" title="Go to source code">getConfig</a>( )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#372-375" title="Go to source code">getConfig</a>( )</code>
 
 		<div class="description short">
 			
@@ -686,7 +716,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isValid">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#318-327" title="Go to source code">isValid</a>( )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#377-386" title="Go to source code">isValid</a>( )</code>
 
 		<div class="description short">
 			

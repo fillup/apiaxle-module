@@ -41,7 +41,7 @@ include_once './vendor/autoload.php';
 4) In progress...
 
 ## Contributing ##
-If you are interested in contributing to this library and/or extending it please let me know, I'd love to work with others on this to help consider other use cases and design patters.
+If you are interested in contributing to this library and/or extending it please let me know, I'd love to work with others on this to help consider other use cases and design patterns.
 
 ## Exceptions ##
 100-199: Configuration Related Exceptions

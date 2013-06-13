@@ -205,7 +205,7 @@ class Api
         );
         
         $apiList = new ItemList();
-        $request = Utilities::callApi($apiPath, 'GET', $params, $this->config);
+        $request = Utilities::callApi($apiPath, 'GET', $params, $this->getConfig());
         if($request){
             foreach($request as $name => $data){
                 $api = new Api();
@@ -298,9 +298,68 @@ class Api
         
     }
     
-    public function getKeyCharts() {}
+    /**
+     * Get the most used keys for this api
+     * 
+     * @todo Create new class to represent keycharts data
+     * @param int $timestart
+     * @param int $timeend
+     * @param string $granularity Valid options: second, minute, hour, day
+     * @param string $format_timeseries
+     * @param string $format_timestamp Valid options: epoch_seconds, epoch_milliseconds, ISO
+     * @return stdClass
+     * @throws \Exception
+     * @throws \ErrorException
+     */
+    public function getKeyCharts($timestart=false, $timeend=false, 
+            $granularity='day',$format_timeseries='true',
+            $format_timestamp='epoch_seconds')
+    {
+        if(is_null($this->getName())){
+            throw new \Exception('An API name is required to get keycharts.',208);
+        } else {
+            
+            $data = array(
+                'granularity' => $granularity,
+                'format_timeseries' => $format_timeseries,
+                'format_timestamp' => $format_timestamp,
+            );
+            if($timestart){
+                $data['from'] = $timestart;
+            }
+            if($timeend){
+                $data['to'] = $timeend;
+            }
+            
+            $apiPath = 'api/'.$this->getName().'/keycharts';
+            $request = Utilities::callApi($apiPath, 'GET', $data, $this->getConfig());
+            if($request){
+                return $request;
+            } else {
+                throw new \ErrorException('Unable to retrieve keycharts for API.', 207);
+            }
+        }
+    }
     
-    public function getKeyList() {}
+    public function getKeyList($from=0, $to=10, $resolve='false')
+    {
+        if(is_null($this->getName())){
+            throw new \Exception('An API name is required to get keylist.',209);
+        } else {
+            $apiPath = 'api/'.$this->getName().'/keys';
+            $data = array(
+                'from' => $from,
+                'to' => $to,
+                'resolve' => $resolve
+            );
+            $request = Utilities::callApi($apiPath, 'GET', $data,$this->getConfig());
+            if($request){
+                return $request;
+            } else {
+                throw new \ErrorException('Unable to retrieve keys for API.', 210);
+            }
+        }
+    }
     
     public function linkKey($key) {}
     

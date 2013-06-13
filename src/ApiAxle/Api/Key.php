@@ -7,7 +7,228 @@
  */
 namespace ApiAxle\Api;
 
+use ApiAxle\Shared\ApiException;
+use ApiAxle\Shared\Config;
+use ApiAxle\Shared\Utilities;
+use ApiAxle\Shared\ItemList;
+
 class Key
 {
+    /**
+     * Configuration data
+     * 
+     * @var ApiAxle\Shared\Config
+     */
+    protected $config;
+    
+    /**
+     * The actual api key
+     * 
+     * @var string
+     */
+    protected $key;
+    
+    /**
+     * Created at timestamp. Set automatically when creating a new key.
+     * 
+     * @var int
+     */
+    protected $createdAt;
+    
+    /**
+     * Updated at timestamp. Set automatically whenever updating a key.
+     * 
+     * @var int
+     */
+    protected $updatedAt;
+    
+    /**
+     * (optional) A shared secret which is used when signing a call to the api.
+     * 
+     * @var string
+     */
+    protected $sharedSecret;
+    
+    /**
+     * (default: 172800) Number of queries that can be called per day. Set to `-1` for no limit.
+     * 
+     * @var int
+     */
+    protected $qpd = 172800;
+    
+    /**
+     * (default: 2) Number of queries that can be called per second. Set to `-1` for no limit.
+     * 
+     * @var int
+     */
+    protected $qps = 2;
+    
+    /**
+     * (optional) Names of the Apis that this key belongs to.
+     * 
+     * @var array
+     */
+    protected $forApis;
+    
+    /**
+     * (default: false) Disable this API causing errors when it's hit.
+     * 
+     * @var boolean
+     */
+    protected $disabled = false;
+    
+    /**
+     * (default: false) If you're the NSA set this flag to true and you'll 
+     * activate GOD mode getting you into any API regardless of your being 
+     * linked to it or not.
+     * 
+     * @var string 
+     */
+    protected $isNSA = 'false';
+    
+    public function __construct($config=false,$key=false) 
+    {
+        $this->config = new Config($config);
+        if($key){
+            $this->get($key);
+        }
+    }
+    
+    public function getKey()
+    {
+        return $this->key;
+    }
+    
+    public function setKey($key)
+    {
+        $this->key = $key;
+    }
+    
+    /**
+     * Set object properties
+     * 
+     * @param type $data
+     * @return \ApiAxle\Api\Key
+     */
+    public function setData($data)
+    {
+        if(is_array($data)){
+            $data = json_decode(json_encode($data));
+        }
+        
+        /**
+         * @todo Refactor to use setters for validation?
+         */
+        $this->createdAt = isset($data->createdAt) ? $data->createdAt : null;
+        $this->updatedAt = isset($data->updatedAt) ? $data->updatedAt : null;
+        $this->sharedSecret = isset($data->sharedSecret) ? $data->sharedSecret : null;
+        $this->qpd = isset($data->qpd) ? $data->qpd : $this->qpd;
+        $this->qps = isset($data->qps) ? $data->qps : $this->qps;
+        $this->forApis = isset($data->forApis) ? $data->forApis : null;
+        $this->disabled = isset($data->disabled) ? $data->disabled : $this->disabled;
+        $this->isNSA = isset($data->isNSA) ? $data->isNSA : $this->isNSA;
+        
+        return $this;
+    }
+    
+    /**
+     * Get API settings as array
+     * 
+     * @return array
+     */
+    public function getData()
+    {
+        $data = array(
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
+            'sharedSecret' => $this->sharedSecret,
+            'qpd' => $this->qpd,
+            'qps' => $this->qps,
+            'forApis' => $this->forApis,
+            'disabled' => $this->disabled,
+            'isNSA' => $this->isNSA,
+        );
+        
+        return $data;
+    }
+    
+    public function getDataForApiCall()
+    {
+        $data = array(
+            'qpd' => $this->qpd,
+            'qps' => $this->qps,
+            'disabled' => $this->disabled,
+        );
+        
+        if(is_array($this->forApis)){
+            $data['forApis'] = $this->forApis;
+        }
+        if(!is_null($this->sharedSecret)){
+            $data['sharedSecret'] = $this->sharedSecret;
+        }
+        
+        return $data;
+    }
+    
+    public function get($key)
+    {
+        if($key){
+            $apiPath = 'key/'.$key;
+            $request = Utilities::callApi($apiPath,'GET',null,$this->getConfig());
+            if($request){
+                $this->setKey($key);
+                $this->setData($request);
+            }
+        }
+        
+        return $this;
+    }
+    
+    public function create($key, $data=false)
+    {
+        $this->setKey($key);
+        if($data){
+            $this->setData($data);
+        }
+        if($this->isValid()){
+            $apiPath = 'key/'.$this->getKey().'?isNSA='.$this->isNSA;
+            $request = Utilities::callApi($apiPath, 'POST', $this->getDataForApiCall(),$this->getConfig());
+            if($request){
+                $this->get($key);
+                return $this;
+            } else {
+                throw new \ErrorException('Unable to create key',251);
+            }
+        }
+        
+    }
+    
+    public function update(){}
+    
+    public function delete(){}
+    
+    public function getList(){}
+    
+    public function getApiList(){}
+    
+    public function getApiCharts(){}
+    
+    public function getStats(){}
+    
+    public function getCharts(){}
+    
+    public function getConfig()
+    {
+        return $this->config;
+    }
+    
+    public function isValid()
+    {
+        if(!is_null($this->getKey())){
+            return true;
+        } else {
+            throw new \Exception('A key value is required to interact with keys.',250);
+        }
+    }
     
 }

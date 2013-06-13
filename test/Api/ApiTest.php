@@ -117,5 +117,24 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         }
     }
     
+    public function testGetKeyCharts()
+    {
+        $apiName = 'apiaxle';
+        $api = new Api();
+        $api->setName($apiName);
+        $keycharts = $api->getKeyCharts();
+        //print_r($keycharts);
+        $this->assertInstanceOf('\stdClass', $keycharts);
+    }
+    
+    public function testGetKeyList()
+    {
+        $apiName = 'apiaxle';
+        $api = new Api();
+        $api->setName($apiName);
+        $keyList = $api->getKeyList(0,100,'true');
+        print_r($keyList);
+    }
+    
 
 }

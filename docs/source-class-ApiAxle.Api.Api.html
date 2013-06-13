@@ -8,7 +8,7 @@
 	<title>File src/ApiAxle/Api/Api.php | fillup/apiaxle</title>
 
 	<script type="text/javascript" src="resources/combined.js?3551695169"></script>
-	<script type="text/javascript" src="elementlist.js?2081904197"></script>
+	<script type="text/javascript" src="elementlist.js?1699109093"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -304,7 +304,7 @@
 </span><span id="205" class="l"><a class="l" href="#205">205: </a>        );
 </span><span id="206" class="l"><a class="l" href="#206">206: </a>        
 </span><span id="207" class="l"><a class="l" href="#207">207: </a>        <span class="php-var">$apiList</span> = <span class="php-keyword1">new</span> ItemList();
-</span><span id="208" class="l"><a class="l" href="#208">208: </a>        <span class="php-var">$request</span> = Utilities::callApi(<span class="php-var">$apiPath</span>, <span class="php-quote">'GET'</span>, <span class="php-var">$params</span>, <span class="php-var">$this</span>-&gt;config);
+</span><span id="208" class="l"><a class="l" href="#208">208: </a>        <span class="php-var">$request</span> = Utilities::callApi(<span class="php-var">$apiPath</span>, <span class="php-quote">'GET'</span>, <span class="php-var">$params</span>, <span class="php-var">$this</span>-&gt;getConfig());
 </span><span id="209" class="l"><a class="l" href="#209">209: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$request</span>){
 </span><span id="210" class="l"><a class="l" href="#210">210: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$request</span> <span class="php-keyword1">as</span> <span class="php-var">$name</span> =&gt; <span class="php-var">$data</span>){
 </span><span id="211" class="l"><a class="l" href="#211">211: </a>                <span class="php-var">$api</span> = <span class="php-keyword1">new</span> Api();
@@ -397,35 +397,94 @@
 </span><span id="298" class="l"><a class="l" href="#298">298: </a>        
 </span><span id="299" class="l"><a class="l" href="#299">299: </a>    }
 </span><span id="300" class="l"><a class="l" href="#300">300: </a>    
-</span><span id="301" class="l"><a class="l" href="#301">301: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getKeyCharts" href="#_getKeyCharts">getKeyCharts</a>() {}
-</span><span id="302" class="l"><a class="l" href="#302">302: </a>    
-</span><span id="303" class="l"><a class="l" href="#303">303: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getKeyList" href="#_getKeyList">getKeyList</a>() {}
-</span><span id="304" class="l"><a class="l" href="#304">304: </a>    
-</span><span id="305" class="l"><a class="l" href="#305">305: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_linkKey" href="#_linkKey">linkKey</a>(<span class="php-var">$key</span>) {}
-</span><span id="306" class="l"><a class="l" href="#306">306: </a>    
-</span><span id="307" class="l"><a class="l" href="#307">307: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_unLinkKey" href="#_unLinkKey">unLinkKey</a>(<span class="php-var">$key</span>) {}
-</span><span id="308" class="l"><a class="l" href="#308">308: </a>    
-</span><span id="309" class="l"><a class="l" href="#309">309: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getStats" href="#_getStats">getStats</a>() {}
-</span><span id="310" class="l"><a class="l" href="#310">310: </a>    
-</span><span id="311" class="l"><a class="l" href="#311">311: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> <a id="_getCharts" href="#_getCharts">getCharts</a>(<span class="php-var">$granularity</span>=<span class="php-quote">'minute'</span>) {}
-</span><span id="312" class="l"><a class="l" href="#312">312: </a>    
-</span><span id="313" class="l"><a class="l" href="#313">313: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getConfig" href="#_getConfig">getConfig</a>()
-</span><span id="314" class="l"><a class="l" href="#314">314: </a>    {
-</span><span id="315" class="l"><a class="l" href="#315">315: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;config;
-</span><span id="316" class="l"><a class="l" href="#316">316: </a>    }
-</span><span id="317" class="l"><a class="l" href="#317">317: </a>    
-</span><span id="318" class="l"><a class="l" href="#318">318: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_isValid" href="#_isValid">isValid</a>()
-</span><span id="319" class="l"><a class="l" href="#319">319: </a>    {
-</span><span id="320" class="l"><a class="l" href="#320">320: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;endPoint) || <span class="php-keyword2">is_null</span>(<span class="php-var">$this</span>-&gt;endPoint) || <span class="php-keyword2">strlen</span>(<span class="php-var">$this</span>-&gt;endPoint) &lt; <span class="php-num">1</span>){
-</span><span id="321" class="l"><a class="l" href="#321">321: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \Exception(<span class="php-quote">'Endpoint is required'</span>);
-</span><span id="322" class="l"><a class="l" href="#322">322: </a>        } <span class="php-keyword1">elseif</span>(<span class="php-keyword2">preg_match</span>(<span class="php-quote">'/^http[s]{0,1}:\/\//'</span>, <span class="php-var">$this</span>-&gt;endPoint)){
-</span><span id="323" class="l"><a class="l" href="#323">323: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \Exception(<span class="php-quote">'Endpoint should not start with http:// or https://, use protocol to define which schema to use.'</span>,<span class="php-num">204</span>);
-</span><span id="324" class="l"><a class="l" href="#324">324: </a>        }
-</span><span id="325" class="l"><a class="l" href="#325">325: </a>        
-</span><span id="326" class="l"><a class="l" href="#326">326: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>;
-</span><span id="327" class="l"><a class="l" href="#327">327: </a>    }
-</span><span id="328" class="l"><a class="l" href="#328">328: </a>}
-</span><span id="329" class="l"><a class="l" href="#329">329: </a></span></code></pre>
+</span><span id="301" class="l"><a class="l" href="#301">301: </a>    <span class="php-comment">/**
+</span></span><span id="302" class="l"><a class="l" href="#302">302: </a><span class="php-comment">     * Get the most used keys for this api
+</span></span><span id="303" class="l"><a class="l" href="#303">303: </a><span class="php-comment">     * 
+</span></span><span id="304" class="l"><a class="l" href="#304">304: </a><span class="php-comment">     * @todo Create new class to represent keycharts data
+</span></span><span id="305" class="l"><a class="l" href="#305">305: </a><span class="php-comment">     * @param int $timestart
+</span></span><span id="306" class="l"><a class="l" href="#306">306: </a><span class="php-comment">     * @param int $timeend
+</span></span><span id="307" class="l"><a class="l" href="#307">307: </a><span class="php-comment">     * @param string $granularity Valid options: second, minute, hour, day
+</span></span><span id="308" class="l"><a class="l" href="#308">308: </a><span class="php-comment">     * @param string $format_timeseries
+</span></span><span id="309" class="l"><a class="l" href="#309">309: </a><span class="php-comment">     * @param string $format_timestamp Valid options: epoch_seconds, epoch_milliseconds, ISO
+</span></span><span id="310" class="l"><a class="l" href="#310">310: </a><span class="php-comment">     * @return stdClass
+</span></span><span id="311" class="l"><a class="l" href="#311">311: </a><span class="php-comment">     * @throws \Exception
+</span></span><span id="312" class="l"><a class="l" href="#312">312: </a><span class="php-comment">     * @throws \ErrorException
+</span></span><span id="313" class="l"><a class="l" href="#313">313: </a><span class="php-comment">     */</span>
+</span><span id="314" class="l"><a class="l" href="#314">314: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getKeyCharts" href="#_getKeyCharts">getKeyCharts</a>(<span class="php-var">$timestart</span>=<span class="php-keyword1">false</span>, <span class="php-var">$timeend</span>=<span class="php-keyword1">false</span>, 
+</span><span id="315" class="l"><a class="l" href="#315">315: </a>            <span class="php-var">$granularity</span>=<span class="php-quote">'day'</span>,<span class="php-var">$format_timeseries</span>=<span class="php-quote">'true'</span>,
+</span><span id="316" class="l"><a class="l" href="#316">316: </a>            <span class="php-var">$format_timestamp</span>=<span class="php-quote">'epoch_seconds'</span>)
+</span><span id="317" class="l"><a class="l" href="#317">317: </a>    {
+</span><span id="318" class="l"><a class="l" href="#318">318: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$this</span>-&gt;getName())){
+</span><span id="319" class="l"><a class="l" href="#319">319: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \Exception(<span class="php-quote">'An API name is required to get keycharts.'</span>,<span class="php-num">208</span>);
+</span><span id="320" class="l"><a class="l" href="#320">320: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="321" class="l"><a class="l" href="#321">321: </a>            
+</span><span id="322" class="l"><a class="l" href="#322">322: </a>            <span class="php-var">$data</span> = <span class="php-keyword1">array</span>(
+</span><span id="323" class="l"><a class="l" href="#323">323: </a>                <span class="php-quote">'granularity'</span> =&gt; <span class="php-var">$granularity</span>,
+</span><span id="324" class="l"><a class="l" href="#324">324: </a>                <span class="php-quote">'format_timeseries'</span> =&gt; <span class="php-var">$format_timeseries</span>,
+</span><span id="325" class="l"><a class="l" href="#325">325: </a>                <span class="php-quote">'format_timestamp'</span> =&gt; <span class="php-var">$format_timestamp</span>,
+</span><span id="326" class="l"><a class="l" href="#326">326: </a>            );
+</span><span id="327" class="l"><a class="l" href="#327">327: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$timestart</span>){
+</span><span id="328" class="l"><a class="l" href="#328">328: </a>                <span class="php-var">$data</span>[<span class="php-quote">'from'</span>] = <span class="php-var">$timestart</span>;
+</span><span id="329" class="l"><a class="l" href="#329">329: </a>            }
+</span><span id="330" class="l"><a class="l" href="#330">330: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$timeend</span>){
+</span><span id="331" class="l"><a class="l" href="#331">331: </a>                <span class="php-var">$data</span>[<span class="php-quote">'to'</span>] = <span class="php-var">$timeend</span>;
+</span><span id="332" class="l"><a class="l" href="#332">332: </a>            }
+</span><span id="333" class="l"><a class="l" href="#333">333: </a>            
+</span><span id="334" class="l"><a class="l" href="#334">334: </a>            <span class="php-var">$apiPath</span> = <span class="php-quote">'api/'</span>.<span class="php-var">$this</span>-&gt;getName().<span class="php-quote">'/keycharts'</span>;
+</span><span id="335" class="l"><a class="l" href="#335">335: </a>            <span class="php-var">$request</span> = Utilities::callApi(<span class="php-var">$apiPath</span>, <span class="php-quote">'GET'</span>, <span class="php-var">$data</span>, <span class="php-var">$this</span>-&gt;getConfig());
+</span><span id="336" class="l"><a class="l" href="#336">336: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$request</span>){
+</span><span id="337" class="l"><a class="l" href="#337">337: </a>                <span class="php-keyword1">return</span> <span class="php-var">$request</span>;
+</span><span id="338" class="l"><a class="l" href="#338">338: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="339" class="l"><a class="l" href="#339">339: </a>                <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \ErrorException(<span class="php-quote">'Unable to retrieve keycharts for API.'</span>, <span class="php-num">207</span>);
+</span><span id="340" class="l"><a class="l" href="#340">340: </a>            }
+</span><span id="341" class="l"><a class="l" href="#341">341: </a>        }
+</span><span id="342" class="l"><a class="l" href="#342">342: </a>    }
+</span><span id="343" class="l"><a class="l" href="#343">343: </a>    
+</span><span id="344" class="l"><a class="l" href="#344">344: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getKeyList" href="#_getKeyList">getKeyList</a>(<span class="php-var">$from</span>=<span class="php-num">0</span>, <span class="php-var">$to</span>=<span class="php-num">10</span>, <span class="php-var">$resolve</span>=<span class="php-quote">'false'</span>)
+</span><span id="345" class="l"><a class="l" href="#345">345: </a>    {
+</span><span id="346" class="l"><a class="l" href="#346">346: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$this</span>-&gt;getName())){
+</span><span id="347" class="l"><a class="l" href="#347">347: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \Exception(<span class="php-quote">'An API name is required to get keylist.'</span>,<span class="php-num">209</span>);
+</span><span id="348" class="l"><a class="l" href="#348">348: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="349" class="l"><a class="l" href="#349">349: </a>            <span class="php-var">$apiPath</span> = <span class="php-quote">'api/'</span>.<span class="php-var">$this</span>-&gt;getName().<span class="php-quote">'/keys'</span>;
+</span><span id="350" class="l"><a class="l" href="#350">350: </a>            <span class="php-var">$data</span> = <span class="php-keyword1">array</span>(
+</span><span id="351" class="l"><a class="l" href="#351">351: </a>                <span class="php-quote">'from'</span> =&gt; <span class="php-var">$from</span>,
+</span><span id="352" class="l"><a class="l" href="#352">352: </a>                <span class="php-quote">'to'</span> =&gt; <span class="php-var">$to</span>,
+</span><span id="353" class="l"><a class="l" href="#353">353: </a>                <span class="php-quote">'resolve'</span> =&gt; <span class="php-var">$resolve</span>
+</span><span id="354" class="l"><a class="l" href="#354">354: </a>            );
+</span><span id="355" class="l"><a class="l" href="#355">355: </a>            <span class="php-var">$request</span> = Utilities::callApi(<span class="php-var">$apiPath</span>, <span class="php-quote">'GET'</span>, <span class="php-var">$data</span>,<span class="php-var">$this</span>-&gt;getConfig());
+</span><span id="356" class="l"><a class="l" href="#356">356: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$request</span>){
+</span><span id="357" class="l"><a class="l" href="#357">357: </a>                <span class="php-keyword1">return</span> <span class="php-var">$request</span>;
+</span><span id="358" class="l"><a class="l" href="#358">358: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="359" class="l"><a class="l" href="#359">359: </a>                <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \ErrorException(<span class="php-quote">'Unable to retrieve keys for API.'</span>, <span class="php-num">210</span>);
+</span><span id="360" class="l"><a class="l" href="#360">360: </a>            }
+</span><span id="361" class="l"><a class="l" href="#361">361: </a>        }
+</span><span id="362" class="l"><a class="l" href="#362">362: </a>    }
+</span><span id="363" class="l"><a class="l" href="#363">363: </a>    
+</span><span id="364" class="l"><a class="l" href="#364">364: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_linkKey" href="#_linkKey">linkKey</a>(<span class="php-var">$key</span>) {}
+</span><span id="365" class="l"><a class="l" href="#365">365: </a>    
+</span><span id="366" class="l"><a class="l" href="#366">366: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_unLinkKey" href="#_unLinkKey">unLinkKey</a>(<span class="php-var">$key</span>) {}
+</span><span id="367" class="l"><a class="l" href="#367">367: </a>    
+</span><span id="368" class="l"><a class="l" href="#368">368: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getStats" href="#_getStats">getStats</a>() {}
+</span><span id="369" class="l"><a class="l" href="#369">369: </a>    
+</span><span id="370" class="l"><a class="l" href="#370">370: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> <a id="_getCharts" href="#_getCharts">getCharts</a>(<span class="php-var">$granularity</span>=<span class="php-quote">'minute'</span>) {}
+</span><span id="371" class="l"><a class="l" href="#371">371: </a>    
+</span><span id="372" class="l"><a class="l" href="#372">372: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getConfig" href="#_getConfig">getConfig</a>()
+</span><span id="373" class="l"><a class="l" href="#373">373: </a>    {
+</span><span id="374" class="l"><a class="l" href="#374">374: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;config;
+</span><span id="375" class="l"><a class="l" href="#375">375: </a>    }
+</span><span id="376" class="l"><a class="l" href="#376">376: </a>    
+</span><span id="377" class="l"><a class="l" href="#377">377: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_isValid" href="#_isValid">isValid</a>()
+</span><span id="378" class="l"><a class="l" href="#378">378: </a>    {
+</span><span id="379" class="l"><a class="l" href="#379">379: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;endPoint) || <span class="php-keyword2">is_null</span>(<span class="php-var">$this</span>-&gt;endPoint) || <span class="php-keyword2">strlen</span>(<span class="php-var">$this</span>-&gt;endPoint) &lt; <span class="php-num">1</span>){
+</span><span id="380" class="l"><a class="l" href="#380">380: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \Exception(<span class="php-quote">'Endpoint is required'</span>);
+</span><span id="381" class="l"><a class="l" href="#381">381: </a>        } <span class="php-keyword1">elseif</span>(<span class="php-keyword2">preg_match</span>(<span class="php-quote">'/^http[s]{0,1}:\/\//'</span>, <span class="php-var">$this</span>-&gt;endPoint)){
+</span><span id="382" class="l"><a class="l" href="#382">382: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \Exception(<span class="php-quote">'Endpoint should not start with http:// or https://, use protocol to define which schema to use.'</span>,<span class="php-num">204</span>);
+</span><span id="383" class="l"><a class="l" href="#383">383: </a>        }
+</span><span id="384" class="l"><a class="l" href="#384">384: </a>        
+</span><span id="385" class="l"><a class="l" href="#385">385: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>;
+</span><span id="386" class="l"><a class="l" href="#386">386: </a>    }
+</span><span id="387" class="l"><a class="l" href="#387">387: </a>}
+</span><span id="388" class="l"><a class="l" href="#388">388: </a></span></code></pre>
 
 	<div id="footer">
 		fillup/apiaxle API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
