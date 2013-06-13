@@ -9,6 +9,24 @@ use ApiAxle\Shared\ApiException;
 
 class ApiTest extends \PHPUnit_Framework_TestCase
 {
+    
+    public static function tearDownAfterClass()
+    {
+        try {
+            $api = new Api();
+            $apiList = $api->getList();
+            foreach($apiList as $item){
+                if(strpos($item->getName(),'test-') !== false){
+                    $api->delete($item->getName());
+                }
+            }
+        } catch(ApiException $ae){
+            echo $ae;
+        } catch(\Exception $e){
+            echo $e;
+        }
+    }
+    
     public function testConfigAutoInitialized()
     {
         $api = new Api();
@@ -42,14 +60,14 @@ class ApiTest extends \PHPUnit_Framework_TestCase
     
     public function testCreateApi()
     {
-        $apiName = 'test-'.time();
+        $apiName = 'test-'.str_replace(array(' ','.'),'',microtime());
         $data = array(
             'endPoint' => 'localhost'
         );
         $api = new Api();
         try{
             $api->create($apiName, $data);
-            print_r($api);
+            //print_r($api);
             $this->assertEquals($apiName,$api->getName());
         } catch(ApiException $ae){
             echo $ae;
@@ -60,7 +78,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase
     
     public function testCreateUpdateApi()
     {
-        $apiName = 'test-'.time();
+        $apiName = 'test-'.str_replace(array(' ','.'),'',microtime());
         $data = array(
             'endPoint' => 'localhost'
         );
@@ -82,20 +100,22 @@ class ApiTest extends \PHPUnit_Framework_TestCase
     
     public function testCreateDeleteApi()
     {
-        $apiName = 'test-'.time();
+        $apiName = 'test-'.str_replace(array(' ','.'),'',microtime());
         $data = array(
             'endPoint' => 'localhost'
         );
         $api = new Api();
         try{
-            //$api->create($apiName, $data);
-            $api->delete('test-1371070415');
+            $api->create($apiName, $data);
+            $api->delete($apiName);
             $apiList = $api->getList();
-            $this->assertArrayNotHasKey($apiName, $apiList);
+            $this->assertArrayNotHasKey($apiName, $apiList->getItemsArray());
         } catch(ApiException $ae){
             echo $ae;
         } catch(\Exception $e){
             echo $e;
         }
     }
+    
+
 }

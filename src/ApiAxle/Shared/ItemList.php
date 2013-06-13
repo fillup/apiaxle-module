@@ -61,4 +61,9 @@ class ItemList implements \Iterator
     function valid() {
         return isset($this->items[$this->position]);
     }
+    
+    public function getItemsArray()
+    {
+        return $this->items;
+    }
 }

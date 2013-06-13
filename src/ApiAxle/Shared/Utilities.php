@@ -21,8 +21,11 @@ class Utilities
     {
         $headers = array(
             "Accept: application/json",
-            "Content-Type: application/json"
         );
+        
+        if($method == 'POST' || $method == 'PUT'){
+            $headers[] = "Content-Type: application/json";
+        }
         
         $api_key = $config->getKey();
         $api_sig = $config->getSignature();
