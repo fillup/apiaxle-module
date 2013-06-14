@@ -1,5 +1,5 @@
 <?php
-namespace ApiAxle\Test\Api;
+namespace ApiAxle\Tests\Api;
 
 require_once __DIR__.'/../../vendor/autoload.php';
 
@@ -8,7 +8,7 @@ use ApiAxle\Api\Api;
 use ApiAxle\Api\Key;
 use ApiAxle\Shared\ApiException;
 
-class ApiTest extends \PHPUnit_Framework_TestCase
+class ApiTests extends \PHPUnit_Framework_TestCase
 {
     
     public static function tearDownAfterClass()

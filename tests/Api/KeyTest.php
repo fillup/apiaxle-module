@@ -1,5 +1,5 @@
 <?php
-namespace ApiAxle\Test\Api;
+namespace ApiAxle\Tests\Api;
 
 require_once __DIR__.'/../../vendor/autoload.php';
 
@@ -8,7 +8,7 @@ use ApiAxle\Api\Key;
 use ApiAxle\Api\Api;
 use ApiAxle\Shared\ApiException;
 
-class KeyTest extends \PHPUnit_Framework_TestCase
+class KeyTests extends \PHPUnit_Framework_TestCase
 {
     public static function tearDownAfterClass()
     {
@@ -35,21 +35,21 @@ class KeyTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($keyValue, $key->getKey());
     }
     
-    public function testCreateUpdateKey()
-    {
-        $keyValue = 'test-'.str_replace(array(' ','.'),'',microtime());
-        $key = new Key();
-        $createData = array(
-            'sharedSecret' => 'firstsecret'
-        );
-        $key->create($keyValue,$createData);
-        $updateData = array(
-            'sharedSecret' => 'updatedsecret'
-        );
-        $key->update($updateData);
-        $keyData = $key->getData();
-        $this->assertEquals($updateData['sharedSecret'], $keyData['sharedSecret']);
-    }
+//    public function testCreateUpdateKey()
+//    {
+//        $keyValue = 'test-'.str_replace(array(' ','.'),'',microtime());
+//        $key = new Key();
+//        $createData = array(
+//            'sharedSecret' => 'firstsecret'
+//        );
+//        $key->create($keyValue,$createData);
+//        $updateData = array(
+//            'sharedSecret' => 'updatedsecret'
+//        );
+//        $key->update($updateData);
+//        $keyData = $key->getData();
+//        $this->assertEquals($updateData['sharedSecret'], $keyData['sharedSecret']);
+//    }
     
     public function testCreateDeleteKey()
     {
