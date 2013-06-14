@@ -5,6 +5,7 @@ require_once __DIR__.'/../../vendor/autoload.php';
 
 use ApiAxle\Shared\Config;
 use ApiAxle\Api\Api;
+use ApiAxle\Api\Key;
 use ApiAxle\Shared\ApiException;
 
 class ApiTest extends \PHPUnit_Framework_TestCase
@@ -107,9 +108,25 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         $api = new Api();
         try{
             $api->create($apiName, $data);
+            $apiList = $api->getList();
+            $hasApi = false;
+            foreach($apiList as $item){
+                if($item->getName() == $apiName){
+                    $hasApi = true;
+                    break;
+                }
+            }
+            $this->assertTrue($hasApi,'Created api not found in list from server');
             $api->delete($apiName);
             $apiList = $api->getList();
-            $this->assertArrayNotHasKey($apiName, $apiList->getItemsArray());
+            $hasApi = false;
+            foreach($apiList as $item){
+                if($item->getName() == $apiName){
+                    $hasApi = true;
+                    break;
+                }
+            }
+            $this->assertFalse($hasApi,'Created API still exists after deletion.');
         } catch(ApiException $ae){
             echo $ae;
         } catch(\Exception $e){
@@ -133,8 +150,55 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         $api = new Api();
         $api->setName($apiName);
         $keyList = $api->getKeyList(0,100,'true');
-        print_r($keyList);
+        //print_r($keyList);
+        $this->assertInstanceOf('\ApiAxle\Shared\ItemList', $keyList);
     }
     
+    public function testLinkUnlinkKey()
+    {
+        $apiName = 'test-'.str_replace(array(' ','.'),'',microtime());
+        $data = array(
+            'endPoint' => 'localhost'
+        );
+        $api = new Api();
+        $api->create($apiName, $data);
+        $key = new Key();
+        $key->create($apiName);
+        $api->linkKey($key);
+        $hasAssoc = false;
+        $apiList = $key->getApiList();
+        foreach($apiList as $item){
+            if($item->getName() == $apiName){
+                $hasAssoc = true;
+            }
+        }
+        $this->assertTrue($hasAssoc,'New key is not linked to new API');
+        $api->unLinkKey($key);
+        $hasAssoc = false;
+        $apiList = $key->getApiList();
+        foreach($apiList as $item){
+            if($item->getName() == $apiName){
+                $hasAssoc = true;
+            }
+        }
+        $this->assertFalse($hasAssoc,'New key is still linked to new API');
+    }
+    
+    public function testGetStats()
+    {
+        $api = new API();
+        $api->setName('apiaxle');
+        $apiStats = $api->getStats();
+        //print_r($apiStats);
+        $this->assertInstanceOf('\stdClass', $apiStats);
+    }
+    
+    public function testGetCharts()
+    {
+        $api = new Api();
+        $charts = $api->getCharts('day');
+        //print_r($charts);
+        $this->assertInstanceOf('\stdClass', $charts);
+    }
 
 }

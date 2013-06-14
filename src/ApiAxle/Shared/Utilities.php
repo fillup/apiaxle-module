@@ -23,15 +23,12 @@ class Utilities
             "Accept: application/json",
         );
         
-        if($method == 'POST' || $method == 'PUT'){
+        if(($method == 'POST' || $method == 'PUT') && is_array($data)){
             $headers[] = "Content-Type: application/json";
         }
         
         $api_key = $config->getKey();
         $api_sig = $config->getSignature();
-        //if($api_sig){
-        //    $data['api_sig'] = $api_sig;
-        //}
         
         if(strpos($apiPath,'?')){
             $apiPath .= "&api_key=$api_key&api_sig=$api_sig";
@@ -41,12 +38,7 @@ class Utilities
         
         if($method == 'GET' && is_array($data)){
             foreach($data as $param => $value){
-                //if(strpos($apiPath, '?')){
-                    $connector = '&';
-                //} else {
-                //    $connector = '?';
-                //}
-                $apiPath .= $connector.$param.'='.$value;
+                $apiPath .= '&'.$param.'='.$value;
             }
         }
         

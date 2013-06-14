@@ -11,6 +11,7 @@ use ApiAxle\Shared\Config;
 use ApiAxle\Shared\ItemList;
 use ApiAxle\Shared\HttpRequest;
 use ApiAxle\Shared\Utilities;
+use ApiAxle\Api\Key;
 
 class Api
 {
@@ -352,22 +353,115 @@ class Api
                 'to' => $to,
                 'resolve' => $resolve
             );
+            $keyList = new ItemList();
             $request = Utilities::callApi($apiPath, 'GET', $data,$this->getConfig());
             if($request){
-                return $request;
+                foreach($request as $item => $value){
+                    $key = new Key();
+                    $key->setKey($item);
+                    $key->setData($value);
+                    $keyList->addItem($key);
+                }
+                return $keyList;
             } else {
                 throw new \ErrorException('Unable to retrieve keys for API.', 210);
             }
         }
     }
     
-    public function linkKey($key) {}
+    public function linkKey($key)
+    {
+        if(is_null($this->getName())){
+            throw new \Exception('An API name is required to link a key.',211);
+        } else {
+            $apiPath = 'api/'.$this->getName().'/linkkey/';
+            if(is_string($key)){
+                $apiPath .= $key;
+            } elseif($key instanceof Key){
+                $apiPath .= $key->getKey();
+            } else {
+                throw new \Exception('Key must be a string or instance of ApiAxle\Api\Key',212);
+            }
+            
+            $request = Utilities::callApi($apiPath, 'PUT',null,$this->getConfig());
+            if($request){
+                return $this;
+            } else {
+                throw new \Exception('Unable to link key',213);
+            }
+        }
+    }
     
-    public function unLinkKey($key) {}
+    public function unLinkKey($key)
+    {
+        if(is_null($this->getName())){
+            throw new \Exception('An API name is required to unlink a key.',214);
+        } else {
+            $apiPath = 'api/'.$this->getName().'/unlinkkey/';
+            if(is_string($key)){
+                $apiPath .= $key;
+            } elseif($key instanceof Key){
+                $apiPath .= $key->getKey();
+            } else {
+                throw new \Exception('Key must be a string or instance of ApiAxle\Api\Key',215);
+            }
+            
+            $request = Utilities::callApi($apiPath, 'PUT',null,$this->getConfig());
+            if($request){
+                return $this;
+            } else {
+                throw new \Exception('Unable to unlink key',216);
+            }
+        }
+    }
     
-    public function getStats() {}
+    public function getStats($timestart=false, $timeend=false, 
+            $granularity='minute',$format_timeseries='true',
+            $format_timestamp='epoch_seconds', $forkey=false)
+    {
+        if(is_null($this->getName())){
+            throw new \Exception('An API name is required to get stats.',217);
+        } else {
+            
+            $data = array(
+                'granularity' => $granularity,
+                'format_timeseries' => $format_timeseries,
+                'format_timestamp' => $format_timestamp,
+            );
+            if($timestart){
+                $data['from'] = $timestart;
+            }
+            if($timeend){
+                $data['to'] = $timeend;
+            }
+            
+            if($forkey && is_string($forkey)){
+                $data['forkey'] = $forkey;
+            } elseif($forkey && $forkey instanceof Key){
+                $data['forkey'] = $forkey->getKey();
+            }
+            
+            $apiPath = 'api/'.$this->getName().'/stats';
+            $request = Utilities::callApi($apiPath, 'GET', $data,$this->getConfig());
+            if($request){
+                return $request;
+            } else {
+                throw new \Exception('Unable to get stats for API',218);
+            }
+        }
+    }
     
-    public static function getCharts($granularity='minute') {}
+    public function getCharts($granularity='minute')
+    {
+        $apiPath = 'apis/charts';
+        $data = array('granularity' => $granularity);
+        $request = Utilities::callApi($apiPath, 'GET', $data, $this->getConfig());
+        if($request){
+            return $request;
+        } else {
+            throw new \Exception('Unable to get charts for API',219);
+        }
+    }
     
     public function getConfig()
     {
