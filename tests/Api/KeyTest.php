@@ -35,21 +35,21 @@ class KeyTests extends \PHPUnit_Framework_TestCase
         $this->assertEquals($keyValue, $key->getKey());
     }
     
-//    public function testCreateUpdateKey()
-//    {
-//        $keyValue = 'test-'.str_replace(array(' ','.'),'',microtime());
-//        $key = new Key();
-//        $createData = array(
-//            'sharedSecret' => 'firstsecret'
-//        );
-//        $key->create($keyValue,$createData);
-//        $updateData = array(
-//            'sharedSecret' => 'updatedsecret'
-//        );
-//        $key->update($updateData);
-//        $keyData = $key->getData();
-//        $this->assertEquals($updateData['sharedSecret'], $keyData['sharedSecret']);
-//    }
+    public function testCreateUpdateKey()
+    {
+        $keyValue = 'test-'.str_replace(array(' ','.'),'',microtime());
+        $key = new Key();
+        $createData = array(
+            'sharedSecret' => 'firstsecret'
+        );
+        $key->create($keyValue,$createData);
+        $updateData = array(
+            'sharedSecret' => 'updatedsecret'
+        );
+        $key->update($updateData);
+        $keyData = $key->getData();
+        $this->assertEquals($updateData['sharedSecret'], $keyData['sharedSecret']);
+    }
     
     public function testCreateDeleteKey()
     {
