@@ -1,20 +1,20 @@
 language: php
 php:
   - "5.4"
-  
+
+services:
+  - redis-server
+
 before_script:
   - curl -s https://getcomposer.org/installer | php && php composer.phar update --dev
   - sudo apt-get install python-software-properties build-essential libxml2-dev
   - sudo add-apt-repository ppa:chris-lea/node.js
   - sudo apt-get update
   - sudo apt-get install nodejs
-  - sudo npm install -g apiaxle-repl apiaxle-proxy apiaxle-api
-  
-services:
-  - redis-server
-  - apiaxle-proxy 3000
-  - apiaxle-api 8000
-  
+  - sudo npm install -g apiaxle-proxy apiaxle-api
+  - apiaxle-proxy 3000 &
+  - apiaxle-api 8000 &
+
 script: 
   - mkdir -p build/logs
   - php vendor/bin/phpunit --coverage-clover ./build/logs/clover.xml tests/
