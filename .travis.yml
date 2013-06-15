@@ -5,6 +5,10 @@ php:
 services:
   - redis-server
 
+addons:
+  hosts:
+    - apiaxle.api.local
+
 before_script:
   - curl -s https://getcomposer.org/installer | php && php composer.phar update --dev
   - sudo apt-get install python-software-properties build-essential libxml2-dev
@@ -14,8 +18,7 @@ before_script:
   - sudo npm install -g apiaxle-proxy apiaxle-api
   - apiaxle-proxy 3000 &
   - apiaxle-api 8000 &
-  - sudo echo '127.0.0.1 apiaxle.api.local' >> /etc/hosts
-  - curl -X POST -H 'Content-type: application/json' 'http://locahost:8000/v1/api/apiaxle' -d '{"endPoint":"localhost:8000"}'
+  - curl -X POST -H 'Content-type: application/json' 'http://localhost:8000/v1/api/apiaxle' -d '{"endPoint":"localhost:8000"}'
   - curl -X POST -H 'Content-type: application/json' 'http://localhost:8000/v1/key/apiaxle-travis-ci-key' -d '{"sharedSecret":"apiaxle-travis-ci-secret"}'
   - curl -X PUT 'http://localhost:8000/v1/api/apiaxle/linkkey/apiaxle-travis-ci-key'
   - ln -s config/config.travis.php config/config.local.php
