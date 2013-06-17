@@ -84,7 +84,7 @@ class HttpRequest
                 } else {
                     $code = $curl_errno;
                 }
-                throw new \ErrorException('Http Request Failed (HTTP Status: '.$info['http_code'].') with error: '.  
+                throw new \ErrorException('Http Request Failed: '.$uri.' (HTTP Status: '.$info['http_code'].') with error: '.  
                     curl_error($ch), 210);
             }
         }
