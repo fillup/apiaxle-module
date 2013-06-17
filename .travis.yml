@@ -13,7 +13,7 @@ before_script:
   - curl -s https://getcomposer.org/installer | php && php composer.phar update --dev
   - sudo add-apt-repository -y ppa:chris-lea/node.js
   - sudo apt-get update
-  - sudo npm install -g apiaxle-proxy apiaxle-api
+  - npm install -g apiaxle-proxy apiaxle-api
   - apiaxle-proxy 3000 &
   - sleep 3
   - apiaxle-api 8000 &
