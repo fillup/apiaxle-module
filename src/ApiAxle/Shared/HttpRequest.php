@@ -43,10 +43,10 @@ class HttpRequest
         /**
          * Added for debugging with Charles proxy
          */
-        curl_setopt($ch, CURLOPT_PROXY, '127.0.0.1');
-        curl_setopt($ch, CURLOPT_PROXYPORT, '8888');
-        curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+//        curl_setopt($ch, CURLOPT_PROXY, '127.0.0.1');
+//        curl_setopt($ch, CURLOPT_PROXYPORT, '8888');
+//        curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, true);
+//        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         
         
         $method = strtoupper($method);
