@@ -19,6 +19,7 @@ before_script:
   - apiaxle-api 8000 &
   - sleep 3
   - ./travis.setup.sh
+  - cat /etc/hosts
 
 script: 
   - mkdir -p build/logs
