@@ -1,4 +1,5 @@
 # ApiAxle Module #
+[![Travis-CI Build Status](https://api.travis-ci.org/fillup/apiaxle-module.png?branch=master)](https://travis-ci.org/fillup/apiaxle-module) [![Coverage Status](https://coveralls.io/repos/fillup/apiaxle-module/badge.png)](https://coveralls.io/r/fillup/apiaxle-module)
 
 ## Introduction ##
 [ApiAxle](http://apiaxle.com)
