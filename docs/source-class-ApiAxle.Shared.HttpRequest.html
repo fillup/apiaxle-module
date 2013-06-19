@@ -147,10 +147,10 @@
 </span><span id="43" class="l"><a class="l" href="#43">43: </a>        <span class="php-comment">/**
 </span></span><span id="44" class="l"><a class="l" href="#44">44: </a><span class="php-comment">         * Added for debugging with Charles proxy
 </span></span><span id="45" class="l"><a class="l" href="#45">45: </a><span class="php-comment">         */</span>
-</span><span id="46" class="l"><a class="l" href="#46">46: </a>        <span class="php-keyword2">curl_setopt</span>(<span class="php-var">$ch</span>, CURLOPT_PROXY, <span class="php-quote">'127.0.0.1'</span>);
-</span><span id="47" class="l"><a class="l" href="#47">47: </a>        <span class="php-keyword2">curl_setopt</span>(<span class="php-var">$ch</span>, CURLOPT_PROXYPORT, <span class="php-quote">'8888'</span>);
-</span><span id="48" class="l"><a class="l" href="#48">48: </a>        <span class="php-keyword2">curl_setopt</span>(<span class="php-var">$ch</span>, CURLOPT_HTTPPROXYTUNNEL, <span class="php-keyword1">true</span>);
-</span><span id="49" class="l"><a class="l" href="#49">49: </a>        <span class="php-keyword2">curl_setopt</span>(<span class="php-var">$ch</span>, CURLOPT_SSL_VERIFYPEER, <span class="php-keyword1">false</span>);
+</span><span id="46" class="l"><a class="l" href="#46">46: </a><span class="php-comment">//        curl_setopt($ch, CURLOPT_PROXY, '127.0.0.1');</span>
+</span><span id="47" class="l"><a class="l" href="#47">47: </a><span class="php-comment">//        curl_setopt($ch, CURLOPT_PROXYPORT, '8888');</span>
+</span><span id="48" class="l"><a class="l" href="#48">48: </a><span class="php-comment">//        curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, true);</span>
+</span><span id="49" class="l"><a class="l" href="#49">49: </a><span class="php-comment">//        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);</span>
 </span><span id="50" class="l"><a class="l" href="#50">50: </a>        
 </span><span id="51" class="l"><a class="l" href="#51">51: </a>        
 </span><span id="52" class="l"><a class="l" href="#52">52: </a>        <span class="php-var">$method</span> = <span class="php-keyword2">strtoupper</span>(<span class="php-var">$method</span>);
@@ -188,7 +188,7 @@
 </span><span id="84" class="l"><a class="l" href="#84">84: </a>                } <span class="php-keyword1">else</span> {
 </span><span id="85" class="l"><a class="l" href="#85">85: </a>                    <span class="php-var">$code</span> = <span class="php-var">$curl_errno</span>;
 </span><span id="86" class="l"><a class="l" href="#86">86: </a>                }
-</span><span id="87" class="l"><a class="l" href="#87">87: </a>                <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \ErrorException(<span class="php-quote">'Http Request Failed (HTTP Status: '</span>.<span class="php-var">$info</span>[<span class="php-quote">'http_code'</span>].<span class="php-quote">') with error: '</span>.  
+</span><span id="87" class="l"><a class="l" href="#87">87: </a>                <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \ErrorException(<span class="php-quote">'Http Request Failed: '</span>.<span class="php-var">$uri</span>.<span class="php-quote">' (HTTP Status: '</span>.<span class="php-var">$info</span>[<span class="php-quote">'http_code'</span>].<span class="php-quote">') with error: '</span>.  
 </span><span id="88" class="l"><a class="l" href="#88">88: </a>                    <span class="php-keyword2">curl_error</span>(<span class="php-var">$ch</span>), <span class="php-num">210</span>);
 </span><span id="89" class="l"><a class="l" href="#89">89: </a>            }
 </span><span id="90" class="l"><a class="l" href="#90">90: </a>        }

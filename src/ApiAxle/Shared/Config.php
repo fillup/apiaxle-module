@@ -148,6 +148,19 @@ class Config
         $this->secret = $secret;
     }
     
+    /**
+     * Generate an API signature based on key and shared secret. 
+     * 
+     * Uses hmac_sha1 to generate hash. There is a six second window where the
+     * hash is valid and ApiAxle will check the hash for three seconds before
+     * and after the call to validate it. Be sure you are using a network time
+     * server to keep your servers in sync with correct time
+     * 
+     * Returns false if a sharedSecret is not set for the key
+     * 
+     * @return boolean
+     * @return string
+     */
     public function getSignature()
     {
         if(!is_null($this->secret)){

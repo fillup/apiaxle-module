@@ -127,7 +127,7 @@
 				<b>Author:</b>
 				Phillip Shipley &lt;<a
 href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.com</a>&gt;<br />
-		<b>Located at</b> <a href="source-class-ApiAxle.Shared.Utilities.html#13-67" title="Go to source code">src/ApiAxle/Shared/Utilities.php</a><br />
+		<b>Located at</b> <a href="source-class-ApiAxle.Shared.Utilities.html#13-81" title="Go to source code">src/ApiAxle/Shared/Utilities.php</a><br />
 	</div>
 
 
@@ -138,25 +138,52 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="attributes"><code>
 			 public static
-			
+			<code><a href="class-stdClass.html">stdClass</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_callApi">#</a>
-		<code><a href="source-class-ApiAxle.Shared.Utilities.html#20-66" title="Go to source code">callApi</a>( <span>mixed <var>$apiPath</var></span>, <span>mixed <var>$method</var> = <span class="php-quote">'GET'</span></span>, <span>mixed <var>$data</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$config</var></span> )</code>
+		<code><a href="source-class-ApiAxle.Shared.Utilities.html#20-80" title="Go to source code">callApi</a>( <span>string <var>$apiPath</var></span>, <span>string <var>$method</var> = <span class="php-quote">'GET'</span></span>, <span>array <var>$data</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-ApiAxle.Shared.Config.html">ApiAxle\Shared\Config</a></code> <var>$config</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Wrapper function for making the HttpRequest to the ApiAxle API</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Wrapper function for making the HttpRequest to the ApiAxle API</p>
+
+<p>This method will set the proper content type and attach the api key and api
+signature if needed before making the call.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$apiPath</var></dt>
+					<dd><code>string</code><br>$apiPath</dd>
+					<dt><var>$method</var></dt>
+					<dd><code>string</code><br>$method</dd>
+					<dt><var>$data</var></dt>
+					<dd><code>array</code><br>$data</dd>
+					<dt><var>$config</var></dt>
+					<dd><code><code><a href="class-ApiAxle.Shared.Config.html">ApiAxle\Shared\Config</a></code></code><br>$config</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-stdClass.html">stdClass</a></code></code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ApiAxle.Shared.ApiException.html">ApiAxle\Shared\ApiException</a></code></code><br />
+					<code><code><a href="class-ErrorException.html">ErrorException</a></code></code><br />
+				</div>
 
 
 

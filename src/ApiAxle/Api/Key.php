@@ -7,17 +7,23 @@
  */
 namespace ApiAxle\Api;
 
-use ApiAxle\Shared\ApiException;
 use ApiAxle\Shared\Config;
 use ApiAxle\Shared\Utilities;
 use ApiAxle\Shared\ItemList;
 
+/**
+ * ApiAxle\Api\Key class
+ * 
+ * Wraps Key related calls to the ApiAxle API
+ * 
+ * @author Phillip Shipley <phillip@phillipshipley.com>
+ */
 class Key
 {
     /**
      * Configuration data
      * 
-     * @var ApiAxle\Shared\Config
+     * @var \ApiAxle\Shared\Config
      */
     protected $config;
     
@@ -31,14 +37,14 @@ class Key
     /**
      * Created at timestamp. Set automatically when creating a new key.
      * 
-     * @var int
+     * @var integer
      */
     protected $createdAt;
     
     /**
      * Updated at timestamp. Set automatically whenever updating a key.
      * 
-     * @var int
+     * @var integer
      */
     protected $updatedAt;
     
@@ -52,14 +58,14 @@ class Key
     /**
      * (default: 172800) Number of queries that can be called per day. Set to `-1` for no limit.
      * 
-     * @var int
+     * @var integer
      */
     protected $qpd = 172800;
     
     /**
      * (default: 2) Number of queries that can be called per second. Set to `-1` for no limit.
      * 
-     * @var int
+     * @var integer
      */
     protected $qps = 2;
     
@@ -86,6 +92,15 @@ class Key
      */
     protected $isNSA = 'false';
     
+    /**
+     * Construct a new Key object
+     * 
+     * If a $key is provided, it will be fetched from the ApiAxle API and
+     * properties will be set accordingly.
+     * 
+     * @param array $config
+     * @param string $key
+     */
     public function __construct($config=false,$key=false) 
     {
         $this->config = new Config($config);
@@ -94,11 +109,21 @@ class Key
         }
     }
     
+    /**
+     * Return current key value
+     * 
+     * @return string
+     */
     public function getKey()
     {
         return $this->key;
     }
     
+    /**
+     * Set key value
+     * 
+     * @param string $key
+     */
     public function setKey($key)
     {
         $this->key = $key;
@@ -107,7 +132,7 @@ class Key
     /**
      * Set object properties
      * 
-     * @param type $data
+     * @param array $data
      * @return \ApiAxle\Api\Key
      */
     public function setData($data)
@@ -152,6 +177,12 @@ class Key
         return $data;
     }
     
+    /**
+     * Get an array of only the fields needed for an API call
+     * (ignore created/updated, etc.)
+     * 
+     * @return array
+     */
     public function getDataForApiCall()
     {
         $data = array(
@@ -170,6 +201,12 @@ class Key
         return $data;
     }
     
+    /**
+     * Fetch key information from ApiAxle API and update object properties
+     * 
+     * @param string $key
+     * @return \ApiAxle\Api\Key
+     */
     public function get($key)
     {
         if($key){
@@ -184,6 +221,14 @@ class Key
         return $this;
     }
     
+    /**
+     * Create a new key
+     * 
+     * @param string $key
+     * @param array $data
+     * @return \ApiAxle\Api\Key
+     * @throws \ErrorException
+     */
     public function create($key, $data=false)
     {
         $this->setKey($key);
@@ -203,6 +248,13 @@ class Key
         
     }
     
+    /**
+     * Update a key
+     * 
+     * @param array $data
+     * @return \ApiAxle\Api\Key
+     * @throws \ErrorException
+     */
     public function update($data)
     {
         if(!is_null($this->getKey())){
@@ -220,6 +272,14 @@ class Key
         
     }
     
+    /**
+     * Delete a key
+     * 
+     * @param string $key
+     * @return boolean
+     * @throws \Exception
+     * @throws \ErrorException
+     */
     public function delete($key=false)
     {
         if($key){
@@ -238,6 +298,16 @@ class Key
         }
     }
     
+    /**
+     * Get a list of all Keys
+     * 
+     * Parameters $from and $to are used for pagination of results
+     * 
+     * @param integer $from
+     * @param integer $to
+     * @param string $resolve
+     * @return \ApiAxle\Shared\ItemList
+     */
     public function getList($from=0, $to=100, $resolve='true')
     {
         $apiPath = 'keys';
@@ -261,6 +331,14 @@ class Key
         return $keyList;
     }
     
+    /**
+     * Get a list of APIs that this Key has access to
+     * 
+     * @param string $resolve Wether or not to also get API details
+     * @return \ApiAxle\Shared\ItemList
+     * @throws \Exception
+     * @throws \ErrorException
+     */
     public function getApiList($resolve='true')
     {
         if(is_null($this->getKey())){
@@ -285,6 +363,14 @@ class Key
         }
     }
     
+    /**
+     * Get most used APIs for this key
+     * 
+     * @param string $granularity Options are second, minute, hour, day
+     * @return \stdClass
+     * @throws \Exception
+     * @throws Exception
+     */
     public function getApiCharts($granularity='minute')
     {
         if(is_null($this->getKey())){
@@ -301,6 +387,18 @@ class Key
         }
     }
     
+    /**
+     * Get real time hits for a key
+     * 
+     * @param integer $timestart
+     * @param integer $timeend
+     * @param string $granularity
+     * @param string $format_timeseries
+     * @param string $format_timestamp
+     * @param \ApiAxle\Api\Api $forapi
+     * @return type
+     * @throws \Exception
+     */
     public function getStats($timestart=false, $timeend=false, 
             $granularity='minute',$format_timeseries='true',
             $format_timestamp='epoch_seconds', $forapi=false)
@@ -337,6 +435,13 @@ class Key
         }
     }
     
+    /**
+     * Get most used keys and their stats
+     * 
+     * @param string $granularity Options are second, minute, hour, day
+     * @return \stdClass
+     * @throws \Exception
+     */
     public function getCharts($granularity='minute')
     {
         $apiPath = 'keys/charts';
@@ -349,11 +454,22 @@ class Key
         }
     }
     
+    /**
+     * Return config object
+     * 
+     * @return \ApiAxle\Shared\Config
+     */
     public function getConfig()
     {
         return $this->config;
     }
     
+    /**
+     * Validate that required fields are set before attempting to provision/update
+     * 
+     * @return boolean
+     * @throws \Exception
+     */
     public function isValid()
     {
         if(!is_null($this->getKey())){

@@ -22,6 +22,7 @@ class ApiException extends \Exception
     
     /**
      * HTTP response code
+     * 
      * @var integer 
      */
     protected $http_code;

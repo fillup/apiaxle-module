@@ -99,6 +99,13 @@
 	<h1>Class Api</h1>
 
 
+	<div class="description">
+	
+<p>ApiAxle\Api\Api class</p>
+
+<p>Wraps API related calls to the ApiAxle API</p>
+
+	</div>
 
 
 
@@ -114,7 +121,10 @@
 		<b>Namespace:</b> <a href="namespace-ApiAxle.html">ApiAxle</a>\<a href="namespace-ApiAxle.Api.html">Api</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-ApiAxle.Api.Api.html#16-481" title="Go to source code">src/ApiAxle/Api/Api.php</a><br />
+				<b>Author:</b>
+				Phillip Shipley &lt;<a
+href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.com</a>&gt;<br />
+		<b>Located at</b> <a href="source-class-ApiAxle.Api.Api.html#15-576" title="Go to source code">src/ApiAxle/Api/Api.php</a><br />
 	</div>
 
 
@@ -132,16 +142,30 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#120-126" title="Go to source code">__construct</a>( <span>mixed <var>$config</var> = <span class="php-keyword1">false</span></span>, <span>mixed <var>$name</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#126-141" title="Go to source code">__construct</a>( <span>array <var>$config</var> = <span class="php-keyword1">false</span></span>, <span>string <var>$name</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
+<p>Construct new Api object.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Construct new Api object.</p>
+
+<p>If a $name is provided, it will be fetched from the ApiAxle API and
+properties will be set accordingly.</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$config</var></dt>
+					<dd><code>array</code><br>$config</dd>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+				</dl></div>
 
 
 
@@ -161,7 +185,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setData">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#128-157" title="Go to source code">setData</a>( <span>type <var>$data</var></span> )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#143-172" title="Go to source code">setData</a>( <span>type <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -203,7 +227,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getData">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#159-182" title="Go to source code">getData</a>( )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#174-197" title="Go to source code">getData</a>( )</code>
 
 		<div class="description short">
 			
@@ -240,16 +264,25 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setName">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#184-187" title="Go to source code">setName</a>( <span>mixed <var>$name</var></span> )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#199-207" title="Go to source code">setName</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Set the API name</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Set the API name</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+				</dl></div>
 
 
 
@@ -262,24 +295,32 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getName">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#189-192" title="Go to source code">getName</a>( )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#209-217" title="Go to source code">getName</a>( )</code>
 
 		<div class="description short">
 			
+<p>Get the API name</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Get the API name</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
 
 
 
@@ -298,7 +339,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getList">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#194-220" title="Go to source code">getList</a>( <span>mixed <var>$from</var> = <span class="php-num">0</span></span>, <span>mixed <var>$to</var> = <span class="php-num">100</span></span>, <span>mixed <var>$resolve</var> = <span class="php-quote">'true'</span></span> )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#219-245" title="Go to source code">getList</a>( <span>mixed <var>$from</var> = <span class="php-num">0</span></span>, <span>mixed <var>$to</var> = <span class="php-num">100</span></span>, <span>mixed <var>$resolve</var> = <span class="php-quote">'true'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -328,24 +369,39 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-ApiAxle.Api.Api.html">ApiAxle\Api\Api</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#222-234" title="Go to source code">get</a>( <span>mixed <var>$name</var></span> )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#247-266" title="Go to source code">get</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Fetch information about the API from the server and update object properties
+with information from ApiAxle</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Fetch information about the API from the server and update object properties
+with information from ApiAxle</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ApiAxle.Api.Api.html">ApiAxle\Api\Api</a></code></code><br />
+				</div>
 
 
 
@@ -364,7 +420,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_update">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#236-257" title="Go to source code">update</a>( <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#268-289" title="Go to source code">update</a>( <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -406,7 +462,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_create">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#259-281" title="Go to source code">create</a>( <span>string <var>$name</var></span>, <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#291-313" title="Go to source code">create</a>( <span>string <var>$name</var></span>, <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -447,25 +503,43 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_delete">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#283-300" title="Go to source code">delete</a>( <span>mixed <var>$name</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#315-340" title="Go to source code">delete</a>( <span>string <var>$name</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
+<p>Delete an API</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Delete an API</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Exception.html">Exception</a></code></code><br />
+					<code><code><a href="class-ErrorException.html">ErrorException</a></code></code><br />
+				</div>
 
 
 
@@ -483,7 +557,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getKeyCharts">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#302-343" title="Go to source code">getKeyCharts</a>( <span>integer <var>$timestart</var> = <span class="php-keyword1">false</span></span>, <span>integer <var>$timeend</var> = <span class="php-keyword1">false</span></span>, <span>string <var>$granularity</var> = <span class="php-quote">'day'</span></span>, <span>string <var>$format_timeseries</var> = <span class="php-quote">'true'</span></span>, <span>string <var>$format_timestamp</var> = <span class="php-quote">'epoch_seconds'</span></span> )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#342-383" title="Go to source code">getKeyCharts</a>( <span>integer <var>$timestart</var> = <span class="php-keyword1">false</span></span>, <span>integer <var>$timeend</var> = <span class="php-keyword1">false</span></span>, <span>string <var>$granularity</var> = <span class="php-quote">'day'</span></span>, <span>string <var>$format_timeseries</var> = <span class="php-quote">'true'</span></span>, <span>string <var>$format_timestamp</var> = <span class="php-quote">'epoch_seconds'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -535,25 +609,49 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-ApiAxle.Shared.ItemList.html">ApiAxle\Shared\ItemList</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getKeyList">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#345-370" title="Go to source code">getKeyList</a>( <span>mixed <var>$from</var> = <span class="php-num">0</span></span>, <span>mixed <var>$to</var> = <span class="php-num">10</span></span>, <span>mixed <var>$resolve</var> = <span class="php-quote">'false'</span></span> )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#385-422" title="Go to source code">getKeyList</a>( <span>integer <var>$from</var> = <span class="php-num">0</span></span>, <span>integer <var>$to</var> = <span class="php-num">100</span></span>, <span>string <var>$resolve</var> = <span class="php-quote">'true'</span></span> )</code>
 
 		<div class="description short">
 			
+<p>Get a list of Keys with access to this API</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Get a list of Keys with access to this API</p>
+
+<p>Parameters $from and $to are used for paginating through results</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$from</var></dt>
+					<dd><code>integer</code><br>$from Default is 0</dd>
+					<dt><var>$to</var></dt>
+					<dd><code>integer</code><br>$to Default is 100</dd>
+					<dt><var>$resolve</var></dt>
+					<dd><code>string</code><br>$resolve Wether or not get Key details. Default is 'true'</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ApiAxle.Shared.ItemList.html">ApiAxle\Shared\ItemList</a></code></code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Exception.html">Exception</a></code></code><br />
+					<code><code><a href="class-ErrorException.html">ErrorException</a></code></code><br />
+				</div>
 
 
 
@@ -564,25 +662,42 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-ApiAxle.Api.Api.html">ApiAxle\Api\Api</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_linkKey">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#372-393" title="Go to source code">linkKey</a>( <span>mixed <var>$key</var></span> )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#424-452" title="Go to source code">linkKey</a>( <span><code><a href="class-ApiAxle.Api.Key.html">ApiAxle\Api\Key</a></code> <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Link a Key to this Api</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Link a Key to this Api</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code><code><a href="class-ApiAxle.Api.Key.html">ApiAxle\Api\Key</a></code></code><br>$key</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ApiAxle.Api.Api.html">ApiAxle\Api\Api</a></code></code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Exception.html">Exception</a></code></code><br />
+				</div>
 
 
 
@@ -593,25 +708,42 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-ApiAxle.Api.Api.html">ApiAxle\Api\Api</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_unLinkKey">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#395-416" title="Go to source code">unLinkKey</a>( <span>mixed <var>$key</var></span> )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#454-482" title="Go to source code">unLinkKey</a>( <span><code><a href="class-ApiAxle.Api.Key.html">ApiAxle\Api\Key</a></code> <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Unlink a Key from this API</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Unlink a Key from this API</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code><code><a href="class-ApiAxle.Api.Key.html">ApiAxle\Api\Key</a></code></code><br>$key</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ApiAxle.Api.Api.html">ApiAxle\Api\Api</a></code></code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Exception.html">Exception</a></code></code><br />
+				</div>
 
 
 
@@ -622,25 +754,52 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-stdClass.html">stdClass</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getStats">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#418-452" title="Go to source code">getStats</a>( <span>mixed <var>$timestart</var> = <span class="php-keyword1">false</span></span>, <span>mixed <var>$timeend</var> = <span class="php-keyword1">false</span></span>, <span>mixed <var>$granularity</var> = <span class="php-quote">'minute'</span></span>, <span>mixed <var>$format_timeseries</var> = <span class="php-quote">'true'</span></span>, <span>mixed <var>$format_timestamp</var> = <span class="php-quote">'epoch_seconds'</span></span>, <span>mixed <var>$forkey</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#484-530" title="Go to source code">getStats</a>( <span>integer <var>$timestart</var> = <span class="php-keyword1">false</span></span>, <span>integer <var>$timeend</var> = <span class="php-keyword1">false</span></span>, <span>string <var>$granularity</var> = <span class="php-quote">'minute'</span></span>, <span>string <var>$format_timeseries</var> = <span class="php-quote">'true'</span></span>, <span>string <var>$format_timestamp</var> = <span class="php-quote">'epoch_seconds'</span></span>, <span><code><a href="class-ApiAxle.Api.Key.html">ApiAxle\Api\Key</a></code> <var>$forkey</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
+<p>Get stats for this API</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Get stats for this API</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$timestart</var></dt>
+					<dd><code>integer</code><br>$timestart</dd>
+					<dt><var>$timeend</var></dt>
+					<dd><code>integer</code><br>$timeend</dd>
+					<dt><var>$granularity</var></dt>
+					<dd><code>string</code><br>$granularity Options are second, minute, hour, day</dd>
+					<dt><var>$format_timeseries</var></dt>
+					<dd><code>string</code><br>$format_timeseries String of either 'true' or 'false'</dd>
+					<dt><var>$format_timestamp</var></dt>
+					<dd><code>string</code><br>$format_timestamp Default: epoch_seconds</dd>
+					<dt><var>$forkey</var></dt>
+					<dd><code><code><a href="class-ApiAxle.Api.Key.html">ApiAxle\Api\Key</a></code></code><br>$forkey Limit results to a single Key</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-stdClass.html">stdClass</a></code></code><br>Object representing results from API<br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Exception.html">Exception</a></code></code><br />
+				</div>
 
 
 
@@ -651,25 +810,42 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-stdClass.html">stdClass</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getCharts">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#454-464" title="Go to source code">getCharts</a>( <span>mixed <var>$granularity</var> = <span class="php-quote">'minute'</span></span> )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#532-549" title="Go to source code">getCharts</a>( <span>string <var>$granularity</var> = <span class="php-quote">'minute'</span></span> )</code>
 
 		<div class="description short">
 			
+<p>Get the most used APIs and their hit counts</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Get the most used APIs and their hit counts</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$granularity</var></dt>
+					<dd><code>string</code><br>$granularity Options are second, minute, hour, day</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-stdClass.html">stdClass</a></code></code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Exception.html">Exception</a></code></code><br />
+				</div>
 
 
 
@@ -680,24 +856,32 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-ApiAxle.Shared.Config.html">ApiAxle\Shared\Config</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getConfig">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#466-469" title="Go to source code">getConfig</a>( )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#551-559" title="Go to source code">getConfig</a>( )</code>
 
 		<div class="description short">
 			
+<p>Get current config object</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Get current config object</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ApiAxle.Shared.Config.html">ApiAxle\Shared\Config</a></code></code><br />
+				</div>
 
 
 
@@ -709,25 +893,37 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isValid">#</a>
-		<code><a href="source-class-ApiAxle.Api.Api.html#471-480" title="Go to source code">isValid</a>( )</code>
+		<code><a href="source-class-ApiAxle.Api.Api.html#561-575" title="Go to source code">isValid</a>( )</code>
 
 		<div class="description short">
 			
+<p>Check if required fields are present for provisioning new API</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Check if required fields are present for provisioning new API</p>
 
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Exception.html">Exception</a></code></code><br />
+				</div>
 
 
 
@@ -756,7 +952,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ApiAxle.Api.Api.html#18-23" title="Go to source code"><var>$config</var></a>
+				<a href="source-class-ApiAxle.Api.Api.html#24-29" title="Go to source code"><var>$config</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -783,7 +979,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ApiAxle.Api.Api.html#25-30" title="Go to source code"><var>$name</var></a>
+				<a href="source-class-ApiAxle.Api.Api.html#31-36" title="Go to source code"><var>$name</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -810,7 +1006,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ApiAxle.Api.Api.html#32-37" title="Go to source code"><var>$createdAt</var></a>
+				<a href="source-class-ApiAxle.Api.Api.html#38-43" title="Go to source code"><var>$createdAt</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -837,7 +1033,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ApiAxle.Api.Api.html#39-44" title="Go to source code"><var>$updatedAt</var></a>
+				<a href="source-class-ApiAxle.Api.Api.html#45-50" title="Go to source code"><var>$updatedAt</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -864,7 +1060,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ApiAxle.Api.Api.html#46-51" title="Go to source code"><var>$globalCache</var></a>
+				<a href="source-class-ApiAxle.Api.Api.html#52-57" title="Go to source code"><var>$globalCache</var></a>
 		</td>
 		<td class="value"><code><span class="php-num">0</span></code></td>
 		<td class="description"><div>
@@ -893,7 +1089,7 @@ cached.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ApiAxle.Api.Api.html#53-58" title="Go to source code"><var>$endPoint</var></a>
+				<a href="source-class-ApiAxle.Api.Api.html#59-64" title="Go to source code"><var>$endPoint</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -920,7 +1116,7 @@ cached.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ApiAxle.Api.Api.html#60-65" title="Go to source code"><var>$protocol</var></a>
+				<a href="source-class-ApiAxle.Api.Api.html#66-71" title="Go to source code"><var>$protocol</var></a>
 		</td>
 		<td class="value"><code><span class="php-quote">'http'</span></code></td>
 		<td class="description"><div>
@@ -947,7 +1143,7 @@ cached.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ApiAxle.Api.Api.html#67-73" title="Go to source code"><var>$apiFormat</var></a>
+				<a href="source-class-ApiAxle.Api.Api.html#73-79" title="Go to source code"><var>$apiFormat</var></a>
 		</td>
 		<td class="value"><code><span class="php-quote">'json'</span></code></td>
 		<td class="description"><div>
@@ -976,7 +1172,7 @@ the moment but will eventually support both XML too.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ApiAxle.Api.Api.html#75-80" title="Go to source code"><var>$endPointTimeout</var></a>
+				<a href="source-class-ApiAxle.Api.Api.html#81-86" title="Go to source code"><var>$endPointTimeout</var></a>
 		</td>
 		<td class="value"><code><span class="php-quote">'2'</span></code></td>
 		<td class="description"><div>
@@ -1003,7 +1199,7 @@ the moment but will eventually support both XML too.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ApiAxle.Api.Api.html#82-87" title="Go to source code"><var>$endPointMaxRedirects</var></a>
+				<a href="source-class-ApiAxle.Api.Api.html#88-93" title="Go to source code"><var>$endPointMaxRedirects</var></a>
 		</td>
 		<td class="value"><code><span class="php-quote">'2'</span></code></td>
 		<td class="description"><div>
@@ -1030,7 +1226,7 @@ the moment but will eventually support both XML too.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ApiAxle.Api.Api.html#89-96" title="Go to source code"><var>$extractKeyRegex</var></a>
+				<a href="source-class-ApiAxle.Api.Api.html#95-102" title="Go to source code"><var>$extractKeyRegex</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -1063,7 +1259,7 @@ precedence.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ApiAxle.Api.Api.html#98-104" title="Go to source code"><var>$defaultPath</var></a>
+				<a href="source-class-ApiAxle.Api.Api.html#104-110" title="Go to source code"><var>$defaultPath</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -1092,7 +1288,7 @@ hit.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ApiAxle.Api.Api.html#106-111" title="Go to source code"><var>$disabled</var></a>
+				<a href="source-class-ApiAxle.Api.Api.html#112-117" title="Go to source code"><var>$disabled</var></a>
 		</td>
 		<td class="value"><code><span class="php-quote">'false'</span></code></td>
 		<td class="description"><div>
@@ -1119,7 +1315,7 @@ hit.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ApiAxle.Api.Api.html#113-118" title="Go to source code"><var>$strictSSL</var></a>
+				<a href="source-class-ApiAxle.Api.Api.html#119-124" title="Go to source code"><var>$strictSSL</var></a>
 		</td>
 		<td class="value"><code><span class="php-quote">'true'</span></code></td>
 		<td class="description"><div>

@@ -9,10 +9,16 @@ namespace ApiAxle\Api;
 
 use ApiAxle\Shared\Config;
 use ApiAxle\Shared\ItemList;
-use ApiAxle\Shared\HttpRequest;
 use ApiAxle\Shared\Utilities;
 use ApiAxle\Api\Key;
 
+/**
+ * ApiAxle\Api\Api class
+ * 
+ * Wraps API related calls to the ApiAxle API
+ * 
+ * @author Phillip Shipley <phillip@phillipshipley.com>
+ */
 class Api
 {
     /**
@@ -117,6 +123,15 @@ class Api
      */
     protected $strictSSL = 'true';
     
+    /**
+     * Construct new Api object.
+     * 
+     * If a $name is provided, it will be fetched from the ApiAxle API and
+     * properties will be set accordingly.
+     * 
+     * @param array $config
+     * @param string $name
+     */
     public function __construct($config=false,$name=false) 
     {
         $this->config = new Config($config);
@@ -181,11 +196,21 @@ class Api
         return $data;
     }
     
+    /**
+     * Set the API name
+     * 
+     * @param string $name
+     */
     public function setName($name)
     {
         $this->name = $name;
     }
     
+    /**
+     * Get the API name
+     * 
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
@@ -219,6 +244,13 @@ class Api
         return $apiList;
     }
     
+    /**
+     * Fetch information about the API from the server and update object
+     * properties with information from ApiAxle
+     * 
+     * @param string $name
+     * @return \ApiAxle\Api\Api
+     */
     public function get($name)
     {
         if($name){
@@ -280,6 +312,14 @@ class Api
         }
     }
     
+    /**
+     * Delete an API
+     * 
+     * @param string $name
+     * @return boolean
+     * @throws \Exception
+     * @throws \ErrorException
+     */
     public function delete($name=false)
     {
         if($name){
@@ -342,7 +382,19 @@ class Api
         }
     }
     
-    public function getKeyList($from=0, $to=10, $resolve='false')
+    /**
+     * Get a list of Keys with access to this API
+     * 
+     * Parameters $from and $to are used for paginating through results
+     * 
+     * @param integer $from Default is 0
+     * @param integer $to Default is 100
+     * @param string $resolve Wether or not get Key details. Default is 'true'
+     * @return \ApiAxle\Shared\ItemList
+     * @throws \Exception
+     * @throws \ErrorException
+     */
+    public function getKeyList($from=0, $to=100, $resolve='true')
     {
         if(is_null($this->getName())){
             throw new \Exception('An API name is required to get keylist.',209);
@@ -369,6 +421,13 @@ class Api
         }
     }
     
+    /**
+     * Link a Key to this Api
+     * 
+     * @param \ApiAxle\Api\Key $key
+     * @return \ApiAxle\Api\Api
+     * @throws \Exception
+     */
     public function linkKey($key)
     {
         if(is_null($this->getName())){
@@ -392,6 +451,13 @@ class Api
         }
     }
     
+    /**
+     * Unlink a Key from this API
+     * 
+     * @param \ApiAxle\Api\Key $key
+     * @return \ApiAxle\Api\Api
+     * @throws \Exception
+     */
     public function unLinkKey($key)
     {
         if(is_null($this->getName())){
@@ -415,6 +481,18 @@ class Api
         }
     }
     
+    /**
+     * Get stats for this API
+     * 
+     * @param integer $timestart
+     * @param integer $timeend
+     * @param string $granularity Options are second, minute, hour, day
+     * @param string $format_timeseries String of either 'true' or 'false'
+     * @param string $format_timestamp Default: epoch_seconds
+     * @param \ApiAxle\Api\Key $forkey Limit results to a single Key
+     * @return \stdClass Object representing results from API
+     * @throws \Exception
+     */
     public function getStats($timestart=false, $timeend=false, 
             $granularity='minute',$format_timeseries='true',
             $format_timestamp='epoch_seconds', $forkey=false)
@@ -451,6 +529,13 @@ class Api
         }
     }
     
+    /**
+     * Get the most used APIs and their hit counts
+     * 
+     * @param string $granularity Options are second, minute, hour, day
+     * @return \stdClass
+     * @throws \Exception
+     */
     public function getCharts($granularity='minute')
     {
         $apiPath = 'apis/charts';
@@ -463,11 +548,21 @@ class Api
         }
     }
     
+    /**
+     * Get current config object
+     * 
+     * @return \ApiAxle\Shared\Config
+     */
     public function getConfig()
     {
         return $this->config;
     }
     
+    /**
+     * Check if required fields are present for provisioning new API
+     * @return boolean
+     * @throws \Exception
+     */
     public function isValid()
     {
         if(!isset($this->endPoint) || is_null($this->endPoint) || strlen($this->endPoint) < 1){

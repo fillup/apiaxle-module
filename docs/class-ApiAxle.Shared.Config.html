@@ -128,7 +128,7 @@ ApiAxle apis</p>
 				<b>Author:</b>
 				Phillip Shipley &lt;<a
 href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.com</a>&gt;<br />
-		<b>Located at</b> <a href="source-class-ApiAxle.Shared.Config.html#10-161" title="Go to source code">src/ApiAxle/Shared/Config.php</a><br />
+		<b>Located at</b> <a href="source-class-ApiAxle.Shared.Config.html#10-174" title="Go to source code">src/ApiAxle/Shared/Config.php</a><br />
 	</div>
 
 
@@ -476,24 +476,40 @@ specified</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getSignature">#</a>
-		<code><a href="source-class-ApiAxle.Shared.Config.html#151-159" title="Go to source code">getSignature</a>( )</code>
+		<code><a href="source-class-ApiAxle.Shared.Config.html#151-172" title="Go to source code">getSignature</a>( )</code>
 
 		<div class="description short">
 			
+<p>Generate an API signature based on key and shared secret.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Generate an API signature based on key and shared secret.</p>
+
+<p>Uses hmac_sha1 to generate hash. There is a six second window where the hash
+is valid and ApiAxle will check the hash for three seconds before and after the
+call to validate it. Be sure you are using a network time server to keep your
+servers in sync with correct time</p>
+
+<p>Returns false if a sharedSecret is not set for the key</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+					<code>string</code><br />
+				</div>
 
 
 

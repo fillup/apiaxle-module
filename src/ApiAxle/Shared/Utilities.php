@@ -17,6 +17,20 @@ use ApiAxle\Shared\ApiException;
  */
 class Utilities
 {
+    /**
+     * Wrapper function for making the HttpRequest to the ApiAxle API
+     * 
+     * This method will set the proper content type and attach the api key
+     * and api signature if needed before making the call.
+     * 
+     * @param string $apiPath
+     * @param string $method
+     * @param array $data
+     * @param \ApiAxle\Shared\Config $config
+     * @return \stdClass
+     * @throws \ApiAxle\Shared\ApiException
+     * @throws \ErrorException
+     */
     public static function callApi($apiPath, $method='GET', $data=null, $config)
     {
         $headers = array(

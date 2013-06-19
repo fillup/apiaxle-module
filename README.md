@@ -18,6 +18,8 @@ ApiAxle is a proxy that sits on your network, in front of your API(s) and manage
 - [x] Support for Key objects
 - [ ] Support for Keychain objects
 - [x] Set up continuous integration with Travis-CI: (https://travis-ci.org/fillup/apiaxle-module)
+- [ ] Create objects to represent stats, charts, etc?
+- [ ] Fix serialization of PHP boolean to string for ApiAxle API. Currently API wants string of either true or false, but serializing PHP boolean results in 0 or 1.
 
 ## Installation ##
 ### Using Composer - Recommended ###
@@ -73,6 +75,9 @@ include_once './vendor/autoload.php';
     // Thats it, your API is registered with API axle, your Key is created,
     // and your Key has access to the new API
 ```
+
+## API Documentation ##
+API documentation generated from phpDocs by apigen is available in the docs/ folder.
 
 ## Contributing ##
 If you are interested in contributing to this library and/or extending it please let me know, I'd love to work with others on this to help consider other use cases and design patterns.
