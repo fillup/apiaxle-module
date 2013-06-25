@@ -120,4 +120,25 @@ class KeyringTests extends \PHPUnit_Framework_TestCase
         $stats = $keyring->getStats();
         $this->assertInstanceOf('\stdClass', $stats);
     }
+    
+    public function testBatchLinkKeys()
+    {
+        $key1 = new Key();
+        $key1->create('test-1'.str_replace(array(' ','.'),'',microtime()));
+        
+        $key2 = new Key();
+        $key2->create('test-2'.str_replace(array(' ','.'),'',microtime()));
+        
+        $key3 = new Key();
+        $key3->create('test-3'.str_replace(array(' ','.'),'',microtime()));
+        
+        $keys = array($key1,$key2,$key3);
+        
+        $keyring = new Keyring();
+        $keyring->create('test-r'.str_replace(array(' ','.'),'',microtime()), $keys);
+        
+        $keyList = $keyring->getKeyList();
+        $this->assertInstanceOf('ApiAxle\Shared\ItemList', $keyList);
+        $this->assertCount(3, $keyList);
+    }
 }

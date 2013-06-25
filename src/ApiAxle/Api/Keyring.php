@@ -252,6 +252,22 @@ class Keyring
     }
     
     /**
+     * Convenience method to pass an array of keys to be linked after creating
+     * keyring.
+     * 
+     * @param array $keys
+     * @return \ApiAxle\Api\Keyring
+     */
+    public function linkKeys($keys)
+    {
+        foreach($keys as $key){
+            $this->linkKey($key);
+        }
+        
+        return $this;
+    }
+    
+    /**
      * Link a Key to this Keyring
      * 
      * @param \ApiAxle\Api\Key $key

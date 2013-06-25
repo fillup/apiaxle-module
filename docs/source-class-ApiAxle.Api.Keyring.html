@@ -349,144 +349,160 @@
 </span><span id="252" class="l"><a class="l" href="#252">252: </a>    }
 </span><span id="253" class="l"><a class="l" href="#253">253: </a>    
 </span><span id="254" class="l"><a class="l" href="#254">254: </a>    <span class="php-comment">/**
-</span></span><span id="255" class="l"><a class="l" href="#255">255: </a><span class="php-comment">     * Link a Key to this Keyring
-</span></span><span id="256" class="l"><a class="l" href="#256">256: </a><span class="php-comment">     * 
-</span></span><span id="257" class="l"><a class="l" href="#257">257: </a><span class="php-comment">     * @param \ApiAxle\Api\Key $key
-</span></span><span id="258" class="l"><a class="l" href="#258">258: </a><span class="php-comment">     * @return \ApiAxle\Api\Keyring
-</span></span><span id="259" class="l"><a class="l" href="#259">259: </a><span class="php-comment">     * @throws \Exception
+</span></span><span id="255" class="l"><a class="l" href="#255">255: </a><span class="php-comment">     * Convenience method to pass an array of keys to be linked after creating
+</span></span><span id="256" class="l"><a class="l" href="#256">256: </a><span class="php-comment">     * keyring.
+</span></span><span id="257" class="l"><a class="l" href="#257">257: </a><span class="php-comment">     * 
+</span></span><span id="258" class="l"><a class="l" href="#258">258: </a><span class="php-comment">     * @param array $keys
+</span></span><span id="259" class="l"><a class="l" href="#259">259: </a><span class="php-comment">     * @return \ApiAxle\Api\Keyring
 </span></span><span id="260" class="l"><a class="l" href="#260">260: </a><span class="php-comment">     */</span>
-</span><span id="261" class="l"><a class="l" href="#261">261: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_linkKey" href="#_linkKey">linkKey</a>(<span class="php-var">$key</span>)
+</span><span id="261" class="l"><a class="l" href="#261">261: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_linkKeys" href="#_linkKeys">linkKeys</a>(<span class="php-var">$keys</span>)
 </span><span id="262" class="l"><a class="l" href="#262">262: </a>    {
-</span><span id="263" class="l"><a class="l" href="#263">263: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$this</span>-&gt;getName())){
-</span><span id="264" class="l"><a class="l" href="#264">264: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \Exception(<span class="php-quote">'An API name is required to link a key.'</span>,<span class="php-num">275</span>);
-</span><span id="265" class="l"><a class="l" href="#265">265: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="266" class="l"><a class="l" href="#266">266: </a>            <span class="php-var">$apiPath</span> = <span class="php-quote">'keyring/'</span>.<span class="php-var">$this</span>-&gt;getName().<span class="php-quote">'/linkkey/'</span>;
-</span><span id="267" class="l"><a class="l" href="#267">267: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">is_string</span>(<span class="php-var">$key</span>)){
-</span><span id="268" class="l"><a class="l" href="#268">268: </a>                <span class="php-var">$apiPath</span> .= <span class="php-var">$key</span>;
-</span><span id="269" class="l"><a class="l" href="#269">269: </a>            } <span class="php-keyword1">elseif</span>(<span class="php-var">$key</span> <span class="php-keyword1">instanceof</span> <span class="php-keyword2">Key</span>){
-</span><span id="270" class="l"><a class="l" href="#270">270: </a>                <span class="php-var">$apiPath</span> .= <span class="php-var">$key</span>-&gt;getKey();
-</span><span id="271" class="l"><a class="l" href="#271">271: </a>            } <span class="php-keyword1">else</span> {
-</span><span id="272" class="l"><a class="l" href="#272">272: </a>                <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \Exception(<span class="php-quote">'Key must be a string or instance of ApiAxle\Api\Key'</span>,<span class="php-num">212</span>);
-</span><span id="273" class="l"><a class="l" href="#273">273: </a>            }
-</span><span id="274" class="l"><a class="l" href="#274">274: </a>            
-</span><span id="275" class="l"><a class="l" href="#275">275: </a>            <span class="php-var">$request</span> = Utilities::callApi(<span class="php-var">$apiPath</span>, <span class="php-quote">'PUT'</span>,<span class="php-keyword1">null</span>,<span class="php-var">$this</span>-&gt;getConfig());
-</span><span id="276" class="l"><a class="l" href="#276">276: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$request</span>){
-</span><span id="277" class="l"><a class="l" href="#277">277: </a>                <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
-</span><span id="278" class="l"><a class="l" href="#278">278: </a>            } <span class="php-keyword1">else</span> {
-</span><span id="279" class="l"><a class="l" href="#279">279: </a>                <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \Exception(<span class="php-quote">'Unable to link key'</span>,<span class="php-num">276</span>);
-</span><span id="280" class="l"><a class="l" href="#280">280: </a>            }
-</span><span id="281" class="l"><a class="l" href="#281">281: </a>        }
-</span><span id="282" class="l"><a class="l" href="#282">282: </a>    }
-</span><span id="283" class="l"><a class="l" href="#283">283: </a>    
-</span><span id="284" class="l"><a class="l" href="#284">284: </a>    <span class="php-comment">/**
-</span></span><span id="285" class="l"><a class="l" href="#285">285: </a><span class="php-comment">     * Unlink a Key from this Keyring
-</span></span><span id="286" class="l"><a class="l" href="#286">286: </a><span class="php-comment">     * 
-</span></span><span id="287" class="l"><a class="l" href="#287">287: </a><span class="php-comment">     * @param \ApiAxle\Api\Key $key
-</span></span><span id="288" class="l"><a class="l" href="#288">288: </a><span class="php-comment">     * @return \ApiAxle\Api\Keyring
-</span></span><span id="289" class="l"><a class="l" href="#289">289: </a><span class="php-comment">     * @throws \Exception
-</span></span><span id="290" class="l"><a class="l" href="#290">290: </a><span class="php-comment">     */</span>
-</span><span id="291" class="l"><a class="l" href="#291">291: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_unLinkKey" href="#_unLinkKey">unLinkKey</a>(<span class="php-var">$key</span>)
-</span><span id="292" class="l"><a class="l" href="#292">292: </a>    {
-</span><span id="293" class="l"><a class="l" href="#293">293: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$this</span>-&gt;getName())){
-</span><span id="294" class="l"><a class="l" href="#294">294: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \Exception(<span class="php-quote">'A Keyring name is required to unlink a key.'</span>,<span class="php-num">277</span>);
-</span><span id="295" class="l"><a class="l" href="#295">295: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="296" class="l"><a class="l" href="#296">296: </a>            <span class="php-var">$apiPath</span> = <span class="php-quote">'keyring/'</span>.<span class="php-var">$this</span>-&gt;getName().<span class="php-quote">'/unlinkkey/'</span>;
-</span><span id="297" class="l"><a class="l" href="#297">297: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">is_string</span>(<span class="php-var">$key</span>)){
-</span><span id="298" class="l"><a class="l" href="#298">298: </a>                <span class="php-var">$apiPath</span> .= <span class="php-var">$key</span>;
-</span><span id="299" class="l"><a class="l" href="#299">299: </a>            } <span class="php-keyword1">elseif</span>(<span class="php-var">$key</span> <span class="php-keyword1">instanceof</span> <span class="php-keyword2">Key</span>){
-</span><span id="300" class="l"><a class="l" href="#300">300: </a>                <span class="php-var">$apiPath</span> .= <span class="php-var">$key</span>-&gt;getKey();
-</span><span id="301" class="l"><a class="l" href="#301">301: </a>            } <span class="php-keyword1">else</span> {
-</span><span id="302" class="l"><a class="l" href="#302">302: </a>                <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \Exception(<span class="php-quote">'Key must be a string or instance of ApiAxle\Api\Key'</span>,<span class="php-num">215</span>);
-</span><span id="303" class="l"><a class="l" href="#303">303: </a>            }
-</span><span id="304" class="l"><a class="l" href="#304">304: </a>            
-</span><span id="305" class="l"><a class="l" href="#305">305: </a>            <span class="php-var">$request</span> = Utilities::callApi(<span class="php-var">$apiPath</span>, <span class="php-quote">'PUT'</span>,<span class="php-keyword1">null</span>,<span class="php-var">$this</span>-&gt;getConfig());
-</span><span id="306" class="l"><a class="l" href="#306">306: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$request</span>){
-</span><span id="307" class="l"><a class="l" href="#307">307: </a>                <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
-</span><span id="308" class="l"><a class="l" href="#308">308: </a>            } <span class="php-keyword1">else</span> {
-</span><span id="309" class="l"><a class="l" href="#309">309: </a>                <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \Exception(<span class="php-quote">'Unable to unlink key'</span>,<span class="php-num">278</span>);
-</span><span id="310" class="l"><a class="l" href="#310">310: </a>            }
-</span><span id="311" class="l"><a class="l" href="#311">311: </a>        }
-</span><span id="312" class="l"><a class="l" href="#312">312: </a>    }
-</span><span id="313" class="l"><a class="l" href="#313">313: </a>    
-</span><span id="314" class="l"><a class="l" href="#314">314: </a>    <span class="php-comment">/**
-</span></span><span id="315" class="l"><a class="l" href="#315">315: </a><span class="php-comment">     * Get real time hits for a keyring
-</span></span><span id="316" class="l"><a class="l" href="#316">316: </a><span class="php-comment">     * 
-</span></span><span id="317" class="l"><a class="l" href="#317">317: </a><span class="php-comment">     * @param integer $timestart
-</span></span><span id="318" class="l"><a class="l" href="#318">318: </a><span class="php-comment">     * @param integer $timeend
-</span></span><span id="319" class="l"><a class="l" href="#319">319: </a><span class="php-comment">     * @param string $granularity
-</span></span><span id="320" class="l"><a class="l" href="#320">320: </a><span class="php-comment">     * @param string $format_timeseries
-</span></span><span id="321" class="l"><a class="l" href="#321">321: </a><span class="php-comment">     * @param string $format_timestamp
-</span></span><span id="322" class="l"><a class="l" href="#322">322: </a><span class="php-comment">     * @param \ApiAxle\Api\Key $forkey
-</span></span><span id="323" class="l"><a class="l" href="#323">323: </a><span class="php-comment">     * @param \ApiAxle\Api\Api $forapi
-</span></span><span id="324" class="l"><a class="l" href="#324">324: </a><span class="php-comment">     * @return type
-</span></span><span id="325" class="l"><a class="l" href="#325">325: </a><span class="php-comment">     * @throws \Exception
-</span></span><span id="326" class="l"><a class="l" href="#326">326: </a><span class="php-comment">     */</span>
-</span><span id="327" class="l"><a class="l" href="#327">327: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getStats" href="#_getStats">getStats</a>(<span class="php-var">$timestart</span>=<span class="php-keyword1">false</span>, <span class="php-var">$timeend</span>=<span class="php-keyword1">false</span>, 
-</span><span id="328" class="l"><a class="l" href="#328">328: </a>            <span class="php-var">$granularity</span>=<span class="php-quote">'minute'</span>,<span class="php-var">$format_timeseries</span>=<span class="php-quote">'true'</span>,
-</span><span id="329" class="l"><a class="l" href="#329">329: </a>            <span class="php-var">$format_timestamp</span>=<span class="php-quote">'epoch_seconds'</span>, <span class="php-var">$forkey</span>=<span class="php-keyword1">false</span>, <span class="php-var">$forapi</span>=<span class="php-keyword1">false</span>)
-</span><span id="330" class="l"><a class="l" href="#330">330: </a>    {
-</span><span id="331" class="l"><a class="l" href="#331">331: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$this</span>-&gt;getName())){
-</span><span id="332" class="l"><a class="l" href="#332">332: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \Exception(<span class="php-quote">'A keyring name is required to get stats.'</span>,<span class="php-num">279</span>);
-</span><span id="333" class="l"><a class="l" href="#333">333: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="334" class="l"><a class="l" href="#334">334: </a>            
-</span><span id="335" class="l"><a class="l" href="#335">335: </a>            <span class="php-var">$data</span> = <span class="php-keyword1">array</span>(
-</span><span id="336" class="l"><a class="l" href="#336">336: </a>                <span class="php-quote">'granularity'</span> =&gt; <span class="php-var">$granularity</span>,
-</span><span id="337" class="l"><a class="l" href="#337">337: </a>                <span class="php-quote">'format_timeseries'</span> =&gt; <span class="php-var">$format_timeseries</span>,
-</span><span id="338" class="l"><a class="l" href="#338">338: </a>                <span class="php-quote">'format_timestamp'</span> =&gt; <span class="php-var">$format_timestamp</span>,
-</span><span id="339" class="l"><a class="l" href="#339">339: </a>            );
-</span><span id="340" class="l"><a class="l" href="#340">340: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$timestart</span>){
-</span><span id="341" class="l"><a class="l" href="#341">341: </a>                <span class="php-var">$data</span>[<span class="php-quote">'from'</span>] = <span class="php-var">$timestart</span>;
-</span><span id="342" class="l"><a class="l" href="#342">342: </a>            }
-</span><span id="343" class="l"><a class="l" href="#343">343: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$timeend</span>){
-</span><span id="344" class="l"><a class="l" href="#344">344: </a>                <span class="php-var">$data</span>[<span class="php-quote">'to'</span>] = <span class="php-var">$timeend</span>;
-</span><span id="345" class="l"><a class="l" href="#345">345: </a>            }
-</span><span id="346" class="l"><a class="l" href="#346">346: </a>            
-</span><span id="347" class="l"><a class="l" href="#347">347: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$forkey</span> &amp;&amp; <span class="php-keyword2">is_string</span>(<span class="php-var">$forkey</span>)){
-</span><span id="348" class="l"><a class="l" href="#348">348: </a>                <span class="php-var">$data</span>[<span class="php-quote">'forkey'</span>] = <span class="php-var">$forkey</span>;
-</span><span id="349" class="l"><a class="l" href="#349">349: </a>            } <span class="php-keyword1">elseif</span>(<span class="php-var">$forkey</span> &amp;&amp; <span class="php-var">$forkey</span> <span class="php-keyword1">instanceof</span> ApiAxle\Api\<span class="php-keyword2">Key</span>){
-</span><span id="350" class="l"><a class="l" href="#350">350: </a>                <span class="php-var">$data</span>[<span class="php-quote">'forkey'</span>] = <span class="php-var">$forkey</span>-&gt;getKey();
-</span><span id="351" class="l"><a class="l" href="#351">351: </a>            }
-</span><span id="352" class="l"><a class="l" href="#352">352: </a>            
-</span><span id="353" class="l"><a class="l" href="#353">353: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$forapi</span> &amp;&amp; <span class="php-keyword2">is_string</span>(<span class="php-var">$forapi</span>)){
-</span><span id="354" class="l"><a class="l" href="#354">354: </a>                <span class="php-var">$data</span>[<span class="php-quote">'forapi'</span>] = <span class="php-var">$forapi</span>;
-</span><span id="355" class="l"><a class="l" href="#355">355: </a>            } <span class="php-keyword1">elseif</span>(<span class="php-var">$forapi</span> &amp;&amp; <span class="php-var">$forapi</span> <span class="php-keyword1">instanceof</span> ApiAxle\Api\Api){
-</span><span id="356" class="l"><a class="l" href="#356">356: </a>                <span class="php-var">$data</span>[<span class="php-quote">'forapi'</span>] = <span class="php-var">$forapi</span>-&gt;getName();
-</span><span id="357" class="l"><a class="l" href="#357">357: </a>            }
-</span><span id="358" class="l"><a class="l" href="#358">358: </a>            
-</span><span id="359" class="l"><a class="l" href="#359">359: </a>            <span class="php-var">$apiPath</span> = <span class="php-quote">'keyring/'</span>.<span class="php-var">$this</span>-&gt;getName().<span class="php-quote">'/stats'</span>;
-</span><span id="360" class="l"><a class="l" href="#360">360: </a>            <span class="php-var">$request</span> = Utilities::callApi(<span class="php-var">$apiPath</span>, <span class="php-quote">'GET'</span>, <span class="php-var">$data</span>,<span class="php-var">$this</span>-&gt;getConfig());
-</span><span id="361" class="l"><a class="l" href="#361">361: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$request</span>){
-</span><span id="362" class="l"><a class="l" href="#362">362: </a>                <span class="php-keyword1">return</span> <span class="php-var">$request</span>;
-</span><span id="363" class="l"><a class="l" href="#363">363: </a>            } <span class="php-keyword1">else</span> {
-</span><span id="364" class="l"><a class="l" href="#364">364: </a>                <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \Exception(<span class="php-quote">'Unable to get stats for keyring'</span>,<span class="php-num">280</span>);
-</span><span id="365" class="l"><a class="l" href="#365">365: </a>            }
-</span><span id="366" class="l"><a class="l" href="#366">366: </a>        }
-</span><span id="367" class="l"><a class="l" href="#367">367: </a>    }
-</span><span id="368" class="l"><a class="l" href="#368">368: </a>    
-</span><span id="369" class="l"><a class="l" href="#369">369: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getCreatedAt" href="#_getCreatedAt">getCreatedAt</a>()
-</span><span id="370" class="l"><a class="l" href="#370">370: </a>    {
-</span><span id="371" class="l"><a class="l" href="#371">371: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;createdAt;
-</span><span id="372" class="l"><a class="l" href="#372">372: </a>    }
-</span><span id="373" class="l"><a class="l" href="#373">373: </a>    
-</span><span id="374" class="l"><a class="l" href="#374">374: </a>    <span class="php-comment">/**
-</span></span><span id="375" class="l"><a class="l" href="#375">375: </a><span class="php-comment">     * Return config object
-</span></span><span id="376" class="l"><a class="l" href="#376">376: </a><span class="php-comment">     * 
-</span></span><span id="377" class="l"><a class="l" href="#377">377: </a><span class="php-comment">     * @return \ApiAxle\Shared\Config
-</span></span><span id="378" class="l"><a class="l" href="#378">378: </a><span class="php-comment">     */</span>
-</span><span id="379" class="l"><a class="l" href="#379">379: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getConfig" href="#_getConfig">getConfig</a>()
-</span><span id="380" class="l"><a class="l" href="#380">380: </a>    {
-</span><span id="381" class="l"><a class="l" href="#381">381: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;config;
-</span><span id="382" class="l"><a class="l" href="#382">382: </a>    }
-</span><span id="383" class="l"><a class="l" href="#383">383: </a>    
-</span><span id="384" class="l"><a class="l" href="#384">384: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_isValid" href="#_isValid">isValid</a>()
-</span><span id="385" class="l"><a class="l" href="#385">385: </a>    {
-</span><span id="386" class="l"><a class="l" href="#386">386: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_null</span>(<span class="php-var">$this</span>-&gt;getName())){
-</span><span id="387" class="l"><a class="l" href="#387">387: </a>            <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>;
-</span><span id="388" class="l"><a class="l" href="#388">388: </a>        }
-</span><span id="389" class="l"><a class="l" href="#389">389: </a>        
-</span><span id="390" class="l"><a class="l" href="#390">390: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
-</span><span id="391" class="l"><a class="l" href="#391">391: </a>    }
-</span><span id="392" class="l"><a class="l" href="#392">392: </a></span>}</code></pre>
+</span><span id="263" class="l"><a class="l" href="#263">263: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$keys</span> <span class="php-keyword1">as</span> <span class="php-var">$key</span>){
+</span><span id="264" class="l"><a class="l" href="#264">264: </a>            <span class="php-var">$this</span>-&gt;linkKey(<span class="php-var">$key</span>);
+</span><span id="265" class="l"><a class="l" href="#265">265: </a>        }
+</span><span id="266" class="l"><a class="l" href="#266">266: </a>        
+</span><span id="267" class="l"><a class="l" href="#267">267: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
+</span><span id="268" class="l"><a class="l" href="#268">268: </a>    }
+</span><span id="269" class="l"><a class="l" href="#269">269: </a>    
+</span><span id="270" class="l"><a class="l" href="#270">270: </a>    <span class="php-comment">/**
+</span></span><span id="271" class="l"><a class="l" href="#271">271: </a><span class="php-comment">     * Link a Key to this Keyring
+</span></span><span id="272" class="l"><a class="l" href="#272">272: </a><span class="php-comment">     * 
+</span></span><span id="273" class="l"><a class="l" href="#273">273: </a><span class="php-comment">     * @param \ApiAxle\Api\Key $key
+</span></span><span id="274" class="l"><a class="l" href="#274">274: </a><span class="php-comment">     * @return \ApiAxle\Api\Keyring
+</span></span><span id="275" class="l"><a class="l" href="#275">275: </a><span class="php-comment">     * @throws \Exception
+</span></span><span id="276" class="l"><a class="l" href="#276">276: </a><span class="php-comment">     */</span>
+</span><span id="277" class="l"><a class="l" href="#277">277: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_linkKey" href="#_linkKey">linkKey</a>(<span class="php-var">$key</span>)
+</span><span id="278" class="l"><a class="l" href="#278">278: </a>    {
+</span><span id="279" class="l"><a class="l" href="#279">279: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$this</span>-&gt;getName())){
+</span><span id="280" class="l"><a class="l" href="#280">280: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \Exception(<span class="php-quote">'An API name is required to link a key.'</span>,<span class="php-num">275</span>);
+</span><span id="281" class="l"><a class="l" href="#281">281: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="282" class="l"><a class="l" href="#282">282: </a>            <span class="php-var">$apiPath</span> = <span class="php-quote">'keyring/'</span>.<span class="php-var">$this</span>-&gt;getName().<span class="php-quote">'/linkkey/'</span>;
+</span><span id="283" class="l"><a class="l" href="#283">283: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">is_string</span>(<span class="php-var">$key</span>)){
+</span><span id="284" class="l"><a class="l" href="#284">284: </a>                <span class="php-var">$apiPath</span> .= <span class="php-var">$key</span>;
+</span><span id="285" class="l"><a class="l" href="#285">285: </a>            } <span class="php-keyword1">elseif</span>(<span class="php-var">$key</span> <span class="php-keyword1">instanceof</span> <span class="php-keyword2">Key</span>){
+</span><span id="286" class="l"><a class="l" href="#286">286: </a>                <span class="php-var">$apiPath</span> .= <span class="php-var">$key</span>-&gt;getKey();
+</span><span id="287" class="l"><a class="l" href="#287">287: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="288" class="l"><a class="l" href="#288">288: </a>                <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \Exception(<span class="php-quote">'Key must be a string or instance of ApiAxle\Api\Key'</span>,<span class="php-num">212</span>);
+</span><span id="289" class="l"><a class="l" href="#289">289: </a>            }
+</span><span id="290" class="l"><a class="l" href="#290">290: </a>            
+</span><span id="291" class="l"><a class="l" href="#291">291: </a>            <span class="php-var">$request</span> = Utilities::callApi(<span class="php-var">$apiPath</span>, <span class="php-quote">'PUT'</span>,<span class="php-keyword1">null</span>,<span class="php-var">$this</span>-&gt;getConfig());
+</span><span id="292" class="l"><a class="l" href="#292">292: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$request</span>){
+</span><span id="293" class="l"><a class="l" href="#293">293: </a>                <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
+</span><span id="294" class="l"><a class="l" href="#294">294: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="295" class="l"><a class="l" href="#295">295: </a>                <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \Exception(<span class="php-quote">'Unable to link key'</span>,<span class="php-num">276</span>);
+</span><span id="296" class="l"><a class="l" href="#296">296: </a>            }
+</span><span id="297" class="l"><a class="l" href="#297">297: </a>        }
+</span><span id="298" class="l"><a class="l" href="#298">298: </a>    }
+</span><span id="299" class="l"><a class="l" href="#299">299: </a>    
+</span><span id="300" class="l"><a class="l" href="#300">300: </a>    <span class="php-comment">/**
+</span></span><span id="301" class="l"><a class="l" href="#301">301: </a><span class="php-comment">     * Unlink a Key from this Keyring
+</span></span><span id="302" class="l"><a class="l" href="#302">302: </a><span class="php-comment">     * 
+</span></span><span id="303" class="l"><a class="l" href="#303">303: </a><span class="php-comment">     * @param \ApiAxle\Api\Key $key
+</span></span><span id="304" class="l"><a class="l" href="#304">304: </a><span class="php-comment">     * @return \ApiAxle\Api\Keyring
+</span></span><span id="305" class="l"><a class="l" href="#305">305: </a><span class="php-comment">     * @throws \Exception
+</span></span><span id="306" class="l"><a class="l" href="#306">306: </a><span class="php-comment">     */</span>
+</span><span id="307" class="l"><a class="l" href="#307">307: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_unLinkKey" href="#_unLinkKey">unLinkKey</a>(<span class="php-var">$key</span>)
+</span><span id="308" class="l"><a class="l" href="#308">308: </a>    {
+</span><span id="309" class="l"><a class="l" href="#309">309: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$this</span>-&gt;getName())){
+</span><span id="310" class="l"><a class="l" href="#310">310: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \Exception(<span class="php-quote">'A Keyring name is required to unlink a key.'</span>,<span class="php-num">277</span>);
+</span><span id="311" class="l"><a class="l" href="#311">311: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="312" class="l"><a class="l" href="#312">312: </a>            <span class="php-var">$apiPath</span> = <span class="php-quote">'keyring/'</span>.<span class="php-var">$this</span>-&gt;getName().<span class="php-quote">'/unlinkkey/'</span>;
+</span><span id="313" class="l"><a class="l" href="#313">313: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">is_string</span>(<span class="php-var">$key</span>)){
+</span><span id="314" class="l"><a class="l" href="#314">314: </a>                <span class="php-var">$apiPath</span> .= <span class="php-var">$key</span>;
+</span><span id="315" class="l"><a class="l" href="#315">315: </a>            } <span class="php-keyword1">elseif</span>(<span class="php-var">$key</span> <span class="php-keyword1">instanceof</span> <span class="php-keyword2">Key</span>){
+</span><span id="316" class="l"><a class="l" href="#316">316: </a>                <span class="php-var">$apiPath</span> .= <span class="php-var">$key</span>-&gt;getKey();
+</span><span id="317" class="l"><a class="l" href="#317">317: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="318" class="l"><a class="l" href="#318">318: </a>                <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \Exception(<span class="php-quote">'Key must be a string or instance of ApiAxle\Api\Key'</span>,<span class="php-num">215</span>);
+</span><span id="319" class="l"><a class="l" href="#319">319: </a>            }
+</span><span id="320" class="l"><a class="l" href="#320">320: </a>            
+</span><span id="321" class="l"><a class="l" href="#321">321: </a>            <span class="php-var">$request</span> = Utilities::callApi(<span class="php-var">$apiPath</span>, <span class="php-quote">'PUT'</span>,<span class="php-keyword1">null</span>,<span class="php-var">$this</span>-&gt;getConfig());
+</span><span id="322" class="l"><a class="l" href="#322">322: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$request</span>){
+</span><span id="323" class="l"><a class="l" href="#323">323: </a>                <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
+</span><span id="324" class="l"><a class="l" href="#324">324: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="325" class="l"><a class="l" href="#325">325: </a>                <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \Exception(<span class="php-quote">'Unable to unlink key'</span>,<span class="php-num">278</span>);
+</span><span id="326" class="l"><a class="l" href="#326">326: </a>            }
+</span><span id="327" class="l"><a class="l" href="#327">327: </a>        }
+</span><span id="328" class="l"><a class="l" href="#328">328: </a>    }
+</span><span id="329" class="l"><a class="l" href="#329">329: </a>    
+</span><span id="330" class="l"><a class="l" href="#330">330: </a>    <span class="php-comment">/**
+</span></span><span id="331" class="l"><a class="l" href="#331">331: </a><span class="php-comment">     * Get real time hits for a keyring
+</span></span><span id="332" class="l"><a class="l" href="#332">332: </a><span class="php-comment">     * 
+</span></span><span id="333" class="l"><a class="l" href="#333">333: </a><span class="php-comment">     * @param integer $timestart
+</span></span><span id="334" class="l"><a class="l" href="#334">334: </a><span class="php-comment">     * @param integer $timeend
+</span></span><span id="335" class="l"><a class="l" href="#335">335: </a><span class="php-comment">     * @param string $granularity
+</span></span><span id="336" class="l"><a class="l" href="#336">336: </a><span class="php-comment">     * @param string $format_timeseries
+</span></span><span id="337" class="l"><a class="l" href="#337">337: </a><span class="php-comment">     * @param string $format_timestamp
+</span></span><span id="338" class="l"><a class="l" href="#338">338: </a><span class="php-comment">     * @param \ApiAxle\Api\Key $forkey
+</span></span><span id="339" class="l"><a class="l" href="#339">339: </a><span class="php-comment">     * @param \ApiAxle\Api\Api $forapi
+</span></span><span id="340" class="l"><a class="l" href="#340">340: </a><span class="php-comment">     * @return type
+</span></span><span id="341" class="l"><a class="l" href="#341">341: </a><span class="php-comment">     * @throws \Exception
+</span></span><span id="342" class="l"><a class="l" href="#342">342: </a><span class="php-comment">     */</span>
+</span><span id="343" class="l"><a class="l" href="#343">343: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getStats" href="#_getStats">getStats</a>(<span class="php-var">$timestart</span>=<span class="php-keyword1">false</span>, <span class="php-var">$timeend</span>=<span class="php-keyword1">false</span>, 
+</span><span id="344" class="l"><a class="l" href="#344">344: </a>            <span class="php-var">$granularity</span>=<span class="php-quote">'minute'</span>,<span class="php-var">$format_timeseries</span>=<span class="php-quote">'true'</span>,
+</span><span id="345" class="l"><a class="l" href="#345">345: </a>            <span class="php-var">$format_timestamp</span>=<span class="php-quote">'epoch_seconds'</span>, <span class="php-var">$forkey</span>=<span class="php-keyword1">false</span>, <span class="php-var">$forapi</span>=<span class="php-keyword1">false</span>)
+</span><span id="346" class="l"><a class="l" href="#346">346: </a>    {
+</span><span id="347" class="l"><a class="l" href="#347">347: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$this</span>-&gt;getName())){
+</span><span id="348" class="l"><a class="l" href="#348">348: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \Exception(<span class="php-quote">'A keyring name is required to get stats.'</span>,<span class="php-num">279</span>);
+</span><span id="349" class="l"><a class="l" href="#349">349: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="350" class="l"><a class="l" href="#350">350: </a>            
+</span><span id="351" class="l"><a class="l" href="#351">351: </a>            <span class="php-var">$data</span> = <span class="php-keyword1">array</span>(
+</span><span id="352" class="l"><a class="l" href="#352">352: </a>                <span class="php-quote">'granularity'</span> =&gt; <span class="php-var">$granularity</span>,
+</span><span id="353" class="l"><a class="l" href="#353">353: </a>                <span class="php-quote">'format_timeseries'</span> =&gt; <span class="php-var">$format_timeseries</span>,
+</span><span id="354" class="l"><a class="l" href="#354">354: </a>                <span class="php-quote">'format_timestamp'</span> =&gt; <span class="php-var">$format_timestamp</span>,
+</span><span id="355" class="l"><a class="l" href="#355">355: </a>            );
+</span><span id="356" class="l"><a class="l" href="#356">356: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$timestart</span>){
+</span><span id="357" class="l"><a class="l" href="#357">357: </a>                <span class="php-var">$data</span>[<span class="php-quote">'from'</span>] = <span class="php-var">$timestart</span>;
+</span><span id="358" class="l"><a class="l" href="#358">358: </a>            }
+</span><span id="359" class="l"><a class="l" href="#359">359: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$timeend</span>){
+</span><span id="360" class="l"><a class="l" href="#360">360: </a>                <span class="php-var">$data</span>[<span class="php-quote">'to'</span>] = <span class="php-var">$timeend</span>;
+</span><span id="361" class="l"><a class="l" href="#361">361: </a>            }
+</span><span id="362" class="l"><a class="l" href="#362">362: </a>            
+</span><span id="363" class="l"><a class="l" href="#363">363: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$forkey</span> &amp;&amp; <span class="php-keyword2">is_string</span>(<span class="php-var">$forkey</span>)){
+</span><span id="364" class="l"><a class="l" href="#364">364: </a>                <span class="php-var">$data</span>[<span class="php-quote">'forkey'</span>] = <span class="php-var">$forkey</span>;
+</span><span id="365" class="l"><a class="l" href="#365">365: </a>            } <span class="php-keyword1">elseif</span>(<span class="php-var">$forkey</span> &amp;&amp; <span class="php-var">$forkey</span> <span class="php-keyword1">instanceof</span> ApiAxle\Api\<span class="php-keyword2">Key</span>){
+</span><span id="366" class="l"><a class="l" href="#366">366: </a>                <span class="php-var">$data</span>[<span class="php-quote">'forkey'</span>] = <span class="php-var">$forkey</span>-&gt;getKey();
+</span><span id="367" class="l"><a class="l" href="#367">367: </a>            }
+</span><span id="368" class="l"><a class="l" href="#368">368: </a>            
+</span><span id="369" class="l"><a class="l" href="#369">369: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$forapi</span> &amp;&amp; <span class="php-keyword2">is_string</span>(<span class="php-var">$forapi</span>)){
+</span><span id="370" class="l"><a class="l" href="#370">370: </a>                <span class="php-var">$data</span>[<span class="php-quote">'forapi'</span>] = <span class="php-var">$forapi</span>;
+</span><span id="371" class="l"><a class="l" href="#371">371: </a>            } <span class="php-keyword1">elseif</span>(<span class="php-var">$forapi</span> &amp;&amp; <span class="php-var">$forapi</span> <span class="php-keyword1">instanceof</span> ApiAxle\Api\Api){
+</span><span id="372" class="l"><a class="l" href="#372">372: </a>                <span class="php-var">$data</span>[<span class="php-quote">'forapi'</span>] = <span class="php-var">$forapi</span>-&gt;getName();
+</span><span id="373" class="l"><a class="l" href="#373">373: </a>            }
+</span><span id="374" class="l"><a class="l" href="#374">374: </a>            
+</span><span id="375" class="l"><a class="l" href="#375">375: </a>            <span class="php-var">$apiPath</span> = <span class="php-quote">'keyring/'</span>.<span class="php-var">$this</span>-&gt;getName().<span class="php-quote">'/stats'</span>;
+</span><span id="376" class="l"><a class="l" href="#376">376: </a>            <span class="php-var">$request</span> = Utilities::callApi(<span class="php-var">$apiPath</span>, <span class="php-quote">'GET'</span>, <span class="php-var">$data</span>,<span class="php-var">$this</span>-&gt;getConfig());
+</span><span id="377" class="l"><a class="l" href="#377">377: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$request</span>){
+</span><span id="378" class="l"><a class="l" href="#378">378: </a>                <span class="php-keyword1">return</span> <span class="php-var">$request</span>;
+</span><span id="379" class="l"><a class="l" href="#379">379: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="380" class="l"><a class="l" href="#380">380: </a>                <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \Exception(<span class="php-quote">'Unable to get stats for keyring'</span>,<span class="php-num">280</span>);
+</span><span id="381" class="l"><a class="l" href="#381">381: </a>            }
+</span><span id="382" class="l"><a class="l" href="#382">382: </a>        }
+</span><span id="383" class="l"><a class="l" href="#383">383: </a>    }
+</span><span id="384" class="l"><a class="l" href="#384">384: </a>    
+</span><span id="385" class="l"><a class="l" href="#385">385: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getCreatedAt" href="#_getCreatedAt">getCreatedAt</a>()
+</span><span id="386" class="l"><a class="l" href="#386">386: </a>    {
+</span><span id="387" class="l"><a class="l" href="#387">387: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;createdAt;
+</span><span id="388" class="l"><a class="l" href="#388">388: </a>    }
+</span><span id="389" class="l"><a class="l" href="#389">389: </a>    
+</span><span id="390" class="l"><a class="l" href="#390">390: </a>    <span class="php-comment">/**
+</span></span><span id="391" class="l"><a class="l" href="#391">391: </a><span class="php-comment">     * Return config object
+</span></span><span id="392" class="l"><a class="l" href="#392">392: </a><span class="php-comment">     * 
+</span></span><span id="393" class="l"><a class="l" href="#393">393: </a><span class="php-comment">     * @return \ApiAxle\Shared\Config
+</span></span><span id="394" class="l"><a class="l" href="#394">394: </a><span class="php-comment">     */</span>
+</span><span id="395" class="l"><a class="l" href="#395">395: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getConfig" href="#_getConfig">getConfig</a>()
+</span><span id="396" class="l"><a class="l" href="#396">396: </a>    {
+</span><span id="397" class="l"><a class="l" href="#397">397: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;config;
+</span><span id="398" class="l"><a class="l" href="#398">398: </a>    }
+</span><span id="399" class="l"><a class="l" href="#399">399: </a>    
+</span><span id="400" class="l"><a class="l" href="#400">400: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_isValid" href="#_isValid">isValid</a>()
+</span><span id="401" class="l"><a class="l" href="#401">401: </a>    {
+</span><span id="402" class="l"><a class="l" href="#402">402: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_null</span>(<span class="php-var">$this</span>-&gt;getName())){
+</span><span id="403" class="l"><a class="l" href="#403">403: </a>            <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>;
+</span><span id="404" class="l"><a class="l" href="#404">404: </a>        }
+</span><span id="405" class="l"><a class="l" href="#405">405: </a>        
+</span><span id="406" class="l"><a class="l" href="#406">406: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
+</span><span id="407" class="l"><a class="l" href="#407">407: </a>    }
+</span><span id="408" class="l"><a class="l" href="#408">408: </a></span>}</code></pre>
 
 	<div id="footer">
 		fillup/apiaxle API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
