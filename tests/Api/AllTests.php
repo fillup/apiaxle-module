@@ -1,9 +1,10 @@
 <?php
 
-namespace ApiAxle\Tests\Api;
+namespace ApiAxleTest\Api;
 
 require_once 'ApiTest.php';
 require_once 'KeyTest.php';
+require_once 'KeyringTest.php';
 
 class Api_AllTests
 {
@@ -11,8 +12,9 @@ class Api_AllTests
     {
         $suite = new \PHPUnit_Framework_TestSuite('ApiAxle Api');
         
-        $suite->addTestSuite('\\ApiAxle\\Tests\\Api\\ApiTests');
-        $suite->addTestSuite('\\ApiAxle\\Tests\\Api\\KeyTests');
+        $suite->addTestSuite('\\ApiAxleTest\\Api\\ApiTests');
+        $suite->addTestSuite('\\ApiAxleTest\\Api\\KeyTests');
+        $suite->addTestSuite('\\ApiAxleTest\\Api\\KeyringTests');
         
         return $suite;
         

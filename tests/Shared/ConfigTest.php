@@ -1,5 +1,5 @@
 <?php
-namespace ApiAxle\Test\Shared;
+namespace ApiAxleTest\Shared;
 
 require_once __DIR__.'/../../vendor/autoload.php';
 

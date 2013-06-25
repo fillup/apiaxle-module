@@ -7,7 +7,7 @@
 	<title>Class ApiAxle\Api\Keyring | fillup/apiaxle</title>
 
 	<script type="text/javascript" src="resources/combined.js?3551695169"></script>
-	<script type="text/javascript" src="elementlist.js?3745247331"></script>
+	<script type="text/javascript" src="elementlist.js?887202800"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -27,16 +27,14 @@
 						</li>
 				<li><a href="namespace-ApiAxle.Shared.html">Shared</a>
 						</li>
-				<li><a href="namespace-ApiAxle.Test.html">Test<span></span></a>
+							</ul></li>
+				<li><a href="namespace-ApiAxleTest.html">ApiAxleTest<span></span></a>
 						<ul>
-				<li><a href="namespace-ApiAxle.Test.Shared.html">Shared</a>
+				<li><a href="namespace-ApiAxleTest.Api.html">Api</a>
+						</li>
+				<li><a href="namespace-ApiAxleTest.Shared.html">Shared</a>
 						</li>
 							</ul></li>
-				<li><a href="namespace-ApiAxle.Tests.html">Tests<span></span></a>
-						<ul>
-				<li><a href="namespace-ApiAxle.Tests.Api.html">Api</a>
-						</li>
-							</ul></li></ul></li>
 				<li><a href="namespace-PHP.html">PHP</a>
 						</li>
 			</ul>
@@ -99,6 +97,13 @@
 	<h1>Class Keyring</h1>
 
 
+	<div class="description">
+	
+<p>ApiAxle\Api\Keyring class</p>
+
+<p>Wraps Keyring related calls to the ApiAxle API</p>
+
+	</div>
 
 
 
@@ -114,11 +119,659 @@
 		<b>Namespace:</b> <a href="namespace-ApiAxle.html">ApiAxle</a>\<a href="namespace-ApiAxle.Api.html">Api</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-ApiAxle.Api.Keyring.html#10-13" title="Go to source code">src/ApiAxle/Api/Keyring.php</a><br />
+				<b>Author:</b>
+				Phillip Shipley &lt;<a
+href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.com</a>&gt;<br />
+		<b>Located at</b> <a href="source-class-ApiAxle.Api.Keyring.html#14-392" title="Go to source code">src/ApiAxle/Api/Keyring.php</a><br />
 	</div>
 
 
 
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-ApiAxle.Api.Keyring.html#51-65" title="Go to source code">__construct</a>( <span><code><a href="class-ApiAxle.Shared.Config.html">ApiAxle\Shared\Config</a></code> <var>$config</var> = <span class="php-keyword1">false</span></span>, <span>string <var>$name</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Construct new Keyring object</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Construct new Keyring object</p>
+
+<p>If $name is provided it will fetch the created/updated values from API</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$config</var></dt>
+					<dd><code><code><a href="class-ApiAxle.Shared.Config.html">ApiAxle\Shared\Config</a></code></code><br>$config</dd>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getName" id="_getName">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getName">#</a>
+		<code><a href="source-class-ApiAxle.Api.Keyring.html#67-75" title="Go to source code">getName</a>( )</code>
+
+		<div class="description short">
+			
+<p>Return current name value</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return current name value</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setName" id="_setName">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setName">#</a>
+		<code><a href="source-class-ApiAxle.Api.Keyring.html#77-85" title="Go to source code">setName</a>( <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set name value</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set name value</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setData" id="_setData">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-ApiAxle.Api.Keyring.html">ApiAxle\Api\Keyring</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setData">#</a>
+		<code><a href="source-class-ApiAxle.Api.Keyring.html#87-106" title="Go to source code">setData</a>( <span>array <var>$data</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set object properties</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set object properties</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd><code>array</code><br>$data</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ApiAxle.Api.Keyring.html">ApiAxle\Api\Keyring</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get" id="_get">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-ApiAxle.Api.Keyring.html">ApiAxle\Api\Keyring</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get">#</a>
+		<code><a href="source-class-ApiAxle.Api.Keyring.html#108-126" title="Go to source code">get</a>( <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Fetch keyring information from ApiAxle API and update object properties</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Fetch keyring information from ApiAxle API and update object properties</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ApiAxle.Api.Keyring.html">ApiAxle\Api\Keyring</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="create" id="_create">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-ApiAxle.Api.Key.html">ApiAxle\Api\Key</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_create">#</a>
+		<code><a href="source-class-ApiAxle.Api.Keyring.html#128-153" title="Go to source code">create</a>( <span>string <var>$name</var></span>, <span>array <var>$keys</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Create a new keyring</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a new keyring</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+					<dt><var>$keys</var></dt>
+					<dd><code>array</code><br>$keys</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ApiAxle.Api.Key.html">ApiAxle\Api\Key</a></code></code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ErrorException.html">ErrorException</a></code></code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getList" id="_getList">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-ApiAxle.Shared.ItemList.html">ApiAxle\Shared\ItemList</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getList">#</a>
+		<code><a href="source-class-ApiAxle.Api.Keyring.html#155-186" title="Go to source code">getList</a>( <span>integer <var>$from</var> = <span class="php-num">0</span></span>, <span>integer <var>$to</var> = <span class="php-num">100</span></span>, <span>string <var>$resolve</var> = <span class="php-quote">'true'</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get a list of all Keyrings</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get a list of all Keyrings</p>
+
+<p>Parameters $from and $to are used for pagination of results</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$from</var></dt>
+					<dd><code>integer</code><br>$from</dd>
+					<dt><var>$to</var></dt>
+					<dd><code>integer</code><br>$to</dd>
+					<dt><var>$resolve</var></dt>
+					<dd><code>string</code><br>$resolve</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ApiAxle.Shared.ItemList.html">ApiAxle\Shared\ItemList</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="delete" id="_delete">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_delete">#</a>
+		<code><a href="source-class-ApiAxle.Api.Keyring.html#189-213" title="Go to source code">delete</a>( <span>string <var>$name</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Delete a keyring</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Delete a keyring</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Exception.html">Exception</a></code></code><br />
+					<code><code><a href="class-ErrorException.html">ErrorException</a></code></code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getKeyList" id="_getKeyList">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-ApiAxle.Shared.ItemList.html">ApiAxle\Shared\ItemList</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getKeyList">#</a>
+		<code><a href="source-class-ApiAxle.Api.Keyring.html#215-252" title="Go to source code">getKeyList</a>( <span>integer <var>$from</var> = <span class="php-num">0</span></span>, <span>integer <var>$to</var> = <span class="php-num">100</span></span>, <span>string <var>$resolve</var> = <span class="php-quote">'true'</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get a list of Keys with access to this Keyring</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get a list of Keys with access to this Keyring</p>
+
+<p>Parameters $from and $to are used for paginating through results</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$from</var></dt>
+					<dd><code>integer</code><br>$from Default is 0</dd>
+					<dt><var>$to</var></dt>
+					<dd><code>integer</code><br>$to Default is 100</dd>
+					<dt><var>$resolve</var></dt>
+					<dd><code>string</code><br>$resolve Wether or not get Key details. Default is 'true'</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ApiAxle.Shared.ItemList.html">ApiAxle\Shared\ItemList</a></code></code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Exception.html">Exception</a></code></code><br />
+					<code><code><a href="class-ErrorException.html">ErrorException</a></code></code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="linkKey" id="_linkKey">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-ApiAxle.Api.Keyring.html">ApiAxle\Api\Keyring</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_linkKey">#</a>
+		<code><a href="source-class-ApiAxle.Api.Keyring.html#254-282" title="Go to source code">linkKey</a>( <span><code><a href="class-ApiAxle.Api.Key.html">ApiAxle\Api\Key</a></code> <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Link a Key to this Keyring</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Link a Key to this Keyring</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code><code><a href="class-ApiAxle.Api.Key.html">ApiAxle\Api\Key</a></code></code><br>$key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ApiAxle.Api.Keyring.html">ApiAxle\Api\Keyring</a></code></code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Exception.html">Exception</a></code></code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="unLinkKey" id="_unLinkKey">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-ApiAxle.Api.Keyring.html">ApiAxle\Api\Keyring</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_unLinkKey">#</a>
+		<code><a href="source-class-ApiAxle.Api.Keyring.html#284-312" title="Go to source code">unLinkKey</a>( <span><code><a href="class-ApiAxle.Api.Key.html">ApiAxle\Api\Key</a></code> <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Unlink a Key from this Keyring</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Unlink a Key from this Keyring</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code><code><a href="class-ApiAxle.Api.Key.html">ApiAxle\Api\Key</a></code></code><br>$key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ApiAxle.Api.Keyring.html">ApiAxle\Api\Keyring</a></code></code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Exception.html">Exception</a></code></code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getStats" id="_getStats">
+
+		<td class="attributes"><code>
+			 public 
+			type
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getStats">#</a>
+		<code><a href="source-class-ApiAxle.Api.Keyring.html#314-367" title="Go to source code">getStats</a>( <span>integer <var>$timestart</var> = <span class="php-keyword1">false</span></span>, <span>integer <var>$timeend</var> = <span class="php-keyword1">false</span></span>, <span>string <var>$granularity</var> = <span class="php-quote">'minute'</span></span>, <span>string <var>$format_timeseries</var> = <span class="php-quote">'true'</span></span>, <span>string <var>$format_timestamp</var> = <span class="php-quote">'epoch_seconds'</span></span>, <span><code><a href="class-ApiAxle.Api.Key.html">ApiAxle\Api\Key</a></code> <var>$forkey</var> = <span class="php-keyword1">false</span></span>, <span><code><a href="class-ApiAxle.Api.Api.html">ApiAxle\Api\Api</a></code> <var>$forapi</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get real time hits for a keyring</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get real time hits for a keyring</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$timestart</var></dt>
+					<dd><code>integer</code><br>$timestart</dd>
+					<dt><var>$timeend</var></dt>
+					<dd><code>integer</code><br>$timeend</dd>
+					<dt><var>$granularity</var></dt>
+					<dd><code>string</code><br>$granularity</dd>
+					<dt><var>$format_timeseries</var></dt>
+					<dd><code>string</code><br>$format_timeseries</dd>
+					<dt><var>$format_timestamp</var></dt>
+					<dd><code>string</code><br>$format_timestamp</dd>
+					<dt><var>$forkey</var></dt>
+					<dd><code><code><a href="class-ApiAxle.Api.Key.html">ApiAxle\Api\Key</a></code></code><br>$forkey</dd>
+					<dt><var>$forapi</var></dt>
+					<dd><code><code><a href="class-ApiAxle.Api.Api.html">ApiAxle\Api\Api</a></code></code><br>$forapi</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>type</code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Exception.html">Exception</a></code></code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getCreatedAt" id="_getCreatedAt">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getCreatedAt">#</a>
+		<code><a href="source-class-ApiAxle.Api.Keyring.html#369-372" title="Go to source code">getCreatedAt</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getConfig" id="_getConfig">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-ApiAxle.Shared.Config.html">ApiAxle\Shared\Config</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getConfig">#</a>
+		<code><a href="source-class-ApiAxle.Api.Keyring.html#374-382" title="Go to source code">getConfig</a>( )</code>
+
+		<div class="description short">
+			
+<p>Return config object</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return config object</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ApiAxle.Shared.Config.html">ApiAxle\Shared\Config</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isValid" id="_isValid">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isValid">#</a>
+		<code><a href="source-class-ApiAxle.Api.Keyring.html#384-391" title="Go to source code">isValid</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
 
 
 
@@ -131,6 +784,117 @@
 
 
 
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="config" id="$config">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-ApiAxle.Shared.Config.html">ApiAxle\Shared\Config</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ApiAxle.Api.Keyring.html#23-28" title="Go to source code"><var>$config</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$config" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Configuration data</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Configuration data</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="name" id="$name">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ApiAxle.Api.Keyring.html#30-35" title="Go to source code"><var>$name</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$name" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Keyring Name</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Keyring Name</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="createdAt" id="$createdAt">
+		<td class="attributes"><code>
+			protected  
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ApiAxle.Api.Keyring.html#37-42" title="Go to source code"><var>$createdAt</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$createdAt" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Created at timestamp, set automatically by API</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Created at timestamp, set automatically by API</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="updatedAt" id="$updatedAt">
+		<td class="attributes"><code>
+			protected  
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ApiAxle.Api.Keyring.html#44-49" title="Go to source code"><var>$updatedAt</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$updatedAt" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Updated at timestamp, set automatically by API</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Updated at timestamp, set automatically by API</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
 
 
 
