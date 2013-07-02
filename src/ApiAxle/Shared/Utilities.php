@@ -72,7 +72,7 @@ class Utilities
             } elseif($results->meta->status_code >= 300 && $results->meta->status_code < 400){
                 throw new ApiException('API returned a redirection', '200', null, $results->meta->status_code, $results);
             } elseif($results->meta->status_code >= 400 && $results->meta->status_code < 600){
-                throw new ApiException('API returned error', '201', null, $results->meta->status_code, $results);
+                throw new ApiException('API returned error: '.$results->results->error->message, '201', null, $results->meta->status_code, $results);
             }
         } else {
             throw new \ErrorException('API did not return properly.','202',null);
