@@ -52,6 +52,10 @@ class Config
     {
         if($config && is_array($config) && count($config) > 0){
             $this->setConfg($config);
+        } elseif($config instanceof \ApiAxle\Shared\Config){
+            $this->setEndpoint($config->getEndpoint());
+            $this->setKey($config->getKey());
+            $this->setSecret($config->getSecret());
         } else {
             $this->loadConfigFile();
         }
