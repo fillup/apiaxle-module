@@ -234,7 +234,7 @@ class Api
         $request = Utilities::callApi($apiPath, 'GET', $params, $this->getConfig());
         if($request){
             foreach($request as $name => $data){
-                $api = new Api();
+                $api = new Api($this->getConfig());
                 $api->setName($name);
                 $api->setData($data);
                 $apiList->addItem($api);
@@ -409,7 +409,7 @@ class Api
             $request = Utilities::callApi($apiPath, 'GET', $data,$this->getConfig());
             if($request){
                 foreach($request as $item => $value){
-                    $key = new Key();
+                    $key = new Key($this->getConfig());
                     $key->setKey($item);
                     $key->setData($value);
                     $keyList->addItem($key);

@@ -175,7 +175,7 @@ class Keyring
         $request = Utilities::callApi($apiPath, 'GET', $params, $this->getConfig());
         if($request){
             foreach($request as $name => $data){
-                $keyring = new Keyring();
+                $keyring = new Keyring($this->getConfig());
                 $keyring->setName($name);
                 $keyring->setData($data);
                 $keyringList->addItem($keyring);
@@ -239,7 +239,7 @@ class Keyring
             $request = Utilities::callApi($apiPath, 'GET', $data,$this->getConfig());
             if($request){
                 foreach($request as $item => $value){
-                    $key = new Key();
+                    $key = new Key($this->getConfig());
                     $key->setKey($item);
                     $key->setData($value);
                     $keyList->addItem($key);
