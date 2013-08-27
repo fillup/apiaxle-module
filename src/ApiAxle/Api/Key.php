@@ -257,7 +257,7 @@ class Key
      */
     public function update($data)
     {
-        if(!is_null($this->getKey())){
+        if(!is_null($this->getKey()) && $this->isValid()){
             $apiPath = 'key/'.$this->getKey();
             $request = Utilities::callApi($apiPath,'PUT',$data,$this->getConfig());
             if($request){

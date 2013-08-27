@@ -273,7 +273,7 @@ class Api
      */
     public function update($data)
     {
-        if(!is_null($this->getName())){
+        if(!is_null($this->getName()) && $this->isValid()){
             $apiPath = 'api/'.$this->getName();
             $request = Utilities::callApi($apiPath,'PUT',$data,$this->getConfig());
             if($request){
