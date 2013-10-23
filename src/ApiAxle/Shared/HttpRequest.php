@@ -35,19 +35,19 @@ class HttpRequest
      *   response as a string.
      * @throws \ErrorException On error making the HTTP request.
      */
-    public static function request($uri,$method='GET',$postfields=false,$headers=false) {
+    public static function request($uri,$method='GET',$postfields=false,$headers=false,$config=false) {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_URL, $uri);
         curl_setopt($ch, CURLINFO_HEADER_OUT, true);
-        /**
-         * Added for debugging with Charles proxy
-         */
-//        curl_setopt($ch, CURLOPT_PROXY, '127.0.0.1');
-//        curl_setopt($ch, CURLOPT_PROXYPORT, '8888');
-//        curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, true);
-//        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        
+        if($config){
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $config->getSslVerifypeer());
+            if($config->getProxyEnable()){
+                curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, $config->getProxyEnable());
+                curl_setopt($ch, CURLOPT_PROXY, $config->getProxyHost());
+                curl_setopt($ch, CURLOPT_PROXYPORT, $config->getProxyPort());
+            }
+        }
         
         $method = strtoupper($method);
         if($method == 'GET'){

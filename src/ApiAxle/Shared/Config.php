@@ -37,6 +37,34 @@ class Config
     protected $secret;
     
     /**
+     * Enable/Disable verification of peer certificate when calling API
+     * 
+     * @var bool $ssl_verifypeer
+     */
+    protected $ssl_verifypeer = true;
+            
+    /**
+     * Enable/disable usage of a proxy server
+     * 
+     * @var bool $proxy_enable
+     */
+    protected $proxy_enable = false;
+    
+    /**
+     * Set proxy server hostname
+     * 
+     * @var string $proxy_host
+     */
+    protected $proxy_host;
+    
+    /**
+     * Set proxy server port
+     * 
+     * @var string $proxy_port
+     */
+    protected $proxy_port;
+    
+    /**
      * Initialization status
      */
     private $isInitialized = false;
@@ -56,6 +84,10 @@ class Config
             $this->setEndpoint($config->getEndpoint());
             $this->setKey($config->getKey());
             $this->setSecret($config->getSecret());
+            $this->setSslVerifypeer($config->getSslVerifypeer());
+            $this->setProxyEnable($config->getProxyEnable());
+            $this->setProxyHost($config->getProxyHost());
+            $this->setProxyPort($config->getProxyPort());
         } else {
             $this->loadConfigFile();
         }
@@ -75,6 +107,10 @@ class Config
         $this->setEndpoint(isset($config['endpoint']) ? $config['endpoint'] : false);
         $this->setKey(isset($config['key']) ? $config['key'] : false);
         $this->setSecret(isset($config['secret']) ? $config['secret'] : false);
+        $this->setSslVerifypeer(isset($config['ssl_verifypeer']) ? $config['ssl_verifypeer'] : true);
+        $this->setProxyEnable(isset($config['proxy_enable']) ? $config['proxy_enable'] : false);
+        $this->setProxyHost(isset($config['proxy_host']) ? $config['proxy_host'] : null);
+        $this->setProxyPort(isset($config['proxy_port']) ? $config['proxy_port'] : null);
     }
     
     /**
@@ -150,6 +186,46 @@ class Config
     public function setSecret($secret)
     {
         $this->secret = $secret;
+    }
+    
+    public function getSslVerifypeer()
+    {
+        return $this->ssl_verifypeer;
+    }
+    
+    public function setSslVerifypeer($ssl_verifypeer)
+    {
+        $this->ssl_verifypeer = $ssl_verifypeer;
+    }
+    
+    public function getProxyEnable()
+    {
+        return $this->proxy_enable;
+    }
+    
+    public function setProxyEnable($proxy_enable)
+    {
+        $this->proxy_enable = $proxy_enable;
+    }
+    
+    public function getProxyHost()
+    {
+        return $this->proxy_host;
+    }
+    
+    public function setProxyHost($proxy_host)
+    {
+        $this->proxy_host = $proxy_host;
+    }
+    
+    public function getProxyPort()
+    {
+        return $this->proxy_port;
+    }
+    
+    public function setProxyPort($proxy_port)
+    {
+        $this->proxy_port = $proxy_port;
     }
     
     /**

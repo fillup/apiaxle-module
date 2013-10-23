@@ -64,7 +64,7 @@ class Utilities
         }
         
         $url = $config->getEndpoint().'/'.$apiPath;
-        $request = HttpRequest::request($url, $method, $json_data, $headers);
+        $request = HttpRequest::request($url, $method, $json_data, $headers, $config);
         if($request){
             $results = json_decode($request);
             if($results->meta->status_code >= 200 && $results->meta->status_code < 300){

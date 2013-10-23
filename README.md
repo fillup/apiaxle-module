@@ -12,14 +12,18 @@ ApiAxle is a proxy that sits on your network, in front of your API(s) and manage
 * [curl](http://php.net/curl)
 * [ApiAxle](http://apiaxle.com) proxy with the apiaxle-api package installed
 
+## Special Note about ApiAxle version 1.11 ##
+The tests for this library are not all able to run successfully with ApiAxle version 1.11. I'm working with the ApiAxle team to figure out what changed to cause the problem, but for now I recommend if you are using this library to use ApiAxle 1.10.
+
 ## Features / Goals / TODO ##
 - [x] Readily consumable, configuration based, object oriented library
 - [x] Support for Api objects
 - [x] Support for Key objects
-- [ ] Support for Keychain objects
+- [x] Support for Keyring objects
 - [x] Set up continuous integration with Travis-CI: (https://travis-ci.org/fillup/apiaxle-module)
 - [ ] Create objects to represent stats, charts, etc?
 - [ ] Fix serialization of PHP boolean to string for ApiAxle API. Currently API wants string of either true or false, but serializing PHP boolean results in 0 or 1.
+- [ ] Add support for new features in ApiAxle 1.11 to support capturing path statistics
 
 ## Installation ##
 ### Using Composer - Recommended ###

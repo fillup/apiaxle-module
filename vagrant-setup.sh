@@ -4,7 +4,7 @@
 sudo add-apt-repository -y ppa:chris-lea/node.js
 sudo apt-get update -y
 sudo apt-get install -y git python-software-properties build-essential libxml2-dev nodejs redis-server php5 php5-curl
-sudo npm install -g apiaxle-repl apiaxle-proxy apiaxle-api
+sudo npm install -g apiaxle-base apiaxle-repl apiaxle-proxy apiaxle-api
 
 # Start ApiAxle processes
 apiaxle-proxy -p 3000 &

@@ -3,5 +3,9 @@
 return array(
     'endpoint' => 'http://domain.com:port/v1/',
     'key' => 'somerandomstring',
-    'secret' => 'somelongerrandomstring'
+    'secret' => 'somelongerrandomstring',
+    'ssl_verifypeer' => true,
+    'proxy_enable' => false,
+    'proxy_host' => '127.0.0.1',
+    'proxy_port' => '8888',
 );
