@@ -105,7 +105,7 @@
 </span></span><span id="3" class="l"><a class="l" href="#3"> 3: </a><span class="php-comment"> * ApiAxle (https://github.com/fillup/apiaxle-module)
 </span></span><span id="4" class="l"><a class="l" href="#4"> 4: </a><span class="php-comment"> *
 </span></span><span id="5" class="l"><a class="l" href="#5"> 5: </a><span class="php-comment"> * @link      https://github.com/fillup/apiaxle-module for the canonical source repository
-</span></span><span id="6" class="l"><a class="l" href="#6"> 6: </a><span class="php-comment"> * @license   GPLv2+
+</span></span><span id="6" class="l"><a class="l" href="#6"> 6: </a><span class="php-comment"> * @license   MIT
 </span></span><span id="7" class="l"><a class="l" href="#7"> 7: </a><span class="php-comment"> */</span>
 </span><span id="8" class="l"><a class="l" href="#8"> 8: </a>
 </span><span id="9" class="l"><a class="l" href="#9"> 9: </a><span class="php-keyword1">namespace</span> ApiAxle\Shared;
@@ -166,7 +166,7 @@
 </span><span id="64" class="l"><a class="l" href="#64">64: </a>        }
 </span><span id="65" class="l"><a class="l" href="#65">65: </a>        
 </span><span id="66" class="l"><a class="l" href="#66">66: </a>        <span class="php-var">$url</span> = <span class="php-var">$config</span>-&gt;getEndpoint().<span class="php-quote">'/'</span>.<span class="php-var">$apiPath</span>;
-</span><span id="67" class="l"><a class="l" href="#67">67: </a>        <span class="php-var">$request</span> = HttpRequest::request(<span class="php-var">$url</span>, <span class="php-var">$method</span>, <span class="php-var">$json_data</span>, <span class="php-var">$headers</span>);
+</span><span id="67" class="l"><a class="l" href="#67">67: </a>        <span class="php-var">$request</span> = HttpRequest::request(<span class="php-var">$url</span>, <span class="php-var">$method</span>, <span class="php-var">$json_data</span>, <span class="php-var">$headers</span>, <span class="php-var">$config</span>);
 </span><span id="68" class="l"><a class="l" href="#68">68: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$request</span>){
 </span><span id="69" class="l"><a class="l" href="#69">69: </a>            <span class="php-var">$results</span> = <span class="php-keyword2">json_decode</span>(<span class="php-var">$request</span>);
 </span><span id="70" class="l"><a class="l" href="#70">70: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$results</span>-&gt;meta-&gt;status_code &gt;= <span class="php-num">200</span> &amp;&amp; <span class="php-var">$results</span>-&gt;meta-&gt;status_code &lt; <span class="php-num">300</span>){

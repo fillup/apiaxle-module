@@ -83,6 +83,22 @@ include_once './vendor/autoload.php';
 ## API Documentation ##
 API documentation generated from phpDocs by apigen is available in the docs/ folder.
 
+## Using a Proxy ##
+You can configure the library to use a proxy if needed for debugging or otherwise. I've used it with [Charles Proxy]() many times to debug my calls and responses from ApiAxle. To configure it to use a proxy, simply set these attributes in the configuration:
+```php
+    'proxy_enable' => true,
+    'proxy_host' => '127.0.0.1',
+    'proxy_port' => '8888',
+```
+
+## Using your own CA Certs ##
+If you are running in an environment where you have your own CA and want to validate the certs, you can configure this library to specify where to find the CA info or a path to a folder with certs. This uses the curl_setopt features in PHP to set these. In order for them to work though, the ssl_verifypeer setting needs to be ```true```:
+```php
+    'ssl_verifypeer' => true,
+    'ssl_cainfo' => null,
+    'ssl_capath' => '/etc/pki/tls/certs/',
+```
+
 ## Contributing ##
 If you are interested in contributing to this library and/or extending it please let me know, I'd love to work with others on this to help consider other use cases and design patterns.
 

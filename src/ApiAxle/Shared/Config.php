@@ -42,6 +42,27 @@ class Config
      * @var bool $ssl_verifypeer
      */
     protected $ssl_verifypeer = true;
+    
+    /**
+     * Additional config for cURL providing alternative CA certificate info.
+     * The name of a file holding one or more certificates to verify the peer with.
+     * Requires absolute path.
+     * Use this option alongside CURLOPT_SSL_VERIFYPEER.
+     * 
+     * @link http://us2.php.net/manual/en/function.curl-setopt.php cURL configuration options
+     * @var string $ssl_cainfo
+     */
+    protected $ssl_cainfo = null;
+    
+    /**
+     * Additional config for cURL providing alternative CA certificate path.
+     * A directory that holds multiple CA certificates.
+     * Use this option alongside CURLOPT_SSL_VERIFYPEER.
+     * 
+     * @link http://us2.php.net/manual/en/function.curl-setopt.php cURL configuration options
+     * @var string $ssl_capath
+     */
+    protected $ssl_capath = null;
             
     /**
      * Enable/disable usage of a proxy server
@@ -85,6 +106,8 @@ class Config
             $this->setKey($config->getKey());
             $this->setSecret($config->getSecret());
             $this->setSslVerifypeer($config->getSslVerifypeer());
+            $this->setSslCainfo($config->getSslCainfo());
+            $this->setSslCapath($config->getSslCapath());
             $this->setProxyEnable($config->getProxyEnable());
             $this->setProxyHost($config->getProxyHost());
             $this->setProxyPort($config->getProxyPort());
@@ -108,6 +131,8 @@ class Config
         $this->setKey(isset($config['key']) ? $config['key'] : false);
         $this->setSecret(isset($config['secret']) ? $config['secret'] : false);
         $this->setSslVerifypeer(isset($config['ssl_verifypeer']) ? $config['ssl_verifypeer'] : true);
+        $this->setSslCainfo(isset($config['ssl_cainfo']) ? $config['ssl_cainfo'] : true);
+        $this->setSslCapath(isset($config['ssl_capath']) ? $config['ssl_capath'] : true);
         $this->setProxyEnable(isset($config['proxy_enable']) ? $config['proxy_enable'] : false);
         $this->setProxyHost(isset($config['proxy_host']) ? $config['proxy_host'] : null);
         $this->setProxyPort(isset($config['proxy_port']) ? $config['proxy_port'] : null);
@@ -196,6 +221,26 @@ class Config
     public function setSslVerifypeer($ssl_verifypeer)
     {
         $this->ssl_verifypeer = $ssl_verifypeer;
+    }
+    
+    public function getSslCainfo()
+    {
+        return $this->ssl_cainfo;
+    }
+    
+    public function setSslCainfo($ssl_cainfo)
+    {
+        $this->ssl_cainfo = $ssl_cainfo;
+    }
+    
+    public function getSslCapath()
+    {
+        return $this->ssl_capath;
+    }
+    
+    public function setSslCapath($ssl_capath)
+    {
+        $this->ssl_capath = $ssl_capath;
     }
     
     public function getProxyEnable()

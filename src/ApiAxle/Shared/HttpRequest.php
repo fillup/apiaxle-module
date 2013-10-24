@@ -42,6 +42,15 @@ class HttpRequest
         curl_setopt($ch, CURLINFO_HEADER_OUT, true);
         if($config){
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $config->getSslVerifypeer());
+            if($config->getSslVerifypeer()){
+                if(!is_null($config->getSslCainfo())){
+                    curl_setopt($ch, CURLOPT_CAINFO, $config->getSslCainfo());
+                }
+                if(!is_null($config->getSslCapath())){
+                    curl_setopt($ch, CURLOPT_CAPATH, $config->getSslCapath());
+                }
+            }
+            
             if($config->getProxyEnable()){
                 curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, $config->getProxyEnable());
                 curl_setopt($ch, CURLOPT_PROXY, $config->getProxyHost());
