@@ -67,6 +67,16 @@ class Utilities
         $request = HttpRequest::request($url, $method, $json_data, $headers, $config);
         if($request){
             $results = json_decode($request);
+            
+            // If unable to decode the response as JSON...
+            if (is_null($results)) {
+                
+                // Throw an exception, suggesting to the user that the problem
+                // may be that ApiAxle is not running.
+                throw new \ErrorException('API did not return properly. ' .
+                                          'Is ApiAxle running?');
+            }
+            
             if($results->meta->status_code >= 200 && $results->meta->status_code < 300){
                 return $results->results;
             } elseif($results->meta->status_code >= 300 && $results->meta->status_code < 400){
