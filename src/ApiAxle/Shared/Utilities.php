@@ -58,7 +58,7 @@ class Utilities
         
         $json_data = false;
         
-        if(is_array($data)){
+        if(is_array($data) && $method != 'GET'){
             $json_data = json_encode($data);
             $headers[] = "Content-Length: ".  strlen($json_data);
         }
