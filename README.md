@@ -12,9 +12,6 @@ ApiAxle is a proxy that sits on your network, in front of your API(s) and manage
 * [curl](http://php.net/curl)
 * [ApiAxle](http://apiaxle.com) proxy with the apiaxle-api package installed
 
-## Special Note about ApiAxle version 1.11 ##
-The tests for this library are not all able to run successfully with ApiAxle version 1.11. I'm working with the ApiAxle team to figure out what changed to cause the problem, but for now I recommend if you are using this library to use ApiAxle 1.10.
-
 ## Features / Goals / TODO ##
 - [x] Readily consumable, configuration based, object oriented library
 - [x] Support for Api objects
