@@ -124,6 +124,16 @@ class Api
     protected $strictSSL = 'true';
     
     /**
+     * (default: 3) Allows configuration of window size for valid signatures.
+     * When using signed requests, ApiAxle will calculate valid signature for
+     * this many seconds before and after now. So when set to 3, there are 7
+     * possible signatures that are valid.
+     * 
+     * @var integer 
+     */
+    protected $tokenSkewProtectionCount = 3;
+    
+    /**
      * Construct new Api object.
      * 
      * If a $name is provided, it will be fetched from the ApiAxle API and
@@ -167,6 +177,7 @@ class Api
         $this->defaultPath = isset($data->defaultPath) ? $data->defaultPath : null;
         $this->disabled = isset($data->disabled) ? $data->disabled : false;
         $this->strictSSL = isset($data->strictSSL) ? $data->strictSSL : true;
+        $this->tokenSkewProtectionCount = isset($data->tokenSkewProtectionCount) ? $data->tokenSkewProtectionCount : $this->tokenSkewProtectionCount;
         
         return $this;
     }
@@ -190,7 +201,8 @@ class Api
             'extractKeyRegex' => $this->extractKeyRegex,
             'defaultPath' => $this->defaultPath,
             'disabled' => $this->disabled,
-            'strictSSL' => $this->strictSSL
+            'strictSSL' => $this->strictSSL,
+            'tokenSkewProtectionCount' => $this->tokenSkewProtectionCount,
         );
         
         return $data;
