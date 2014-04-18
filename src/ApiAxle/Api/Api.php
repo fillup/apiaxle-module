@@ -202,7 +202,7 @@ class Api
             'defaultPath' => $this->defaultPath,
             'disabled' => $this->disabled,
             'strictSSL' => $this->strictSSL,
-            'tokenSkewProtectionCount' => $this->tokenSkewProtectionCount,
+            'tokenSkewProtectionCount' => (int)$this->tokenSkewProtectionCount,
         );
         
         return $data;
