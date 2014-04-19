@@ -19,6 +19,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($configArray['endpoint'], $config->getEndpoint());
         $this->assertEquals($configArray['key'], $config->getKey());
         $this->assertEquals($configArray['secret'], $config->getSecret());
+        $this->assertTrue(is_array($config->getConfig()));
     }
     
     public function testInitializeWithFile()
@@ -29,5 +30,46 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($configArray['endpoint'], $config->getEndpoint());
         $this->assertEquals($configArray['key'], $config->getKey());
         $this->assertEquals($configArray['secret'], $config->getSecret());
+    }
+    
+    public function testInitializeWithInvalidFilePath()
+    {
+        $config = new Config();
+        try{
+            $config->loadConfigFile('/not/a/real/path');
+            $this->assertTrue(false,'Was able to load invalid config file!?!?');
+        } catch (\Exception $e) {
+            $this->assertTrue(true);
+        }
+    }
+    
+    public function testSetInvalidEndpoint()
+    {
+        $config = new Config();
+        try{
+            $config->setEndpoint(':');
+            $this->assertTrue(false,'Able to set bogus endpoint.');
+        } catch (\Exception $e) {
+            $this->assertTrue(true);
+        }
+        try{
+            $config->setEndpoint('http://domain.com');
+            $this->assertTrue(false,'Able to set endpoint with protocol');
+        } catch (\Exception $e) {
+            $this->assertTrue(true);
+        }
+        try{
+            $config->setEndpoint();
+            $this->assertTrue(false,'Able to set empty endpoint.');
+        } catch (\Exception $e) {
+            $this->assertTrue(true);
+        }
+    }
+    
+    public function testGetSignatureWithNullSecret()
+    {
+        $config = new Config();
+        $config->setSecret(null);
+        $this->assertFalse($config->getSignature());
     }
 }

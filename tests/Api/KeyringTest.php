@@ -67,6 +67,10 @@ class KeyringTests extends \PHPUnit_Framework_TestCase
             }
         }
         $this->assertTrue($hasKeyring,'Keyring not found after create');
+        
+        $getKeyring = $keyring->get($keyringName);
+        $this->assertTrue(is_integer($getKeyring->getCreatedAt()));
+        
         $keyring->delete();
         $keyringList = $keyring->getList();
         $hasKeyring = false;
@@ -117,7 +121,7 @@ class KeyringTests extends \PHPUnit_Framework_TestCase
         $keyringName = 'test-'.str_replace(array(' ','.'),'',microtime());
         $keyring = new Keyring();
         $keyring->create($keyringName);
-        $stats = $keyring->getStats();
+        $stats = $keyring->getStats(time()-1000,time());
         $this->assertInstanceOf('\stdClass', $stats);
     }
     
@@ -140,5 +144,41 @@ class KeyringTests extends \PHPUnit_Framework_TestCase
         $keyList = $keyring->getKeyList();
         $this->assertInstanceOf('ApiAxle\Shared\ItemList', $keyList);
         $this->assertCount(3, $keyList);
+    }
+    
+    public function testCallsWithoutName()
+    {
+        $keyring = new Keyring();
+        try{
+            $keyring->delete();
+            $this->assertTrue(false,'Able to delete keyring without name.');
+        } catch (\Exception $e) {
+            $this->assertTrue(true);
+        }
+        try{
+            $keyring->getKeyList();
+            $this->assertTrue(false,'Able to getKeyList keyring without name.');
+        } catch (\Exception $e) {
+            $this->assertTrue(true);
+        }
+        try{
+            $keyring->linkKey();
+            $this->assertTrue(false,'Able to linkKey keyring without name.');
+        } catch (\Exception $e) {
+            $this->assertTrue(true);
+        }
+        try{
+            $keyring->unLinkKey();
+            $this->assertTrue(false,'Able to unLinkKey keyring without name.');
+        } catch (\Exception $e) {
+            $this->assertTrue(true);
+        }
+        try{
+            $keyring->getStats();
+            $this->assertTrue(false,'Able to getStats keyring without name.');
+        } catch (\Exception $e) {
+            $this->assertTrue(true);
+        }
+        $this->assertFalse($keyring->isValid());
     }
 }
