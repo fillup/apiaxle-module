@@ -76,13 +76,13 @@ class Utilities
                 throw new \ErrorException('API did not return properly. ' .
                                           'Is ApiAxle running?');
             }
-            
-            if($results->meta->status_code >= 200 && $results->meta->status_code < 300){
+            $statusCode = $results->meta->status_code;
+            if($statusCode >= 200 && $statusCode < 300){
                 return $results->results;
-            } elseif($results->meta->status_code >= 300 && $results->meta->status_code < 400){
-                throw new ApiException('API returned a redirection', '200', null, $results->meta->status_code, $results);
-            } elseif($results->meta->status_code >= 400 && $results->meta->status_code < 600){
-                throw new ApiException('API returned error: '.$results->results->error->message, '201', null, $results->meta->status_code, $results);
+            } elseif($statusCode >= 300 && $statusCode < 400){
+                throw new ApiException('API returned a redirection', '200', null, $statusCode, $results);
+            } elseif($statusCode >= 400 && $statusCode < 600){
+                throw new ApiException('API returned error: '.$results->results->error->message, '201', null, $statusCode, $results);
             }
         } else {
             throw new \ErrorException('API did not return properly.','202',null);

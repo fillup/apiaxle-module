@@ -30,7 +30,16 @@ class ApiException extends \Exception
     public function __construct($message, $code, $previous = null, $http_code, $response) {
         parent::__construct($message, $code, $previous);
         $this->setResponse($response);
-        $this->http_code = $http_code;
+        $this->setHttpCode($http_code);
+    }
+    
+    public function setHttpCode($code=0)
+    {
+        $this->http_code = (int)$code;
+    }
+    public function getHttpCode()
+    {
+        return $this->http_code;
     }
     
     public function setResponse($response)

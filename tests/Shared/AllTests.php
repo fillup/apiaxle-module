@@ -3,7 +3,7 @@
 namespace ApiAxleTest\Shared;
 
 require_once 'ConfigTest.php';
-
+require_once 'AxleTest.php';
 
 class Shared_AllTests
 {
@@ -12,6 +12,7 @@ class Shared_AllTests
         $suite = new \PHPUnit_Framework_TestSuite('ApiAxle Shared');
         
         $suite->addTestSuite('\\ApiAxleTest\\Shared\\ConfigTest');
+        $suite->addTestSuite('\\ApiAxleTest\\Shared\\AxleTest');
         
         return $suite;
         
