@@ -139,7 +139,7 @@ class ApiTests extends \PHPUnit_Framework_TestCase
         $apiName = 'apiaxle';
         $api = new Api();
         $api->setName($apiName);
-        $keycharts = $api->getKeyCharts();
+        $keycharts = $api->getKeyCharts(time()-10000,time());
         //print_r($keycharts);
         $this->assertInstanceOf('\stdClass', $keycharts);
     }
@@ -162,6 +162,9 @@ class ApiTests extends \PHPUnit_Framework_TestCase
         );
         $api = new Api();
         $api->create($apiName, $data);
+        /**
+         * Test linking with Key object
+         */
         $key = new Key();
         $key->create($apiName);
         $api->linkKey($key);
@@ -173,6 +176,9 @@ class ApiTests extends \PHPUnit_Framework_TestCase
             }
         }
         $this->assertTrue($hasAssoc,'New key is not linked to new API');
+        /**
+         * Now unlink the key
+         */
         $api->unLinkKey($key);
         $hasAssoc = false;
         $apiList = $key->getApiList();
@@ -182,13 +188,37 @@ class ApiTests extends \PHPUnit_Framework_TestCase
             }
         }
         $this->assertFalse($hasAssoc,'New key is still linked to new API');
+        /**
+         * Test linking now with string instead of object
+         */
+        $api->linkKey($key->getKey());
+        $hasAssoc = false;
+        $apiList = $key->getApiList();
+        foreach($apiList as $item){
+            if($item->getName() == $apiName){
+                $hasAssoc = true;
+            }
+        }
+        $this->assertTrue($hasAssoc,'New key is not linked to new API as string');
+        /**
+         * Test unlinking by string instead of object
+         */
+        $api->unLinkKey($key->getKey());
+        $hasAssoc = false;
+        $apiList = $key->getApiList();
+        foreach($apiList as $item){
+            if($item->getName() == $apiName){
+                $hasAssoc = true;
+            }
+        }
+        $this->assertFalse($hasAssoc,'New key is still linked to new API after trying to unlink with string');
     }
     
     public function testGetStats()
     {
         $api = new API();
         $api->setName('apiaxle');
-        $apiStats = $api->getStats();
+        $apiStats = $api->getStats(time()-10000,time());
         //print_r($apiStats);
         $this->assertInstanceOf('\stdClass', $apiStats);
     }
@@ -199,6 +229,72 @@ class ApiTests extends \PHPUnit_Framework_TestCase
         $charts = $api->getCharts('day');
         //print_r($charts);
         $this->assertInstanceOf('\stdClass', $charts);
+    }
+    
+    public function testCreateInvalidEndpoint()
+    {
+        $apiName = 'test-'.str_replace(array(' ','.'),'',microtime());
+        $api = new Api();
+        try{
+            $api->create($apiName,array());
+            $this->assertTrue(false);
+        } catch (\Exception $e) {
+            $this->assertTrue(true);
+        }
+        
+        try{
+            $api->create($apiName,array('endpoint' => 'https://testinginvalid'));
+            $this->assertTrue(false);
+        } catch (\Exception $e) {
+            $this->assertTrue(true);
+        }
+    }
+    
+    public function testMethodsWithoutName()
+    {
+        $api = new Api();
+        try{
+            $api->update(array());
+            $this->assertTrue(false,'Was able to update api without name');
+        } catch (\Exception $e) {
+            $this->assertTrue(true);
+        }
+        try{
+            $api->delete();
+            $this->assertTrue(false,'Was able to delete api without name');
+        } catch (\Exception $e) {
+            $this->assertTrue(true);
+        }
+        try{
+            $api->getKeyCharts();
+            $this->assertTrue(false,'Was able to getKeyCharts api without name');
+        } catch (\Exception $e) {
+            $this->assertTrue(true);
+        }
+        try{
+            $api->getKeyList();
+            $this->assertTrue(false,'Was able to getKeyList without name');
+        } catch (\Exception $e) {
+            $this->assertTrue(true);
+        }
+        try{
+            $api->linkKey('123');
+            $this->assertTrue(false,'Was able to linkKey without name');
+        } catch (\Exception $e) {
+            $this->assertTrue(true);
+        }
+        try{
+            $api->unLinkKey('123');
+            $this->assertTrue(false,'Was able to unLinkKey without name');
+        } catch (\Exception $e) {
+            $this->assertTrue(true);
+        }
+        try{
+            $api->getStats('123');
+            $this->assertTrue(false,'Was able to getStats without name');
+        } catch (\Exception $e) {
+            $this->assertTrue(true);
+        }
     }
 
 }
