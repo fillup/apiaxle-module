@@ -50,13 +50,6 @@ class Api
     protected $updatedAt;
     
     /**
-     * (default: 0) The time in seconds that every call under this API should be cached.
-     * 
-     * @var integer 
-     */
-    protected $globalCache = 0;
-    
-    /**
      * The endpoint for the API. For example; `graph.facebook.com`
      * 
      * @var string 
@@ -84,13 +77,6 @@ class Api
      * @var integer 
      */
     protected $endPointTimeout = '2';
-    
-    /**
-     * (default: 2) Max redirects that are allowed when endpoint called.
-     * 
-     * @var integer
-     */
-    protected $endPointMaxRedirects = '2';
     
     /**
      * (optional) Regular expression used to extract API key from url. Axle will 
@@ -167,12 +153,10 @@ class Api
          */
         $this->createdAt = isset($data->createdAt) ? $data->createdAt : null;
         $this->updatedAt = isset($data->updatedAt) ? $data->updatedAt : null;
-        $this->globalCache = isset($data->globalCache) ? $data->globalCache : null;
         $this->endPoint = isset($data->endPoint) ? $data->endPoint : null;
         $this->protocol = isset($data->protocol) ? $data->protocol : null;
         $this->apiFormat = isset($data->apiFormat) ? $data->apiFormat : null;
         $this->endPointTimeout = isset($data->endPointTimeout) ? $data->endPointTimeout : null;
-        $this->endPointMaxRedirects = isset($data->endPointMaxRedirects) ? $data->endPointMaxRedirects : null;
         $this->extractKeyRegex = isset($data->extractKeyRegex) ? $data->extractKeyRegex : null;
         $this->defaultPath = isset($data->defaultPath) ? $data->defaultPath : null;
         $this->disabled = isset($data->disabled) ? $data->disabled : false;
@@ -192,12 +176,10 @@ class Api
         $data = array(
             'createdAt' => $this->createdAt,
             'updatedAt' => $this->updatedAt,
-            'globalCache' => $this->globalCache,
             'endPoint' => $this->endPoint,
             'protocol' => $this->protocol,
             'apiFormat' => $this->apiFormat,
             'endPointTimeout' => $this->endPointTimeout,
-            'endPointMaxRedirects' => $this->endPointMaxRedirects,
             'extractKeyRegex' => $this->extractKeyRegex,
             'defaultPath' => $this->defaultPath,
             'disabled' => $this->disabled,
