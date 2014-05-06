@@ -10,7 +10,7 @@ ApiAxle is a proxy that sits on your network, in front of your API(s) and manage
 ## Requirements ##
 * PHP >= 5.3.3
 * [curl](http://php.net/curl)
-* [ApiAxle](http://apiaxle.com) proxy with the apiaxle-api package installed
+* [ApiAxle](http://apiaxle.com) >= 1.12.17
 
 ## Features / Goals / TODO ##
 - [x] Readily consumable, configuration based, object oriented library
