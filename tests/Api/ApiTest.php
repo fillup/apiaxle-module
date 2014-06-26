@@ -109,6 +109,12 @@ class ApiTests extends \PHPUnit_Framework_TestCase
             'endPointTimeout' => 2,
             'strictSSL' => true,
             'tokenSkewProtectionCount' => 3,
+            'sendThroughApiKey' => true,
+            'sendThroughApiSig' => true,
+            'hasCapturePaths' => true,
+            'allowKeylessUse' => true,
+            'keylessQps' => 2,
+            'keylessQpd' => 1000,
         );
         $api = new Api();
         try{
