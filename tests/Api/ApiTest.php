@@ -115,6 +115,7 @@ class ApiTests extends \PHPUnit_Framework_TestCase
             'allowKeylessUse' => true,
             'keylessQps' => 2,
             'keylessQpd' => 1000,
+            'corsEnabled' => true,
         );
         $api = new Api();
         try{

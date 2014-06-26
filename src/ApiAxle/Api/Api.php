@@ -168,6 +168,13 @@ class Api
      * @var integer 
      */
     protected $tokenSkewProtectionCount = 3;
+
+    /**
+     * Whether or not to return CORS headers for this API.
+     *
+     * @var bool
+     */
+    protected $corsEnabled = false;
     
     /**
      * Construct new Api object.
@@ -218,6 +225,7 @@ class Api
         $this->keylessQps = isset($data->keylessQps) ? $data->keylessQps : false;
         $this->keylessQpd = isset($data->keylessQpd) ? $data->keylessQpd : false;
         $this->tokenSkewProtectionCount = isset($data->tokenSkewProtectionCount) ? $data->tokenSkewProtectionCount : $this->tokenSkewProtectionCount;
+        $this->corsEnabled = isset($data->corsEnabled) ? $data->corsEnabled : $this->corsEnabled;
         
         return $this;
     }
@@ -247,6 +255,7 @@ class Api
             'keylessQps' => $this->keylessQps,
             'keylessQpd' => $this->keylessQpd,
             'tokenSkewProtectionCount' => (int)$this->tokenSkewProtectionCount,
+            'corsEnabled' => $this->corsEnabled,
         );
         
         return $data;
