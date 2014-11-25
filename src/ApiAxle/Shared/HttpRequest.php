@@ -49,6 +49,8 @@ class HttpRequest
                 if(!is_null($config->getSslCapath())){
                     curl_setopt($ch, CURLOPT_CAPATH, $config->getSslCapath());
                 }
+            } else {
+                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
             }
             
             if($config->getProxyEnable()){
