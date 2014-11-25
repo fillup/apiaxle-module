@@ -4,3 +4,4 @@ vendor/
 *.local.php
 build/
 .vagrant/
+.idea/
