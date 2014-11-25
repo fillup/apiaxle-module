@@ -103,7 +103,19 @@ class ApiTests extends \PHPUnit_Framework_TestCase
     {
         $apiName = 'test-'.str_replace(array(' ','.'),'',microtime());
         $data = array(
-            'endPoint' => 'localhost'
+            'endPoint' => 'localhost',
+            'protocol' => 'https',
+            'apiFormat' => 'json',
+            'endPointTimeout' => 2,
+            'strictSSL' => true,
+            'tokenSkewProtectionCount' => 3,
+            'sendThroughApiKey' => true,
+            'sendThroughApiSig' => true,
+            'hasCapturePaths' => true,
+            'allowKeylessUse' => true,
+            'keylessQps' => 2,
+            'keylessQpd' => 1000,
+            'corsEnabled' => true,
         );
         $api = new Api();
         try{
@@ -296,5 +308,22 @@ class ApiTests extends \PHPUnit_Framework_TestCase
             $this->assertTrue(true);
         }
     }
-
+    
+    public function testIsValidMethod()
+    {
+        $api = new Api();
+        try{
+            $api->isValid();
+            $this->assertTrue(false,'Api is valid without an endpoint');
+        } catch (\Exception $e) {
+            $this->assertTrue(true);
+        }
+        try{
+            $api->setData(array('endPoint'=>'https://domain.com'));
+            $api->isValid();
+            $this->assertTrue(false,'Api is valid with an invalid endpoint');
+        } catch (\Exception $e) {
+            $this->assertTrue(true);
+        }
+    }
 }

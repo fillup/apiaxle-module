@@ -50,13 +50,6 @@ class Api
     protected $updatedAt;
     
     /**
-     * (default: 0) The time in seconds that every call under this API should be cached.
-     * 
-     * @var integer 
-     */
-    protected $globalCache = 0;
-    
-    /**
      * The endpoint for the API. For example; `graph.facebook.com`
      * 
      * @var string 
@@ -84,13 +77,6 @@ class Api
      * @var integer 
      */
     protected $endPointTimeout = '2';
-    
-    /**
-     * (default: 2) Max redirects that are allowed when endpoint called.
-     * 
-     * @var integer
-     */
-    protected $endPointMaxRedirects = '2';
     
     /**
      * (optional) Regular expression used to extract API key from url. Axle will 
@@ -124,6 +110,56 @@ class Api
     protected $strictSSL = 'true';
     
     /**
+     * (default: false) If true then the api_key parameter will be passed through in the request.
+     * 
+     * @var boolean 
+     */
+    protected $sendThroughApiKey = 'false';
+    
+    /**
+     * (default: false) If true then the api_sig parameter will be passed through in the request.
+     * 
+     * @var boolean 
+     */
+    protected $sendThroughApiSig = 'false';
+    
+    /**
+     * (default: false) When true ApiAxle will parse and capture bits of 
+     * information about the API being called.
+     * 
+     * @var boolean 
+     */
+    protected $hasCapturePaths = 'false';
+    
+    /**
+     * (default: false) (optional) If true then allow for keyless access to this 
+     * API. Also see keylessQps and keylessQpd.
+     * 
+     * @var boolean 
+     */
+    protected $allowKeylessUse = 'false';
+    
+    /**
+     * (default: 2) How many queries per second an anonymous key should have 
+     * when it's created. Note that changing this will not affect on temporary 
+     * keys that have already been created. However, as temprary keys only live 
+     * for 24 hours, this limit will be applied when that period expires.
+     * 
+     * @var boolean 
+     */
+    protected $keylessQps = 2;
+    
+    /**
+     * (default: 172800) How many queries per day an anonymous key should have 
+     * when it's created. Note that changing this will not affect on temporary 
+     * keys that have already been created. However, as temprary keys only live 
+     * for 24 hours, this limit will be applied when that period expires.
+     * 
+     * @var boolean 
+     */
+    protected $keylessQpd = 172800;
+    
+    /**
      * (default: 3) Allows configuration of window size for valid signatures.
      * When using signed requests, ApiAxle will calculate valid signature for
      * this many seconds before and after now. So when set to 3, there are 7
@@ -132,6 +168,13 @@ class Api
      * @var integer 
      */
     protected $tokenSkewProtectionCount = 3;
+
+    /**
+     * Whether or not to return CORS headers for this API.
+     *
+     * @var bool
+     */
+    protected $corsEnabled = false;
     
     /**
      * Construct new Api object.
@@ -167,17 +210,22 @@ class Api
          */
         $this->createdAt = isset($data->createdAt) ? $data->createdAt : null;
         $this->updatedAt = isset($data->updatedAt) ? $data->updatedAt : null;
-        $this->globalCache = isset($data->globalCache) ? $data->globalCache : null;
         $this->endPoint = isset($data->endPoint) ? $data->endPoint : null;
         $this->protocol = isset($data->protocol) ? $data->protocol : null;
         $this->apiFormat = isset($data->apiFormat) ? $data->apiFormat : null;
         $this->endPointTimeout = isset($data->endPointTimeout) ? $data->endPointTimeout : null;
-        $this->endPointMaxRedirects = isset($data->endPointMaxRedirects) ? $data->endPointMaxRedirects : null;
         $this->extractKeyRegex = isset($data->extractKeyRegex) ? $data->extractKeyRegex : null;
         $this->defaultPath = isset($data->defaultPath) ? $data->defaultPath : null;
         $this->disabled = isset($data->disabled) ? $data->disabled : false;
         $this->strictSSL = isset($data->strictSSL) ? $data->strictSSL : true;
+        $this->sendThroughApiKey = isset($data->sendThroughApiKey) ? $data->sendThroughApiKey : false;
+        $this->sendThroughApiSig = isset($data->sendThroughApiSig) ? $data->sendThroughApiSig : false;
+        $this->hasCapturePaths = isset($data->hasCapturePaths) ? $data->hasCapturePaths : false;
+        $this->allowKeylessUse = isset($data->allowKeylessUse) ? $data->allowKeylessUse : false;
+        $this->keylessQps = isset($data->keylessQps) ? $data->keylessQps : false;
+        $this->keylessQpd = isset($data->keylessQpd) ? $data->keylessQpd : false;
         $this->tokenSkewProtectionCount = isset($data->tokenSkewProtectionCount) ? $data->tokenSkewProtectionCount : $this->tokenSkewProtectionCount;
+        $this->corsEnabled = isset($data->corsEnabled) ? $data->corsEnabled : $this->corsEnabled;
         
         return $this;
     }
@@ -192,17 +240,22 @@ class Api
         $data = array(
             'createdAt' => $this->createdAt,
             'updatedAt' => $this->updatedAt,
-            'globalCache' => $this->globalCache,
             'endPoint' => $this->endPoint,
             'protocol' => $this->protocol,
             'apiFormat' => $this->apiFormat,
             'endPointTimeout' => $this->endPointTimeout,
-            'endPointMaxRedirects' => $this->endPointMaxRedirects,
             'extractKeyRegex' => $this->extractKeyRegex,
             'defaultPath' => $this->defaultPath,
             'disabled' => $this->disabled,
             'strictSSL' => $this->strictSSL,
+            'sendThroughApiKey' => $this->sendThroughApiKey,
+            'sendThroughApiSig' => $this->sendThroughApiSig,
+            'hasCapturePaths' => $this->hasCapturePaths,
+            'allowKeylessUse' => $this->allowKeylessUse,
+            'keylessQps' => $this->keylessQps,
+            'keylessQpd' => $this->keylessQpd,
             'tokenSkewProtectionCount' => (int)$this->tokenSkewProtectionCount,
+            'corsEnabled' => $this->corsEnabled,
         );
         
         return $data;
