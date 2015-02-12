@@ -131,8 +131,8 @@ class Config
         $this->setKey(isset($config['key']) ? $config['key'] : false);
         $this->setSecret(isset($config['secret']) ? $config['secret'] : false);
         $this->setSslVerifypeer(isset($config['ssl_verifypeer']) ? $config['ssl_verifypeer'] : true);
-        $this->setSslCainfo(isset($config['ssl_cainfo']) ? $config['ssl_cainfo'] : true);
-        $this->setSslCapath(isset($config['ssl_capath']) ? $config['ssl_capath'] : true);
+        $this->setSslCainfo(isset($config['ssl_cainfo']) ? $config['ssl_cainfo'] : null);
+        $this->setSslCapath(isset($config['ssl_capath']) ? $config['ssl_capath'] : null);
         $this->setProxyEnable(isset($config['proxy_enable']) ? $config['proxy_enable'] : false);
         $this->setProxyHost(isset($config['proxy_host']) ? $config['proxy_host'] : null);
         $this->setProxyPort(isset($config['proxy_port']) ? $config['proxy_port'] : null);
