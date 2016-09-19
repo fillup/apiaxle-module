@@ -14,19 +14,19 @@ class KeyringTests extends \PHPUnit_Framework_TestCase
     public static function tearDownAfterClass()
     {
         try {
-            $keyring = new Keyring();
-            $keyringList = $keyring->getList();
-            foreach($keyringList as $item){
-                if(strpos($item->getName(),'test-') !== false){
-                    $keyring->delete($item->getName());
-                }
-            }
-            
             $key = new Key();
             $keyList = $key->getList();
             foreach($keyList as $item){
                 if(strpos($item->getKey(),'test-') !== false){
                     $key->delete($item->getKey());
+                }
+            }
+
+            $keyring = new Keyring();
+            $keyringList = $keyring->getList();
+            foreach($keyringList as $item){
+                if(strpos($item->getName(),'test-') !== false){
+                    $keyring->delete($item->getName());
                 }
             }
         } catch(ApiException $ae){
